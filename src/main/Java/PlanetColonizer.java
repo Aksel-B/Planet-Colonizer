@@ -242,7 +242,7 @@ class PlanetColonizer extends Program{
         }
     }
 
-//-----------------------------------------TEST-------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------TESTS-------------------------------------------------------------------------------------------------------------------------------------
 
     void testMax() {
         assertEquals(5, max(5, 3)); // Vérifie que max(5, 3) retourne 5
@@ -308,6 +308,19 @@ class PlanetColonizer extends Program{
         assertEquals("", spaceEraser("")); // Une chaîne vide reste vide
     }
 
+    void testAll(){
+        testFindLastIndex();
+        testFormatCharacteristic();
+        testIntToChar();
+        testMax();
+        testMin();
+        testRepeatChar();
+        testSpaceEraser();
+        testStringTabIsEmpty();
+        testStringToBoolean();
+        testTabEmptier();
+        testTerrainTabIsEmpty();
+    }
 
 //---------------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------
 
@@ -1890,15 +1903,15 @@ class PlanetColonizer extends Program{
 
     EtatJeu gestionMenuPrincipal() {
         while (true) {
-                println("                                                               ");
+                println();
                 println("========== MENU PRINCIPAL ==========");
                 println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-                println("2. "+ ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde                                            ");
-                println("3. "+ ANSI_BOLD + "Quitter                                              " + ANSI_RESET);
+                println("2. "+ ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
+                println("3. "+ ANSI_BOLD + "Tester les fonctions" + ANSI_RESET);
+                println("4. "+ ANSI_BOLD + "Quitter" + ANSI_RESET);
                 println("------------------------------------");
                 
-            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ");
-
+            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-4) : ");
             switch (option) {
                 case 1:
                     clearScreen();
@@ -1939,10 +1952,15 @@ class PlanetColonizer extends Program{
 
                     println(ANSI_BOLD + "Chargement échoué." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
                     return initialiserNouvellePartie(RESSOURCESINIT, LISTEBATIMENTSPOSSIBLES);
-
+                
                 case 3:
-                    println(ANSI_BOLD + "Au revoir!" + ANSI_RESET);
+                    testAll();
+                    break;
+            
+                case 4:
+                    println("\n"+ANSI_BOLD + "Au revoir!" + ANSI_RESET+"\n");
                     System.exit(0);
+
                 default:
                     println(ANSI_BOLD + ANSI_RED+"\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
             }
