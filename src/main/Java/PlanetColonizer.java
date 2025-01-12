@@ -832,7 +832,7 @@ class PlanetColonizer extends Program{
     }
 
     void verifCapacitéEntrepot(EtatJeu etat){
-        if(calcCapacitéEntrepôt(etat)<etat.gestion.capaciteEntrepot){
+        if(calcCapacitéEntrepôt(etat) < etat.gestion.capaciteEntrepot){
             etat.events.entrepotPlein[0]=false;
         }
     }
@@ -844,8 +844,6 @@ class PlanetColonizer extends Program{
 
             if (batiment.ressourceActuelle.fonctionne[0] == false) {
                 if (etat.events.entrepotPlein[0] == false) {
-                    marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
-                } else {
                     int peutConsommerRes = 0;
                     int cmpt = 0;
                     int idRes = 0;
@@ -863,7 +861,7 @@ class PlanetColonizer extends Program{
 
             if (batiment.ressourceActuelle.fonctionne[0] == true) {
                 if (equals(batiment.ressourceActuelle.nom, LISTEBATIMENTSPOSSIBLES[10].nom)) {
-                    mettreAJourPuitDeForage(etat, LISTEBATIMENTSPOSSIBLES, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee, i);
+                    mettreAJourPuitDeForage(etat, LISTEBATIMENTSPOSSIBLES, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
                 } else {
                     int id = 0;
                     while (id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom, LISTEBATIMENTSPOSSIBLES[id].nom)) {
@@ -896,47 +894,49 @@ class PlanetColonizer extends Program{
     }
 
 
-    void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES, int lig, int col, int capaciteEntreposee, int i) {
+    void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
             id++;
         }
-        if (batiment.quantiteRestante > 0 && (batiment.ressourceActuelle.quantiteResGeneree.length > 0) && (batiment.ressourceActuelle.quantiteResGeneree[0] + capaciteEntreposee) <= etat.gestion.capaciteEntrepot) {
-            if (batiment.ressourceActuelle.quantiteResConso.length > 0) {
-                batiment.quantiteRestante -= batiment.ressourceActuelle.quantiteResConso[0];
+
+        if(batiment.quantiteRestante<=0){
+            marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
+            String ligSTR="";
+            if (lig>9){
+                ligSTR+=lig;
+            }else{
+                ligSTR+=" "+lig;
             }
-            etat.ressources[id].quantite += batiment.ressourceActuelle.quantiteResGeneree[0];
-
-            if (batiment.ressourceActuelle.quantiteResConso.length > 1) {
-                etat.ressources[10].quantite -= batiment.ressourceActuelle.quantiteResConso[1];
-                etat.gestion.variationRessources[10] -= batiment.ressourceActuelle.quantiteResConso[1];
+            etat.events.filonEpuise[findLastIndex(etat.events.filonEpuise)]=ANSI_RED+"Le filon du secteur "+ligSTR+":"+(char)(64+col)+" est épuisé !"+ANSI_RESET;
+        
+        }else if(etat.events.entrepotPlein[0]==false){
+            if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
+                batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
+                etat.ressources[id].quantite+=batiment.ressourceActuelle.quantiteResGeneree[0];
+                
+                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResConso[1];
+                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResConso[1];
+    
+                etat.gestion.variationRessources[id]+=batiment.ressourceActuelle.quantiteResGeneree[0];
+                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+            
+            }else{
+                batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                etat.ressources[id].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                
+                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResGeneree[1]; //C'est celle là qui est bugguée
+                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResGeneree[1];
+    
+                etat.gestion.variationRessources[id]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;            
+                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+    
+                marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
+                etat.events.entrepotPlein[0]=true;
             }
-
-            etat.gestion.variationRessources[id] += batiment.ressourceActuelle.quantiteResGeneree[0];
-            etat.gestion.tabMoyennepollution[10] += batiment.ressourceActuelle.pollutionGeneree;
-
-        } else if (batiment.quantiteRestante <= 0) {
-            marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-            etat.events.filonEpuise[findLastIndex(etat.events.filonEpuise)] = ANSI_RED + "Le filon du secteur " + lig + ":" + (char)(64 + col) + " est épuisé !" + ANSI_RESET;
-            marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-
-        } else if ((batiment.ressourceActuelle.quantiteResGeneree.length > 0) && (batiment.ressourceActuelle.quantiteResGeneree[0] + capaciteEntreposee) > etat.gestion.capaciteEntrepot) {
-            if (batiment.ressourceActuelle.quantiteResConso.length > 0) {
-                batiment.quantiteRestante -= etat.gestion.capaciteEntrepot - capaciteEntreposee;
-            }
-            etat.ressources[id].quantite += etat.gestion.capaciteEntrepot - capaciteEntreposee;
-
-            if (batiment.ressourceActuelle.quantiteResGeneree.length > 1) {
-                etat.ressources[10].quantite -= batiment.ressourceActuelle.quantiteResGeneree[1];
-                etat.gestion.variationRessources[10] -= batiment.ressourceActuelle.quantiteResGeneree[1];
-            }
-
-            etat.gestion.variationRessources[id] += etat.gestion.capaciteEntrepot - capaciteEntreposee;
-            etat.gestion.tabMoyennepollution[10] += batiment.ressourceActuelle.pollutionGeneree;
-
-            marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-            etat.events.entrepotPlein[0] = true;
+        }else{
+            marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
         }
     }
 
@@ -951,33 +951,21 @@ class PlanetColonizer extends Program{
 
     void generer(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
-        for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
-            int idRes = batiment.ressourceActuelle.ressourcesGeneree[f];
-            int quantiteGenerer = batiment.ressourceActuelle.quantiteResGeneree[f];
-
-            // Vérifier si la capacité de l'entrepôt est atteinte
-            if (idRes != 10 && (quantiteGenerer + capaciteEntreposee) > etat.gestion.capaciteEntrepot) {
-                quantiteGenerer = etat.gestion.capaciteEntrepot - capaciteEntreposee;
+        if (etat.events.entrepotPlein[0]==false){
+            for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
+                int idRes = batiment.ressourceActuelle.ressourcesGeneree[f];
+                if(((batiment.ressourceActuelle.quantiteResGeneree[f]+capaciteEntreposee)<=etat.gestion.capaciteEntrepot) || batiment.ressourceActuelle.ressourcesGeneree[f]==10){// L'electricite n'est pas comprise dans le stockage
+                    etat.ressources[idRes].quantite+=batiment.ressourceActuelle.quantiteResGeneree[f];
+                    etat.gestion.variationRessources[idRes]+=batiment.ressourceActuelle.quantiteResGeneree[f];
+                }else{
+                    etat.ressources[idRes].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                    etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                    marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
+                    etat.events.entrepotPlein[0]=true;
+                }
             }
-
-            // Ajouter les ressources générées
-            etat.ressources[idRes].quantite += quantiteGenerer;
-            etat.gestion.variationRessources[idRes] += quantiteGenerer;
-
-            // Détruire les ressources excédentaires si la capacité est atteinte
-            if (idRes != 10 && (etat.ressources[idRes].quantite > etat.gestion.capaciteEntrepot)) {
-                int excedent = etat.ressources[idRes].quantite - etat.gestion.capaciteEntrepot;
-                etat.ressources[idRes].quantite = etat.gestion.capaciteEntrepot;
-                etat.gestion.variationRessources[idRes] -= excedent;
-                println(ANSI_RED + "Détruit " + excedent + " unités de " + etat.ressources[idRes].nom + " car la capacité de l'entrepôt est dépassée." + ANSI_RESET);
-            }
-
-            // Arrêter la génération si la capacité est atteinte
-            if (idRes != 10 && (etat.ressources[idRes].quantite >= etat.gestion.capaciteEntrepot)) {
-                etat.events.entrepotPlein[0] = true;
-                marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-                break;
-            }
+        }else{
+            marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
         }
     }
 
@@ -1959,7 +1947,7 @@ class PlanetColonizer extends Program{
                     return initialiserNouvellePartie(RESSOURCESINIT, LISTEBATIMENTSPOSSIBLES);
 
                 case 3:
-                    println(ANSI_BOLD + "Au revoir!" + ANSI_RESET);
+                    println("\n"+ANSI_BOLD + "Au revoir!" + ANSI_RESET+"\n");
                     System.exit(0);
                 default:
                     println(ANSI_BOLD + ANSI_RED+"\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
