@@ -1,4 +1,4 @@
-<img src="Planet.png" alt="PlanetColonizer" width="50" height="50" align="center"> #PlanetColonizer -- ALPHA
+<img src="Planet.png" alt="PlanetColonizer" width="50" height="50" align="center"> PlanetColonizer -- ALPHA
 
 ## Description
 
