@@ -837,60 +837,60 @@ class PlanetColonizer extends Program{
         }
     }
 
-    void mettreAJourBatiment(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES){
-        int capaciteEntreposee=calcCapacitéEntrepôt(etat);
-        for(int i=0;i<countLastPos(etat.gestion.posBat);i++){
-            CaseCarte batiment=etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
+    void mettreAJourBatiment(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES) {
+        int capaciteEntreposee = calcCapacitéEntrepôt(etat);
+        for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
+            CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
-            if(batiment.ressourceActuelle.fonctionne[0]==false){
-                if (etat.events.entrepotPlein[0]==false) {
-                    marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1]);
-                }else{
-                    int peutConsommerRes=0;
-                    int cmpt=0;
-                    int idRes=0;
-                    while(cmpt<length(batiment.ressourceActuelle.ressourcesConso)){
-                        idRes=batiment.ressourceActuelle.ressourcesConso[cmpt];
-                        if(((etat.ressources[idRes].quantite)-batiment.ressourceActuelle.quantiteResConso[cmpt])>=0){
-                                peutConsommerRes++;
+            if (batiment.ressourceActuelle.fonctionne[0] == false) {
+                if (etat.events.entrepotPlein[0] == false) {
+                    marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+                } else {
+                    int peutConsommerRes = 0;
+                    int cmpt = 0;
+                    int idRes = 0;
+                    while (cmpt < length(batiment.ressourceActuelle.ressourcesConso)) {
+                        idRes = batiment.ressourceActuelle.ressourcesConso[cmpt];
+                        if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) >= 0) {
+                            peutConsommerRes++;
                         }
                     }
-                    if(peutConsommerRes==length(batiment.ressourceActuelle.ressourcesConso)){
-                        marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1]);
+                    if (peutConsommerRes == length(batiment.ressourceActuelle.ressourcesConso)) {
+                        marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
                     }
                 }
             }
 
-            if (batiment.ressourceActuelle.fonctionne[0]==true){
-                if(equals(batiment.ressourceActuelle.nom,LISTEBATIMENTSPOSSIBLES[10].nom)){
-                    mettreAJourPuitDeForage(etat,LISTEBATIMENTSPOSSIBLES,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1],capaciteEntreposee,i);
-                }else{
-                    int id=0;
-                    while(id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom,LISTEBATIMENTSPOSSIBLES[id].nom)){
+            if (batiment.ressourceActuelle.fonctionne[0] == true) {
+                if (equals(batiment.ressourceActuelle.nom, LISTEBATIMENTSPOSSIBLES[10].nom)) {
+                    mettreAJourPuitDeForage(etat, LISTEBATIMENTSPOSSIBLES, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee, i);
+                } else {
+                    int id = 0;
+                    while (id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom, LISTEBATIMENTSPOSSIBLES[id].nom)) {
                         id++;
                     }
-                    if(batiment.ressourceActuelle.ressourcesGeneree[0] !=-1){ //Si le batiment genere quelque chose
-                        boolean peutConsommerRes=true;
-                        int cmpt=0;
-                        int idRes=0;
-                        while(cmpt<length(batiment.ressourceActuelle.ressourcesConso) && peutConsommerRes!=false){
-                            idRes=batiment.ressourceActuelle.ressourcesConso[cmpt];
-                            if(((etat.ressources[idRes].quantite)-batiment.ressourceActuelle.quantiteResConso[cmpt])<0){
-                                peutConsommerRes=false;
-                                marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1]);
-                                etat.events.ressourceEstEpuiseeSTR[idRes]=ANSI_RED+"La ressource: <"+etat.ressources[idRes].nom+"> n'est pas en quantité suffisante !"+ANSI_RESET;
+                    if (batiment.ressourceActuelle.ressourcesGeneree[0] != -1) { // Si le batiment genere quelque chose
+                        boolean peutConsommerRes = true;
+                        int cmpt = 0;
+                        int idRes = 0;
+                        while (cmpt < length(batiment.ressourceActuelle.ressourcesConso) && peutConsommerRes != false) {
+                            idRes = batiment.ressourceActuelle.ressourcesConso[cmpt];
+                            if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) < 0) {
+                                peutConsommerRes = false;
+                                marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+                                etat.events.ressourceEstEpuiseeSTR[idRes] = ANSI_RED + "La ressource: <" + etat.ressources[idRes].nom + "> n'est pas en quantité suffisante !" + ANSI_RESET;
                             }
                             cmpt++;
                         }
-                        if (peutConsommerRes){
-                            etat.gestion.tabMoyennepollution[id]+=batiment.ressourceActuelle.pollutionGeneree;
+                        if (peutConsommerRes) {
+                            etat.gestion.tabMoyennepollution[id] += batiment.ressourceActuelle.pollutionGeneree;
 
-                            consommer(etat,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1]);
-                            generer(etat,LISTEBATIMENTSPOSSIBLES,etat.gestion.posBat[i][0],etat.gestion.posBat[i][1],capaciteEntreposee);
-                            
+                            consommer(etat, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+                            generer(etat, LISTEBATIMENTSPOSSIBLES, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
+                            verifCapacitéEntrepot(etat);
                         }
-                    }   
-                }   
+                    }
+                }
             }
         }
     }
@@ -963,6 +963,14 @@ class PlanetColonizer extends Program{
             // Ajouter les ressources générées
             etat.ressources[idRes].quantite += quantiteGenerer;
             etat.gestion.variationRessources[idRes] += quantiteGenerer;
+
+            // Détruire les ressources excédentaires si la capacité est atteinte
+            if (idRes != 10 && (etat.ressources[idRes].quantite > etat.gestion.capaciteEntrepot)) {
+                int excedent = etat.ressources[idRes].quantite - etat.gestion.capaciteEntrepot;
+                etat.ressources[idRes].quantite = etat.gestion.capaciteEntrepot;
+                etat.gestion.variationRessources[idRes] -= excedent;
+                println(ANSI_RED + "Détruit " + excedent + " unités de " + etat.ressources[idRes].nom + " car la capacité de l'entrepôt est dépassée." + ANSI_RESET);
+            }
 
             // Arrêter la génération si la capacité est atteinte
             if (idRes != 10 && (etat.ressources[idRes].quantite >= etat.gestion.capaciteEntrepot)) {
