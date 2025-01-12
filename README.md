@@ -1,6 +1,4 @@
-# PlanetColonizer -- ALPHA
-
-<img src="Planet.png" alt="PlanetColonizer" width="200" height="200">
+<img src="Planet.png" alt="PlanetColonizer" width="200" height="200"> #PlanetColonizer -- ALPHA
 
 ## Description
 
