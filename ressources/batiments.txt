@@ -1,0 +1,166 @@
+1. Vaisseau (V)
+- Matériaux nécessaires :
+  - Électricité (Elec) : 150 unités
+- Pourquoi ? :
+  Le vaisseau nécessite une quantité importante d’électricité pour son fonctionnement initial, notamment pour alimenter les systèmes de survie, les communications et les propulseurs. L’électricité sert aussi à maintenir une atmosphère contrôlée et à initier les premiers processus de colonisation.
+- Consommation :
+  - Électricité (Elec) : 150 unités
+- Production :
+  - Électricité (Elec) : 150 unités
+- Pollution générée : Très faible (0.0001)
+- Description :
+  Point de départ de la colonisation. Permet d’initier une base sur la planète.
+
+2. Dortoir (⌂)
+- Matériaux nécessaires :
+  - Fer (Fe) : 5 unités
+    - Pourquoi ? : Le fer est utilisé pour construire la structure principale du dortoir, garantissant sa solidité contre les conditions extrêmes de la planète (vent, impacts météoritiques mineurs).  
+  - Cuivre (Cu) : 10 unités
+    - Pourquoi ? : Le cuivre est nécessaire pour le câblage électrique du dortoir, permettant de connecter les systèmes d’éclairage, de chauffage et de filtration d’air.  
+- Consommation :
+  - Électricité (Elec) : 10 unités
+- Production :
+  - Néant
+- Pollution générée : Faible (0.0005)
+- Description :
+  Hébergement des colons, augmente la capacité de la population.
+
+3. Entrepôt (⌧)
+- Matériaux nécessaires :
+  - Fer (Fe) : 15 unités
+    - Pourquoi ? : L'entrepôt doit supporter de lourdes charges de ressources. Le fer est idéal pour créer une structure robuste et résistante à l’usure.  
+- Consommation :
+  - Électricité (Elec) : 5 unités
+- Production :
+  - Néant
+- Pollution générée : Modérée (0.0002)
+- Description :
+  Augmente la capacité de stockage des ressources.
+
+4. Centre de Communication Terrien (☤)
+- Matériaux nécessaires :
+  - Fer (Fe) : 125 unités
+    - Pourquoi ? : Utilisé pour construire une structure robuste, capable de protéger des équipements sensibles comme les antennes de communication.  
+  - Cuivre (Cu) : 35 unités
+    - Pourquoi ? : Le cuivre, excellent conducteur, est utilisé pour fabriquer les circuits électroniques complexes nécessaires à la communication longue distance.  
+  - Carbone (C) : 30 unités
+    - Pourquoi ? : Le carbone est utilisé pour des composites légers mais résistants, essentiels pour minimiser la masse des antennes et des supports.  
+- Consommation :
+  - Électricité (Elec) : 35 unités
+- Production :
+  - Néant
+- Pollution générée : Modérée (0.0007)
+- Description :
+  Permet de communiquer avec la Terre pour coordonner les activités.
+
+5. Cinéma (◈)
+- Matériaux nécessaires :
+  - Fer (Fe) : 75 unités
+    - Pourquoi ? : Nécessaire pour la structure du bâtiment et les supports de l’équipement audiovisuel lourd. 
+  - Cuivre (Cu) : 25 unités
+    - Pourquoi ? : Utilisé pour le câblage des systèmes électroniques comme les projecteurs et le son.  
+  - Carbone (C) : 10 unités
+    - Pourquoi ? : Le carbone est utilisé dans les structures intérieures pour leur légèreté et leur durabilité. 
+- Consommation :
+  - Électricité (Elec) : 50 unités
+- Production :
+  - Néant
+- Pollution générée : Modérée (0.0007)
+- Description :
+  Améliore la satisfaction des colons en fournissant des divertissements.
+
+6. Capteur d’Humidité (⌯)
+- Matériaux nécessaires :
+  - Fer (Fe) : 5 unités
+    - Pourquoi ? : Structure du capteur pour résister aux conditions climatiques de la planète.  
+  - Cuivre (Cu) : 10 unités
+    - Pourquoi ? : Le cuivre est nécessaire pour les circuits du capteur, qui mesurent les variations d'humidité dans l'air.  
+  - Carbone (C) : 5 unités
+    - Pourquoi ? : Utilisé dans les filtres pour isoler l’humidité de l’air ambiant.  
+- Consommation :
+  - Électricité (Elec) : 20 unités
+- Production :
+  - Eau (H2O) : 10 unités
+- Pollution générée : Très faible (0.0001)
+- Description :
+  Permet d’extraire l’humidité ambiante pour produire de l’eau.
+
+7. Ferme Hydroponique (✲)
+- Matériaux nécessaires :
+  - Fer (Fe) : 5 unités
+    - Pourquoi ? : Structure des racks et supports pour les plantes cultivées en milieu hydroponique.  
+  - Carbone (C) : 5 unités
+    - Pourquoi ? : Utilisé pour des systèmes de filtration et de régulation des gaz.  
+  - Eau (H2O) : 5 unités
+    - Pourquoi ? : Essentielle pour irriguer les plantes dans un système hydroponique fermé.  
+- Consommation :
+  - Eau (H2O) : 10 unités
+  - Électricité (Elec) : 20 unités
+- Production :
+  - Oxygène (O2) : 10 unités
+  - Nourriture (Rations) : 5 unités
+- Pollution générée : Réduction (effet bénéfique) (-0.0005)
+- Description :
+  Cultive des plantes pour produire de la nourriture et améliorer l’oxygène.
+
+8. Recycleur d’Air (≎)
+- Matériaux nécessaires :
+  - Cuivre (Cu) : 5 unités
+    - Pourquoi ? : Nécessaire pour les conduits et circuits du système de purification d'air.  
+  - Eau (H2O) : 5 unités
+    - Pourquoi ? : Utilisée dans le processus chimique pour purifier et renouveler l'air.  
+- Consommation :
+  - Électricité (Elec) : 20 unités
+- Production :
+  - Oxygène (O2) : 10 unités
+- Pollution générée : Très faible (0.0001)
+- Description :
+  Purifie l’air pour maintenir un environnement respirable.
+
+9. Panneau Solaire (☼)
+- Matériaux nécessaires :
+  - Cuivre (Cu) : 5 unités
+    - Pourquoi ? : Permet de connecter les cellules photovoltaïques au réseau électrique.  
+  - Carbone (C) : 10 unités
+    - Pourquoi ? : Utilisé pour fabriquer les cadres légers et résistants des panneaux.  
+- Consommation :
+  - Néant
+- Production :
+  - Électricité (Elec) : 20 unités
+- Pollution générée : Très faible (0.0001)
+- Description :
+  Source d’énergie propre et renouvelable.
+
+10. Centrale Nucléaire (☢)
+- Matériaux nécessaires :
+  - Fer (Fe) : 100 unités
+    - Pourquoi ? : Structure de confinement, protégeant contre les radiations.  
+  - Plutonium (Pu) : 5 unités
+    - Pourquoi ? : Combustible pour produire de l’énergie via la fission nucléaire.  
+  - Eau (H2O) : 30 unités
+    - Pourquoi ? : Essentielle pour refroidir le réacteur et modérer la réaction nucléaire.  
+- Consommation :
+  - Plutonium (Pu) : 5 unités
+  - Eau (H2O) : 10 unités
+  - Électricité (Elec) : 100 unités
+- Production :
+  - Électricité (Elec) : 400 unités
+- Pollution générée : Modérée (0.0001)
+- Description :
+  Génère une grande quantité d’énergie à partir de la fission nucléaire.
+
+11. Puits de Forage (⍒)
+- Matériaux nécessaires :
+  - Fer (Fe) : 10 unités
+    - Pourquoi ? : Utilisé pour construire les tiges de forage robustes.  
+  - Cuivre (Cu) : 5 unités
+    - Pourquoi ? : Utilisé dans les circuits pour contrôler le forage.  
+  - Carbone (C) : 5 unités
+    - Pourquoi ? : Renforce les outils contre l’usure rapide.  
+- Consommation :
+  - Variable (selon la ressource)
+- Production :
+  - Variable (selon la ressource)
+- Pollution générée : Élevée (0.005)
+- Description :
+  Permet d’extraire des ressources rares ou enfouies dans le sol.
