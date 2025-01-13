@@ -1672,7 +1672,7 @@ class PlanetColonizer extends Program{
             while(id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom,LISTEBATIMENTSPOSSIBLES[id].nom)){
                 id++;
             }
-            
+
             if(etat.events.BatimentsPosed[id]==false){
                 int max=length(etat.events.posedTxt[id][0]);
                 for(int a=1;a<length(etat.events.posedTxt[id]);a++){
@@ -1690,8 +1690,10 @@ class PlanetColonizer extends Program{
                 }
                 println(cadre);
                 println();
+                etat.events.BatimentsPosed[id]=true;
             }
         }
+
         if(optionInvalide){
             println(ANSI_RED + "\nOption invalide. Veuillez réessayer." + ANSI_RESET);
         }
@@ -1709,6 +1711,10 @@ class PlanetColonizer extends Program{
             e.deces[i]="";
         }
         e.BatimentsPosed=new boolean[length(LISTEBATIMENTSPOSSIBLES)];
+        for (int o=0;o<length(e.BatimentsPosed);o++){
+            e.BatimentsPosed[o]=false;
+        }
+
         return e;
     }
 
