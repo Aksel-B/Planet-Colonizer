@@ -1441,7 +1441,7 @@ class PlanetColonizer extends Program{
         if(etat.events.entrepotPlein[0]){
             idDortoirs++;
             resTabAffic[15]=ANSI_RED+etat.events.entrepotPleinSTR+ANSI_RESET;
-            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits disponibles"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteEntrepot;
+            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits disponibles"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
         }else{
             resTabAffic[idDortoirs]=ANSI_BOLD + "Lits disponibles"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
         }
