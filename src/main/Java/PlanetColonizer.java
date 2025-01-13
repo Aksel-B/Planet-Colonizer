@@ -831,34 +831,9 @@ class PlanetColonizer extends Program{
         return capaciteEntreposee;
     }
 
-    // Nouvelle méthode pour vérifier si on peut ajouter des ressources
-    boolean peutAjouterDansEntrepot(EtatJeu etat, int quantite) {
-        int capaciteActuelle = calcCapacitéEntrepôt(etat);
-        return (capaciteActuelle + quantite) <= etat.gestion.capaciteEntrepot;
-    }
-
-    // Modification de la méthode verifCapacitéEntrepot existante
-    void verifCapacitéEntrepot(EtatJeu etat) {
-        int capaciteActuelle = calcCapacitéEntrepôt(etat);
-        
-        // Vérifie si on dépasse la capacité
-        if (capaciteActuelle > etat.gestion.capaciteEntrepot) {
-            // Ramène les ressources au maximum autorisé
-            int excedent = capaciteActuelle - etat.gestion.capaciteEntrepot;
-            // Réduit les ressources les plus récemment ajoutées pour respecter la limite
-            for (int i = length(etat.ressources) - 2; i >= 0 && excedent > 0; i--) {
-                if (etat.ressources[i].quantite > 0) {
-                    int reduction = min(excedent, etat.ressources[i].quantite);
-                    etat.ressources[i].quantite -= reduction;
-                    excedent -= reduction;
-                }
-            }
-            etat.events.entrepotPlein[0] = true;
-        } else if (capaciteActuelle == etat.gestion.capaciteEntrepot) {
-            etat.events.entrepotPlein[0] = true;
-        } else {
-            etat.events.entrepotPlein[0] = false;
-        }
+    void verifCapacitéEntrepot(EtatJeu etat){
+        if(calcCapacitéEntrepôt(etat) < etat.gestion.capaciteEntrepot){
+            etat.events.entrepotPlein[0]=false;
     }
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES) {
@@ -925,47 +900,43 @@ class PlanetColonizer extends Program{
             id++;
         }
 
-    if(batiment.quantiteRestante <= 0) {
-        marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-        String ligSTR = "";
-        if (lig > 9) {
-            ligSTR += lig;
-        } else {
-            ligSTR += " " + lig;
-        }
-        etat.events.filonEpuise[findLastIndex(etat.events.filonEpuise)] = ANSI_RED + "Le filon du secteur " + ligSTR + ":" + (char)(64+col) + " est épuisé !" + ANSI_RESET;
-
-    } else if(!etat.events.entrepotPlein[0]) {
-        // Vérifie si on peut ajouter les ressources
-        if(peutAjouterDansEntrepot(etat, batiment.ressourceActuelle.quantiteResGeneree[0])) {
-            // On peut ajouter toute la quantité
-            batiment.quantiteRestante -= batiment.ressourceActuelle.quantiteResConso[0];
-            etat.ressources[id].quantite += batiment.ressourceActuelle.quantiteResGeneree[0];
-            
-            etat.ressources[10].quantite -= batiment.ressourceActuelle.quantiteResConso[1];
-            etat.gestion.variationRessources[10] -= batiment.ressourceActuelle.quantiteResConso[1];
-
-            etat.gestion.variationRessources[id] += batiment.ressourceActuelle.quantiteResGeneree[0];
-            etat.gestion.tabMoyennepollution[10] += batiment.ressourceActuelle.pollutionGeneree;
-        } else {
-            // Calcule l'espace restant et n'ajoute que ce qui peut rentrer
-            int placeRestante = etat.gestion.capaciteEntrepot - calcCapacitéEntrepôt(etat);
-            if(placeRestante > 0) {
-                batiment.quantiteRestante -= (placeRestante * batiment.ressourceActuelle.quantiteResConso[0]) / batiment.ressourceActuelle.quantiteResGeneree[0];
-                etat.ressources[id].quantite += placeRestante;
-                
-                etat.ressources[10].quantite -= batiment.ressourceActuelle.quantiteResConso[1];
-                etat.gestion.variationRessources[10] -= batiment.ressourceActuelle.quantiteResConso[1];
-
-                etat.gestion.variationRessources[id] += placeRestante;
-                etat.gestion.tabMoyennepollution[10] += batiment.ressourceActuelle.pollutionGeneree;
+        if(batiment.quantiteRestante<=0){
+            marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
+            String ligSTR="";
+            if (lig>9){
+                ligSTR+=lig;
+            }else{
+                ligSTR+=" "+lig;
             }
-            marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-            etat.events.entrepotPlein[0] = true;
+            etat.events.filonEpuise[findLastIndex(etat.events.filonEpuise)]=ANSI_RED+"Le filon du secteur "+ligSTR+":"+(char)(64+col)+" est épuisé !"+ANSI_RESET;
+        
+        }else if(etat.events.entrepotPlein[0]==false){
+            if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
+                batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
+                etat.ressources[id].quantite+=batiment.ressourceActuelle.quantiteResGeneree[0];
+                
+                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResConso[1];
+                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResConso[1];
+    
+                etat.gestion.variationRessources[id]+=batiment.ressourceActuelle.quantiteResGeneree[0];
+                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+            
+            }else{
+                batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                etat.ressources[id].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+                
+                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResGeneree[1]; //C'est celle là qui est bugguée
+                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResGeneree[1];
+    
+                etat.gestion.variationRessources[id]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;            
+                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+    
+                marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
+                etat.events.entrepotPlein[0]=true;
+            }
+        }else{
+            marcheArret(LISTEBATIMENTSPOSSIBLES,etat.planete.carte,lig,col);
         }
-    } else {
-        marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, lig, col);
-    }
     }
 
     void consommer(EtatJeu etat,int lig, int col){
