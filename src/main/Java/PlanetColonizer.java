@@ -900,7 +900,7 @@ class PlanetColonizer extends Program{
                             if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) < 0) {
                                 peutConsommerRes = false;
                                 marcheArret(LISTEBATIMENTSPOSSIBLES, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
-                                etat.events.ressourceEstEpuiseeSTR[idRes] = ANSI_RED + "La ressource: <" + etat.ressources[idRes].nom + "> n'est pas en quantité suffisante !" + ANSI_RESET;
+                                etat.events.ressourceEstEpuiseeSTR[idRes] = ANSI_RED + "<" + etat.ressources[idRes].nom + "> n'est pas en quantité suffisante !" + ANSI_RESET;
                             }
                             cmpt++;
                         }
