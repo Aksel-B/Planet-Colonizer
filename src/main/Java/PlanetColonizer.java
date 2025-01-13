@@ -686,7 +686,7 @@ class PlanetColonizer extends Program{
         newBatiment(newRecette(new int[]{3,7},new int[]{5,5}),"Recycleur d'Air"," ≎ ",0.0001,new int[]{10}, new int[]{20},new int[]{8}, new int[]{10}),
 
         newBatiment(newRecette(new int[]{3,5},new int[]{5,10}),"Panneau Stellaire"," ☼ ",0.0001,new int[]{10}, new int[]{0},new int[]{10},new int[]{20}),
-        newBatiment(newRecette(new int[]{2,6,7},new int[]{100,5,30}),"Centrale nucléaire"," ☢ ",0.0001,new int[]{6,7,10},new int[]{2,10,100},new int[]{10},new int[]{400}),//Conso 5 Pu 10 H2O
+        newBatiment(newRecette(new int[]{2,6,7},new int[]{115,5,30}),"Centrale nucléaire"," ☢ ",0.0001,new int[]{6,7,10},new int[]{2,10,100},new int[]{10},new int[]{400}),//Conso 5 Pu 10 H2O
 
         newBatiment(newRecette(new int[]{2,3,4},new int[]{10,5,5}),"Puit de Forage"," ⍒ ",0.005,new int[]{0,10},new int[]{0,25},new int[1],new int[1]) //Prod/Conso variable selon la ressource
     };
