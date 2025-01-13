@@ -312,7 +312,7 @@ class PlanetColonizer extends Program{
 //---------------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------
 
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
-        String[][] donneesCSV = new String[compterLignes(etat) + 10][6]; // Toujours 6 colonnes
+        String[][] donneesCSV = new String[compterLignes(etat) -1 ][6]; // Toujours 6 colonnes
         int index = 0;
 
         // 1. Section Colons
@@ -525,8 +525,18 @@ class PlanetColonizer extends Program{
             }
 
             println("Jeu chargé avec succès depuis " + nomFichier);
+            if (etatCharge != null) {
+                if (etatCharge.ressources[10] == null) {
+                    etatCharge.ressources[10] = newRessource("⚡ Electricité", "Elec",1.0,100);
+                }
+                // Vérifier que les valeurs sont dans des limites raisonnables
+                if (etatCharge.ressources[10].quantite < 0) {
+                    etatCharge.ressources[10].quantite = 0;
+                }
+                return etatCharge;          
+            }
             return etatCharge;
-
+            
         } catch (Exception e) {
             println("Erreur lors du chargement du jeu : " + e.getMessage());
             return null;
@@ -834,11 +844,15 @@ class PlanetColonizer extends Program{
     void verifCapacitéEntrepot(EtatJeu etat){
         if(calcCapacitéEntrepôt(etat) < etat.gestion.capaciteEntrepot){
             etat.events.entrepotPlein[0]=false;
+        }
     }
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] LISTEBATIMENTSPOSSIBLES) {
         int capaciteEntreposee = calcCapacitéEntrepôt(etat);
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
+            println();
+            println(etat.events.entrepotPlein[0]);
+
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
             if (batiment.ressourceActuelle.fonctionne[0] == false) {
@@ -888,6 +902,7 @@ class PlanetColonizer extends Program{
                         }
                     }
                 }
+                println(etat.events.entrepotPlein[0]);
             }
         }
     }
@@ -925,8 +940,8 @@ class PlanetColonizer extends Program{
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 etat.ressources[id].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 
-                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResGeneree[1]; //C'est celle là qui est bugguée
-                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResGeneree[1];
+                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResConso[1]; //C'est celle là qui est bugguée
+                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResConso[1];
     
                 etat.gestion.variationRessources[id]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;            
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
@@ -1629,7 +1644,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean optionInvalide){
         if(etat.tour>0){
-            clearScreen(); 
+            //clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
@@ -1906,10 +1921,10 @@ class PlanetColonizer extends Program{
 
             switch (option) {
                 case 1:
-                    clearScreen();
+                    //clearScreen();
                     return initialiserNouvellePartie(RESSOURCESINIT,LISTEBATIMENTSPOSSIBLES);
                 case 2:
-                    clearScreen();
+                    //clearScreen();
 
                     // Lister les fichiers disponibles dans le répertoire ../save/
                     String[] fichiersDisponibles = getAllFilesFromDirectory("../save/");
@@ -1931,7 +1946,7 @@ class PlanetColonizer extends Program{
                     } while (choix < 0 || choix > length(fichiersDisponibles));
 
                     if (choix == 0) {
-                        clearScreen();
+                        //clearScreen();
                         gestionMenuPrincipal();
                     }
 
