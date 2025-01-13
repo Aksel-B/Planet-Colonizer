@@ -1235,6 +1235,7 @@ class PlanetColonizer extends Program{
                 etat.colons[id].anneesDerniereNaissance++; // Incrémenter les années depuis la dernière naissance
             }
         }
+
     }
 
 
@@ -1247,6 +1248,7 @@ class PlanetColonizer extends Program{
                 //satisfactionColon(colon[i]);
             }
         }
+        verifCapacitéEntrepot(etat);
         triTableau(etat.colons);
     }
 
