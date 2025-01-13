@@ -1644,7 +1644,7 @@ class PlanetColonizer extends Program{
         return separAffic;
     }
 
-    void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean optionInvalide){
+    void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
         if(etat.tour>0){
             //clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
@@ -1666,30 +1666,32 @@ class PlanetColonizer extends Program{
             println("\n" + ANSI_BOLD + "Nombre de colons survivants : "+ ANSI_RESET + etat.gestion.nombreVivants);
         }
 
-        // CaseCarte batiment=etat.planete.carte[etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][0]][etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][1]];
-        // int id=0;
-        // while(id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom,LISTEBATIMENTSPOSSIBLES[id].nom)){
-        //     id++;
-        // }
-        // if(etat.events[id]==false){
-        // int max=length(etat.events[id][0]);
-        // for(int a=1;a<length(etat.events[id]);a++){
-        //     if (length(etat.events[id][a])>max){
-        //         max=length(etat.events[id][a]);
-        //     }
-        // }
-        // String cadre="";
-        // for (int i=0;i<max+5;i++){
-        //     cadre+="-";
-        // }
-        // println(cadre);
-        // for(int e=0;e<etat.events[id];e++){
-        //     println("|"+formatCharacteristic(etat.events[id][e],max+5)+"|");
-        // }
-        // println(cadre);
-        // println();
-        // }
-
+        if(etat.tour >=1 && afficherTipsPedago){
+            CaseCarte batiment=etat.planete.carte[etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][0]][etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][1]];
+            int id=0;
+            while(id < length(LISTEBATIMENTSPOSSIBLES) && !equals(batiment.ressourceActuelle.nom,LISTEBATIMENTSPOSSIBLES[id].nom)){
+                id++;
+            }
+            
+            if(etat.events.BatimentsPosed[id]==false){
+                int max=length(etat.events.posedTxt[id][0]);
+                for(int a=1;a<length(etat.events.posedTxt[id]);a++){
+                    if (length(etat.events.posedTxt[id][a])>max){
+                        max=length(etat.events.posedTxt[id][a]);
+                    }
+                }
+                String cadre=" ";
+                for (int i=0;i<max+8;i++){
+                    cadre+="-";
+                }
+                println(cadre);
+                for(int e=0;e<length(etat.events.posedTxt[id]);e++){
+                    println("|   "+formatCharacteristic(etat.events.posedTxt[id][e],max+5)+"|");
+                }
+                println(cadre);
+                println();
+            }
+        }
         if(optionInvalide){
             println(ANSI_RED + "\nOption invalide. Veuillez réessayer." + ANSI_RESET);
         }
@@ -1746,15 +1748,15 @@ class PlanetColonizer extends Program{
         nouvelEtat.events=newEvents(nouvelEtat,LISTEBATIMENTSPOSSIBLES);
 
         println();
-        afficherEtat(nouvelEtat,false,false);
+        afficherEtat(nouvelEtat,false,false,false);
         placerVaisseau(LISTEBATIMENTSPOSSIBLES,nouvelEtat);   
         return nouvelEtat;
     }
 
 //---------------------------------------------------------------MENUS-------------------------------------------------------------------------------------------------------------------------
 
-    void afficherMenuJeu(EtatJeu etat,boolean invalide) {
-        afficherEtat(etat,true,invalide);
+    void afficherMenuJeu(EtatJeu etat,boolean invalide,boolean afficherTipsPedago) {
+        afficherEtat(etat,true,afficherTipsPedago,invalide);
         println("\n=== ACTIONS POSSIBLES ===");
         println("1. " + ANSI_BOLD + "Construire" + ANSI_RESET + " un Bâtiment");
         println("2. " + ANSI_BOLD + "Passer" + ANSI_RESET + " cette année");
@@ -1764,7 +1766,7 @@ class PlanetColonizer extends Program{
     }
 
     void menuPlacerBatiment(Terrain[] LISTEBATIMENTSPOSSIBLES, EtatJeu etat,boolean recursif){
-        afficherEtat(etat,true,false);
+        afficherEtat(etat,true,false,false);
         if (recursif){
             println("\nVous ne pouvez placer aucun batiment sur cette case !\nVeuillez en saisir une autre.");
         }
@@ -1839,8 +1841,9 @@ class PlanetColonizer extends Program{
 
     boolean gestionMenuJeu(EtatJeu etatJeu,Terrain[] LISTEBATIMENTSPOSSIBLES) {
         boolean invalide=false;
+        boolean afficherTipsPedago=true;
         while (true) {
-            afficherMenuJeu(etatJeu,invalide);
+            afficherMenuJeu(etatJeu,invalide,afficherTipsPedago);
             int choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-4) : ");
             
             switch (choix) {
@@ -1857,12 +1860,13 @@ class PlanetColonizer extends Program{
                 default:
                     println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
                     invalide=true;
+                    afficherTipsPedago=false;
             }
         }
     }
 
     void gestionSauvegarde(EtatJeu etatJeu) {
-        afficherEtat(etatJeu,false,false);
+        afficherEtat(etatJeu,false,false,false);
         String nomFichier=etatJeu.nom;
         println("\n=== OPTIONS DE SAUVEGARDE ===");
         println("1. "+ ANSI_BOLD + "Sauvegarder " + ANSI_RESET + "et continuer");
@@ -1887,7 +1891,7 @@ class PlanetColonizer extends Program{
     }
 
     boolean gestionQuitter(EtatJeu etatJeu) {
-        afficherEtat(etatJeu,false,false);
+        afficherEtat(etatJeu,false,false, false);
         String nomFichier=etatJeu.nom;
         println("\n=== QUITTER ===");
         println("1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie");
