@@ -22,6 +22,36 @@ class PlanetColonizer extends Program{
         }
     }
 
+    int maxLength(String[] tab, int idDebut){
+        int max=length(tab[idDebut]);
+        for(int i=idDebut+1;i<length(tab);i++){
+            if (length(tab[i])>max){
+                max=length(tab[i]);
+            }
+        }
+        return max;
+    }
+
+    int maxLength(int[] tab, int idDebut){
+        int max=length(""+tab[idDebut]);
+        for(int i=idDebut+1;i<length(tab);i++){
+            if (length(""+tab[i])>max){
+                max=length(""+tab[i]);
+            }
+        }
+        return max;
+    }
+
+    // int maxLength(Terrain[] tab, int idDebut){
+    //     int max=length(tab[idDebut]);
+    //     for(int i=idDebut+1;i<length(tab);i++){
+    //         if (length(""+tab[i])>max){
+    //             max=length(""+tab[i]);
+    //         }
+    //     }
+    //     return max;
+    // }
+
     // Fonction pour formater une caractéristique
     String formatCharacteristic(String name, int maxLength) {
         return name + repeatChar(' ', maxLength - length(name));
@@ -763,41 +793,7 @@ class PlanetColonizer extends Program{
         }else if(id < 10){
             etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true);
         }else{
-            if(etat.planete.carte[lig][col].ressourceCaseInit.nom==etat.ressources[2].nom){ //Fer
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,500,etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=2;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=10;
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=2;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=10; 
-
-            }else if(etat.planete.carte[lig][col].ressourceCaseInit.nom==etat.ressources[3].nom){ //Cuivre
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,500,etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=3;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=12;
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=3;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=7;
-
-            }else if(etat.planete.carte[lig][col].ressourceCaseInit.nom==etat.ressources[4].nom){ //Carbone
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,400,etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=4;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=15;
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=4;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=5;
-
-            }else if(etat.planete.carte[lig][col].ressourceCaseInit.nom==etat.ressources[5].nom){ //Sulfure
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,300,etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=5;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=15;
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=5;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=5;
-
-            }else if(etat.planete.carte[lig][col].ressourceCaseInit.nom==etat.ressources[6].nom){ //Plutonium
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,200,etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=6;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=15;
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=6;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=1;
-            }
+            placerPuitDeForage(etat, lig, col, batiment);
         }
         for (int i=0;i<length(batiment.ResNecessaire.coutDeConstruction);i++){
             int idRes=batiment.ResNecessaire.coutDeConstruction[i];
@@ -805,6 +801,23 @@ class PlanetColonizer extends Program{
             etat.gestion.variationRessources[idRes]-=batiment.ResNecessaire.quantiteNecessaire[i];
         }
         return id;
+    }
+
+    void placerPuitDeForage(EtatJeu etat,int lig,int col,Terrain batiment){
+        int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};
+        int[]quantiteRessourcesGenereePuitDF=new int[]{10,7,5,5,1};
+
+        String batimentNom=etat.planete.carte[lig][col].ressourceCaseInit.nom;
+        for(int i=0;i<5;i++){
+            int j=i+2;
+            if(equals(batimentNom,etat.ressources[j].nom)){
+                etat.planete.carte[lig][col]=newCaseCarte(batiment,(600-i*100),etat.planete.carte[lig][col].ressourceCaseInit,true);
+                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=j;
+                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=quantiteRessourcesConsoPuitDF[i];
+                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=j;
+                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=quantiteRessourcesGenereePuitDF[i]; 
+            }
+        }
     }
 
     // Repère la dernière position enregistrée d'un batiment
@@ -920,7 +933,7 @@ class PlanetColonizer extends Program{
     }
 
 
-        void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+    void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
@@ -940,21 +953,16 @@ class PlanetColonizer extends Program{
         }else if(etat.events.entrepotPlein[0]==false){
             if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
                 batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
-    
-                etat.ressources[id].quantite+=batiment.ressourceActuelle.quantiteResGeneree[0];
-                
                 consoRes(etat,1,batiment);
-    
-                etat.gestion.variationRessources[id]+=batiment.ressourceActuelle.quantiteResGeneree[0];
+                genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
-                etat.ressources[id].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
-                
                 consoRes(etat,1,batiment);
-    
-                etat.gestion.variationRessources[id]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;            
+                genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+            
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
     
                 marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
@@ -982,25 +990,31 @@ class PlanetColonizer extends Program{
         CaseCarte batiment = etat.planete.carte[lig][col];
         if (etat.events.entrepotPlein[0]==false){
             for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
-                int idRes = batiment.ressourceActuelle.ressourcesGeneree[f];
-                if(((batiment.ressourceActuelle.quantiteResGeneree[f]+capaciteEntreposee)<=etat.gestion.capaciteEntrepot) || batiment.ressourceActuelle.ressourcesGeneree[f]==10){// L'electricite n'est pas comprise dans le stockage
-                    etat.ressources[idRes].quantite+=batiment.ressourceActuelle.quantiteResGeneree[f];
-                    etat.gestion.variationRessources[idRes]+=batiment.ressourceActuelle.quantiteResGeneree[f];
-                }else{
-                    etat.ressources[idRes].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
-                    etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
-                    marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
-                    etat.events.entrepotPlein[0]=true;
-                }
+                genererRes(etat,e,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             }
         }else{
             marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
     }
 
-    void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte,int lig, int col){
-        int[]quantiteRessourceConsoPuitDF=new int[]{10,12,15,15,15};
-        int[]quantiteRessourceGenereePuitDF=new int[]{10,7,5,5,1};
+    void genererRes(EtatJeu etat, int id, CaseCarte batiment, int capaciteEntreposee, Terrain[] listeBatimentsPossibles, int lig, int col){
+        int idRes = batiment.ressourceActuelle.ressourcesGeneree[id];
+        if(((batiment.ressourceActuelle.quantiteResGeneree[id]+capaciteEntreposee)<=etat.gestion.capaciteEntrepot) || batiment.ressourceActuelle.ressourcesGeneree[id]==10){// L'electricite n'est pas comprise dans le stockage
+            
+            etat.ressources[idRes].quantite+=batiment.ressourceActuelle.quantiteResGeneree[id];
+            etat.gestion.variationRessources[idRes]+=batiment.ressourceActuelle.quantiteResGeneree[id];
+        }else{
+            etat.ressources[idRes].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+            etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+            
+            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            etat.events.entrepotPlein[0]=true;
+        }
+    }
+
+    void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
+        int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};
+        int[]quantiteRessourcesGenereePuitDF=new int[]{10,7,5,5,1};
 
         CaseCarte batiment=carte[lig][col];
         int id=0;
@@ -1222,24 +1236,9 @@ class PlanetColonizer extends Program{
             etat.colons[id]=null;
             estMort=true;
         }else{
-            if (etat.ressources[8].quantite==0){ //Si Air=0 alors le colon meurt
-                etat.colons[id].sante-=1.0;
-            }else{
-                etat.ressources[8].quantite-=1;
-                etat.gestion.variationRessources[8]-=1;
-            }
-
-            if (etat.ressources[7].quantite==0 || etat.ressources[9].quantite==0){
-                etat.colons[id].sante-=0.20;
-            }
-            if(etat.ressources[7].quantite!=0){
-                etat.ressources[7].quantite-=1;
-                etat.gestion.variationRessources[7]-=1;
-            }
-            if(etat.ressources[9].quantite!=0){
-                etat.ressources[9].quantite-=1;
-                etat.gestion.variationRessources[9]-=1;
-            }
+            consoColon(etat,id, 8, 1.00);
+            consoColon(etat,id, 7, 0.20);
+            consoColon(etat,id, 9, 0.20);
         }
         // Si la santé tombe à 0 ou moins, le colon meurt
         if (!estMort){
@@ -1253,6 +1252,14 @@ class PlanetColonizer extends Program{
 
     }
 
+    void consoColon(EtatJeu etat, int id, int a,double santePerdue){
+        if (etat.ressources[a].quantite==0){ //Si Air=0 alors le colon meurt
+            etat.colons[id].sante-=santePerdue;
+        }else{
+            etat.ressources[a].quantite-=1;
+            etat.gestion.variationRessources[a]-=1;
+        }
+    }
 
         // Met à jour les colons en les faisant vieillir et en affichant leur état
     void mettreAJourColons(EtatJeu etat) {
@@ -1266,7 +1273,6 @@ class PlanetColonizer extends Program{
         verifCapacitéEntrepot(etat);
         triTableau(etat.colons);
     }
-
 
     void triTableau(Colon[] colons){
         for (int i = 1; i < length(colons); i++) {
@@ -1432,12 +1438,8 @@ class PlanetColonizer extends Program{
                 maxQuant=length(""+etat.ressources[b].quantite);
             }
         }
-        int maxVar=length(""+etat.gestion.variationRessources[2]);
-        for(int c=3;c<length(etat.gestion.variationRessources);c++){
-            if (length(""+etat.gestion.variationRessources[c])>maxVar){
-                maxVar=length(""+etat.gestion.variationRessources[c]);
-            }
-        }
+
+        int maxVar=maxLength(etat.gestion.variationRessources,2);
 
         for(int p =0;p<length(etat.planete.carte, 1);p++){
             if (p>=1 && p <= 5) {
@@ -1527,12 +1529,7 @@ class PlanetColonizer extends Program{
                 h++;
             }
 
-            int maxFusion=length(tabFusion[0]);
-            for(int g=0;g<length(tabFusion);g++){
-                if (length(tabFusion[g])>maxFusion){
-                    maxFusion=length(tabFusion[g]);
-                }
-            }
+            int maxFusion=maxLength(tabFusion,0);
 
             int id=1; 
             if (!StringTabIsEmpty(etat.events.naissance) || !StringTabIsEmpty(etat.events.deces)){
@@ -2077,6 +2074,7 @@ class PlanetColonizer extends Program{
         // Lecture et affichage du contenu du fichier ASCII
         while (ready(f)) {
             String currentLine = readLine(f); // Lecture de la ligne courante
+            //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
             nbLines++; // Incrémentation du compteur de lignes
             println(currentLine); // Affichage de la ligne
         }
@@ -2147,4 +2145,3 @@ class PlanetColonizer extends Program{
         afficherResultatFinal(etatJeu);
     }
 }
-//https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
