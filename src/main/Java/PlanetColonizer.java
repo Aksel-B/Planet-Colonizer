@@ -2,7 +2,7 @@ import extensions.*;
 
 class PlanetColonizer extends Program{
 
-//-------------------------------------------------------------------FONCTIONS POUR TOUT-------------------------------------------------------------------------------------------------------
+//-----------------------------FONCTIONS POUR TOUT------------------------------------------------------------------------------------------------------
     
     // Fonction pour trouver le maximum entre deux entiers
     int max(int a, int b) {
@@ -156,14 +156,36 @@ class PlanetColonizer extends Program{
                 }
                 
                 // Vérifier la longueur de l'entrée après suppression des espaces
-                input=spaceEraser(input);
+                input = spaceEraser(input);
                 
                 // Vérifier que l'entrée n'est pas vide ou composée uniquement d'espaces
                 if (length(input) == 0) {
                     println(ANSI_RED+"Erreur : La saisie ne peut pas être vide ou composée uniquement d'espaces. Veuillez réessayer."+ANSI_RESET);
                     continue;
                 }
+
+                // Vérifier les caractères spéciaux
+                boolean contientCaractereSpecial = false;
+                String caracteresInterdits = "\\,;:|/<>\"'`~!@#$%^&*()+={}[]";
                 
+                for(int i = 0; i < length(input); i++) {
+                    char c = charAt(input, i);
+                    // Vérifier si le caractère est dans la liste des caractères interdits
+                    for(int j = 0; j < length(caracteresInterdits); j++) {
+                        if(c == charAt(caracteresInterdits, j)) {
+                            contientCaractereSpecial = true;
+                            break;
+                        }
+                    }
+                    if(contientCaractereSpecial) {
+                        break;
+                    }
+                }
+                
+                if(contientCaractereSpecial) {
+                    println(ANSI_RED+"Erreur : Les caractères spéciaux ne sont pas autorisés. Veuillez réessayer."+ANSI_RESET);
+                    continue;
+                }
                 
                 inputValide = true;
                 return input;
@@ -177,7 +199,6 @@ class PlanetColonizer extends Program{
         // Cette ligne ne devrait jamais être atteinte
         return "";
     }
-
     int readIntSecurise(String prompt) {
         while (true) {
             try {
@@ -198,17 +219,8 @@ class PlanetColonizer extends Program{
     char readCharSecurise(String prompt) {
         while (true) {
             try {
-                // Afficher le message de prompt
-                print(prompt);
-                
-                // Lire l'entrée utilisateur
-                String input = readString();
-                
-                // Vérifier que l'entrée n'est pas nulle
-                if (input == null) {
-                    println(ANSI_RED+"Erreur : La saisie ne peut pas être nulle. Veuillez réessayer."+ANSI_RESET);
-                    continue;
-                }
+                // Utiliser readStringSecurise pour obtenir une entrée validée
+                String input = readStringSecurise(prompt);
                 
                 // Vérifier que l'entrée est exactement un caractère
                 if (length(input) != 1) {
@@ -246,7 +258,7 @@ class PlanetColonizer extends Program{
         }
     }
 
-//-----------------------------------------TEST-------------------------------------------------------------------------------------------
+//-----------------------------TEST---------------------------------------------------------------------------------------------------------------------
 
     void testMax() {
         assertEquals(5, max(5, 3)); // Vérifie que max(5, 3) retourne 5
@@ -313,7 +325,7 @@ class PlanetColonizer extends Program{
     }
 
 
-//---------------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------
+//-----------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------------------------
 
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
         String[][] donneesCSV = new String[compterLignes(etat) -1 ][6]; // Toujours 6 colonnes
@@ -545,7 +557,7 @@ class PlanetColonizer extends Program{
         }
     }
 
-//---------------------------------RESSOURCES-------------------------------------------------------------------------------------
+//-----------------------------RESSOURCES---------------------------------------------------------------------------------------------------------------
 
     final Terrain[] RESSOURCES_INIT=new Terrain[]{ 
                         //Nom,Symbole,probaApparition,quantite
@@ -670,7 +682,7 @@ class PlanetColonizer extends Program{
     final String ANSI_ORANGE_DARK = "\033[38;2;255;140;0m";
     final String ANSI_RED_BRIGHT = "\033[38;2;255;0;0m";
 
-//----------------------------------------BATIMENTS------------------------------------------------------------------------------------------------------------------------
+//-----------------------------BATIMENTS----------------------------------------------------------------------------------------------------------------
     
     final Terrain[] listeBatimentsPossibles=new Terrain[]{
                   //Recette ResNecessaire, String nom,String symbole,,double pollutionGeneree,int[] ressourcesConso, int[] quantiteResConso,int[] ressourcesGeneree, int[] quantiteResGeneree
@@ -1008,7 +1020,7 @@ class PlanetColonizer extends Program{
     }
 
 
-//-------------------------------------------------PLANETE---------------------------------------------------------------------------------------
+//-----------------------------PLANETE------------------------------------------------------------------------------------------------------------------
 
     // Fonction pour créer une nouvelle planète avec une carte et des ressources
     Planete newPlanete(Terrain[] ressources, int taille) {
@@ -1087,7 +1099,7 @@ class PlanetColonizer extends Program{
         return (double)(int)(((pollutionTotale/polluant)+etat.planete.pollution)*1000000)/1000000;
     }
 
-//-------------------------------------------COLONS----------------------------------------------------------------------------------
+//-----------------------------COLONS-------------------------------------------------------------------------------------------------------------------
 
     final int AGE_REPRODUCTION_MIN = 20; // Âge minimum pour la reproduction
     final int AGE_REPRODUCTION_MAX = 50; // Âge maximum pour la reproduction
@@ -1288,7 +1300,7 @@ class PlanetColonizer extends Program{
         return nombreVivants; // Retourner le nombre de colons vivants
     }
 
-//----------------------------------------PARTIE------------------------------------------------------------------------------------------------------------------
+//-----------------------------PARTIE-------------------------------------------------------------------------------------------------------------------
 
     void placerVaisseau(Terrain[] listeBatimentsPossibles,EtatJeu etat){
         Terrain vaisseau=listeBatimentsPossibles[0];
@@ -1758,7 +1770,7 @@ class PlanetColonizer extends Program{
         return nouvelEtat;
     }
 
-//---------------------------------------------------------------MENUS-------------------------------------------------------------------------------------------------------------------------
+//-----------------------------MENUS--------------------------------------------------------------------------------------------------------------------
 
     void afficherMenuJeu(EtatJeu etat,boolean invalide,boolean afficherTipsPedago) {
         afficherEtat(etat,true,afficherTipsPedago,invalide);
@@ -1896,184 +1908,240 @@ class PlanetColonizer extends Program{
     }
 
     boolean gestionQuitter(EtatJeu etatJeu) {
-        afficherEtat(etatJeu,false,false, false);
-        String nomFichier=etatJeu.nom;
+        // Affiche l'état actuel du jeu
+        afficherEtat(etatJeu, false, false, false);
+
+        // Récupère le nom du fichier associé à l'état actuel du jeu
+        String nomFichier = etatJeu.nom;
+
+        // Affiche le menu de gestion de la sortie
         println("\n=== QUITTER ===");
-        println("1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie");
-        println("2. " + ANSI_BOLD + "Quitter" + ANSI_RESET + " sans sauvegarder");
-        println("3. " + ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET);
-        
+        println("1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie"); // Option pour continuer
+        println("2. " + ANSI_BOLD + "Quitter" + ANSI_RESET + " sans sauvegarder"); // Option pour quitter sans sauvegarder
+        println("3. " + ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET); // Option pour sauvegarder et quitter
+
+        // Demande à l'utilisateur de faire un choix
         int choix = readIntSecurise(ANSI_BOLD + "Votre choix : " + ANSI_RESET);
-        
+
+        // Gère le choix de l'utilisateur à l'aide d'un switch
         switch (choix) {
             case 1:
-                return true; // Continuer la partie
+                // Option 1 : Continuer la partie
+                return true; // Renvoie `true` pour indiquer que la partie continue
+
             case 2:
-                return false; // Terminer la partie sans sauvegarder
-            case 3:;
-                sauvegarderJeu(etatJeu, nomFichier);
-                return false; // Terminer la partie après sauvegarde
+                // Option 2 : Quitter sans sauvegarder
+                return false; // Renvoie `false` pour indiquer que la partie est terminée
+
+            case 3:
+                // Option 3 : Sauvegarder la partie avant de quitter
+                sauvegarderJeu(etatJeu, nomFichier); // Appelle la fonction pour sauvegarder l'état du jeu
+                return false; // Renvoie `false` pour indiquer que la partie est terminée après sauvegarde
+
             default:
+                // Gestion des entrées invalides
                 println(ANSI_RED + "Option invalide." + ANSI_RESET);
-                return true;
+                return true; // Renvoie `true` pour maintenir le joueur dans le menu
         }
     }
 
     EtatJeu gestionMenuPrincipal() {
+        // Boucle principale du menu
         while (true) {
-                println("                                                               ");
-                println("========== MENU PRINCIPAL ==========");
-                println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-                println("2. "+ ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde                                            ");
-                println("3. "+ ANSI_BOLD + "Quitter                                              " + ANSI_RESET);
-                println("------------------------------------");
-                
+            // Affichage du menu principal
+            println("");
+            println("========== MENU PRINCIPAL ==========");
+            println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
+            println("2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
+            println("3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
+            println("------------------------------------");
+            
+            // Demande à l'utilisateur de choisir une option
             int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ");
 
+            // Gestion des choix avec un switch
             switch (option) {
-                case 1:
-                    //clearScreen();
-                    return initialiserNouvellePartie(RESSOURCES_INIT,listeBatimentsPossibles);
-                case 2:
-                    //clearScreen();
+                case 1: // Option 1 : Démarrer une nouvelle partie
+                    clearScreen(); // Effacer l'écran
+                    // Retourne l'état d'une nouvelle partie initialisée
+                    return initialiserNouvellePartie(RESSOURCES_INIT, listeBatimentsPossibles);
 
-                    // Lister les fichiers disponibles dans le répertoire ../save/
+                case 2: // Option 2 : Charger une partie sauvegardée
+                    clearScreen(); // Effacer l'écran
+                    
+                    // Récupère la liste des fichiers du répertoire ../save/
                     String[] fichiersDisponibles = getAllFilesFromDirectory("../save/");
-                    if (length(fichiersDisponibles) == 0) {
+                    int nombreFichiersCSV = 0;
+
+                    // Parcourt les fichiers pour compter ceux qui ont l'extension ".csv"
+                    for (int i = 0; i < length(fichiersDisponibles); i++) {
+                        // Vérifie si le fichier a au moins 4 caractères et une extension ".csv"
+                        if (length(fichiersDisponibles[i]) > 4 &&
+                            equals(substring(fichiersDisponibles[i], length(fichiersDisponibles[i]) - 4, length(fichiersDisponibles[i])), ".csv")) {
+                            nombreFichiersCSV++;
+                        }
+                    }
+
+                    // Si aucun fichier CSV n'est disponible
+                    if (nombreFichiersCSV == 0) {
                         println(ANSI_BOLD + "Aucune sauvegarde disponible." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
                         return initialiserNouvellePartie(RESSOURCES_INIT, listeBatimentsPossibles);
                     }
 
-                    // Afficher les fichiers disponibles
-                    println(ANSI_BOLD + "Sauvegardes disponibles :" + ANSI_RESET);
+                    // Crée un tableau pour stocker les noms des fichiers CSV
+                    String[] fichiersCSV = new String[nombreFichiersCSV];
+                    int index = 0;
+
+                    // Remplit le tableau avec les fichiers CSV trouvés
                     for (int i = 0; i < length(fichiersDisponibles); i++) {
-                        println((i + 1) + ". " + substring(fichiersDisponibles[i],0,length(fichiersDisponibles[i])-4));
+                        if (length(fichiersDisponibles[i]) > 4 &&
+                            equals(substring(fichiersDisponibles[i], length(fichiersDisponibles[i]) - 4, length(fichiersDisponibles[i])), ".csv")) {
+                            fichiersCSV[index] = fichiersDisponibles[i];
+                            index++;
+                        }
                     }
 
-                    // Demander à l'utilisateur de choisir un fichier
+                    // Affiche les sauvegardes disponibles
+                    println(ANSI_BOLD + "Sauvegardes disponibles :" + ANSI_RESET);
+                    for (int i = 0; i < length(fichiersCSV); i++) {
+                        // Affiche le nom du fichier sans l'extension ".csv"
+                        println((i + 1) + ". " + substring(fichiersCSV[i], 0, length(fichiersCSV[i]) - 4));
+                    }
+
+                    // Demande à l'utilisateur de sélectionner une sauvegarde
                     int choix = -1;
                     do {
                         choix = readIntSecurise(ANSI_BOLD + "Entrez le numéro de la sauvegarde à charger (ou 0 pour annuler) : " + ANSI_RESET);
-                    } while (choix < 0 || choix > length(fichiersDisponibles));
+                    } while (choix < 0 || choix > length(fichiersCSV)); // Validation de l'entrée utilisateur
 
+                    // Si l'utilisateur choisit d'annuler
                     if (choix == 0) {
-                        //clearScreen();
-                        gestionMenuPrincipal();
+                        clearScreen(); // Effacer l'écran
+                        gestionMenuPrincipal(); // Retour au menu principal
                     }
 
-                    // Charger le fichier sélectionné
-                    String nomFichier = fichiersDisponibles[choix - 1];
-                    EtatJeu etatCharge = chargerJeu(nomFichier);
+                    // Charge la sauvegarde sélectionnée
+                    String nomFichier = fichiersCSV[choix - 1];
+                    EtatJeu etatCharge = chargerJeu(nomFichier); // Fonction pour charger une partie sauvegardée
+
+                    // Si le chargement réussit, retourne l'état de la partie chargée
                     if (etatCharge != null) {
                         return etatCharge;
                     }
 
+                    // Si le chargement échoue, démarre une nouvelle partie
                     println(ANSI_BOLD + "Chargement échoué." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
                     return initialiserNouvellePartie(RESSOURCES_INIT, listeBatimentsPossibles);
 
-                case 3:
-                    println("\n"+ANSI_BOLD + "Au revoir!" + ANSI_RESET+"\n");
-                    System.exit(0);
-                default:
-                    println(ANSI_BOLD + ANSI_RED+"\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
+                case 3: // Option 3 : Quitter le programme
+                    println("\n" + ANSI_BOLD + "Au revoir!" + ANSI_RESET + "\n");
+                    System.exit(0); // Quitte le programme
+
+                default: // Gestion des entrées invalides
+                    println(ANSI_BOLD + ANSI_RED + "\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
             }
         }
     }
 
     void afficherResultatFinal(EtatJeu etatJeu) {
+        // Efface l'écran pour afficher les résultats de manière propre
         clearScreen(); 
-        if(etatJeu.gestion.nombreVivants==0){
-            println(ANSI_RED_BRIGHT+"Votre colonie est éteinte. Vous avez échoué."+ANSI_RESET);
+        
+        // Vérifie si la colonie a échoué (tous les colons sont morts)
+        if (etatJeu.gestion.nombreVivants == 0) {
+            println(ANSI_RED_BRIGHT + "Votre colonie est éteinte. Vous avez échoué." + ANSI_RESET); 
         }
+        
+        // Affichage de la section de fin de partie
         println("\n=== FIN DE LA PARTIE ===");
-        println(ANSI_BOLD + "Nombre total" + ANSI_RESET + " de tours : " + etatJeu.tour);
-        println(ANSI_BOLD + "Nombre final" + ANSI_RESET + " de colons : " + etatJeu.gestion.nombreVivants);
+        
+        // Affiche le nombre total de tours joués
+        println(ANSI_BOLD + "Nombre total" + ANSI_RESET + " de tours : " + etatJeu.tour); 
+        
+        // Affiche le nombre final de colons vivants
+        println(ANSI_BOLD + "Nombre final" + ANSI_RESET + " de colons : " + etatJeu.gestion.nombreVivants); 
     }
 
-//-------------------------------------------------------VOID ALGORITHM()-----------------------------------------------------------------------------------------
+
+//-----------------------------VOID ALGORITHM---------------------------------------------------------------------------------------------------------
     // Fonction principale de l'algorithme du jeu
     void algorithm() {
+        // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
-        extensions.File f = newFile(FILENAME);
-        int nbLines = 0;
-        while(ready(f)){
-            String currentLine = readLine(f);
-            nbLines++;
-            println(currentLine);
+        extensions.File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
+        int nbLines = 0; // Variable pour compter le nombre de lignes lues
+        
+        // Lecture et affichage du contenu du fichier ASCII
+        while (ready(f)) {
+            String currentLine = readLine(f); // Lecture de la ligne courante
+            nbLines++; // Incrémentation du compteur de lignes
+            println(currentLine); // Affichage de la ligne
         }
         
+        // Appel du menu principal pour initialiser ou charger une partie
         EtatJeu etatJeu = gestionMenuPrincipal();
 
-        boolean partieTerminee = false;
+        boolean partieTerminee = false; // Indicateur pour savoir si la partie est terminée
         
+        // Boucle principale du jeu
         while (!partieTerminee) {
             // Incrémentation du tour
             etatJeu.tour++;
 
-            if(etatJeu.tour>1){
-                etatJeu.gestion.quantiteElecTourPrecedent[0]=etatJeu.ressources[10].quantite;
+            // Mise à jour de l'électricité produite au tour précédent si ce n'est pas le premier tour
+            if (etatJeu.tour > 1) {
+                etatJeu.gestion.quantiteElecTourPrecedent[0] = etatJeu.ressources[10].quantite;
             }
 
-            etatJeu.ressources[10]=newRessource("⚡ Electricité", "Elec",1.0,100);
-            etatJeu.gestion.variationRessources=new int[length(etatJeu.ressources)];
+            // Réinitialisation de la ressource "Électricité" à chaque tour
+            etatJeu.ressources[10] = newRessource("⚡ Electricité", "Elec", 1.0, 100);
+            etatJeu.gestion.variationRessources = new int[length(etatJeu.ressources)]; // Réinitialise les variations de ressources
 
-            ressourceEmptyVerif(etatJeu);
-            verifCapacitéEntrepot(etatJeu);
-            mettreAJourBatiment(etatJeu,listeBatimentsPossibles);
-            etatJeu.planete.pollution= pollutionTotale(etatJeu);
-            mettreAJourColons(etatJeu);
+            // Vérifications et mises à jour des ressources et des bâtiments
+            ressourceEmptyVerif(etatJeu); // Vérifie si des ressources sont épuisées
+            verifCapacitéEntrepot(etatJeu); // Vérifie la capacité de stockage des entrepôts
+            mettreAJourBatiment(etatJeu, listeBatimentsPossibles); // Met à jour les bâtiments en fonction de leur production et de leurs effets
+            etatJeu.planete.pollution = pollutionTotale(etatJeu); // Calcule la pollution totale de la planète
+            mettreAJourColons(etatJeu); // Met à jour les colons (santé, besoins, etc.)
 
             // Gestion de la population
-            etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons);
+            etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Compte le nombre de colons vivants
             
-            // Expansion du tableau de colons si population stable
+            // Expansion du tableau de colons si la population dépasse 70 % de la capacité actuelle
             if ((double) etatJeu.gestion.nombreVivants / (double) length(etatJeu.colons) > 0.70) {
                 etatJeu.colons = incrementationTailleTableau(etatJeu.colons, etatJeu.gestion.nombreVivants);
             }
 
             // Reproduction des colons
-            for(int i = 0; i < etatJeu.gestion.nombreVivants; i++){
-                if (random() < PROBABILITE_REPRODUCTION) {
-                    etatJeu.colons = reproduire(etatJeu.colons, etatJeu);
-                    etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons);
+            for (int i = 0; i < etatJeu.gestion.nombreVivants; i++) {
+                if (random() < PROBABILITE_REPRODUCTION) { // Si la probabilité de reproduction est satisfaite
+                    etatJeu.colons = reproduire(etatJeu.colons, etatJeu); // Ajoute un nouveau colon au tableau
+                    etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
                 }
             }
 
-                        // Vérification des conditions de fin de partie
-            if (etatJeu.gestion.nombreVivants <= 0) {
+            // Vérification des conditions de fin de partie
+            if (etatJeu.gestion.nombreVivants <= 0) { // Si aucun colon n'est vivant, la partie se termine
                 partieTerminee = true;
-            }else{
-                etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons);
-
+            } else {
+                etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
+                
+                // Calcul du score (non implémenté ici)
                 // etatJeu.score = calculerScore(nombreVivants, etatJeu.planete, etatJeu.ressources);
-    
-                // Menu de jeu
-                boolean continuerTour = gestionMenuJeu(etatJeu,listeBatimentsPossibles);
-                if (!continuerTour) {
-                    partieTerminee=true;
+                
+                // Gestion du menu de jeu
+                boolean continuerTour = gestionMenuJeu(etatJeu, listeBatimentsPossibles); // Permet au joueur de prendre des décisions pour ce tour
+                if (!continuerTour) { // Si le joueur décide d'arrêter, la partie se termine
+                    partieTerminee = true;
                 }
-    
+
+                // Séparateur visuel entre les tours
                 println("\n-----------------------\n");
             }
         }
+
+        // Affiche les résultats finaux une fois la partie terminée
         afficherResultatFinal(etatJeu);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
