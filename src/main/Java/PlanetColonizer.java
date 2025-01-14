@@ -920,7 +920,7 @@ class PlanetColonizer extends Program{
     }
 
 
-    void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+        void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
@@ -940,10 +940,10 @@ class PlanetColonizer extends Program{
         }else if(etat.events.entrepotPlein[0]==false){
             if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
                 batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
+    
                 etat.ressources[id].quantite+=batiment.ressourceActuelle.quantiteResGeneree[0];
                 
-                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResConso[1];
-                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResConso[1];
+                consoRes(etat,1,batiment);
     
                 etat.gestion.variationRessources[id]+=batiment.ressourceActuelle.quantiteResGeneree[0];
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
@@ -952,8 +952,7 @@ class PlanetColonizer extends Program{
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 etat.ressources[id].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 
-                etat.ressources[10].quantite-=batiment.ressourceActuelle.quantiteResConso[1]; //C'est celle là qui est bugguée
-                etat.gestion.variationRessources[10]-=batiment.ressourceActuelle.quantiteResConso[1];
+                consoRes(etat,1,batiment);
     
                 etat.gestion.variationRessources[id]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;            
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
@@ -969,10 +968,14 @@ class PlanetColonizer extends Program{
     void consommer(EtatJeu etat,int lig, int col){
         CaseCarte batiment=etat.planete.carte[lig][col];
         for(int e=0;e<length(batiment.ressourceActuelle.quantiteResConso);e++){
-            int idRes=batiment.ressourceActuelle.ressourcesConso[e];
-            etat.ressources[idRes].quantite-=batiment.ressourceActuelle.quantiteResConso[e];
-            etat.gestion.variationRessources[idRes]-=batiment.ressourceActuelle.quantiteResConso[e];
+            consoRes(etat,e,batiment);
         }
+    }
+
+    void consoRes(EtatJeu etat, int id, CaseCarte batiment){
+        int idRes=batiment.ressourceActuelle.ressourcesConso[id];
+        etat.ressources[idRes].quantite-=batiment.ressourceActuelle.quantiteResConso[id];
+        etat.gestion.variationRessources[idRes]-=batiment.ressourceActuelle.quantiteResConso[id];
     }
 
     void generer(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
