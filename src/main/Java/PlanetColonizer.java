@@ -1871,7 +1871,7 @@ class PlanetColonizer extends Program{
                     return true; // Passer l'année
                 case 3:
                     gestionSauvegarde(etatJeu);
-                    return true;
+                    break;
                 case 4:
                     return gestionQuitter(etatJeu);
                 default:
