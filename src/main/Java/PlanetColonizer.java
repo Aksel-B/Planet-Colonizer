@@ -359,8 +359,8 @@ class PlanetColonizer extends Program{
 
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
         // Compter le nombre de lignes nécessaires pour le fichier CSV
-        int nombreLignes = compterLignes(etat);
-        String[][] donneesCSV = new String[773][6]; // Toujours 6 colonnes
+        //int nombreLignes = compterLignes(etat);
+        String[][] donneesCSV = new String[15000][6]; // Toujours 6 colonnes
         int index = 0;
 
         // 1. Section Colons
@@ -453,14 +453,59 @@ class PlanetColonizer extends Program{
             println("Erreur lors de la sauvegarde du jeu : " + e.getMessage());
         }
     }
-    // Fonction pour compter toutes les lignes nécessaires
-    int compterLignes(EtatJeu etat) {
-        int lignesColons = length(etat.colons) + 3; // Nombre de colons + en-têtes + section
-        int lignesGestion = 5; // En-têtes + section + variation ressources + élec précédente
-        int lignesInventaire = length(etat.ressources) + 2; // Nombre de ressources + en-têtes + section
-        int lignesCarte = (length(etat.planete.carte) * length(etat.planete.carte[0])) + 2; // Total des cases de la carte + en-têtes + section
-        return lignesColons + lignesGestion + lignesInventaire + lignesCarte;
+
+    String[] retirerNullEnPartantDeLaFin(String[] tableau) {
+        // Trouver l'index du dernier élément non-null
+        int dernierIndexNonNull = -1;
+        for (int i = tableau.length - 1; i >= 0; i--) {
+            if (tableau[i] != null) {
+                dernierIndexNonNull = i;
+                break;
+            }
+        }
+
+        // Si tous les éléments sont null, retourner un tableau vide
+        if (dernierIndexNonNull == -1) {
+            return new String[0];
+        }
+
+        // Créer un nouveau tableau de la taille appropriée
+        String[] tableauSansNull = new String[dernierIndexNonNull + 1];
+
+        // Copier les éléments non-nuls dans le nouveau tableau
+        for (int i = 0; i <= dernierIndexNonNull; i++) {
+            tableauSansNull[i] = tableau[i];
+        }
+
+        return tableauSansNull;
     }
+
+    //int compterLignes(EtatJeu etat) {
+    //    // Calculer les lignes pour la section des colons
+    //    int lignesColons = length(etat.colons) + 4; // Colons + en-têtes + section
+//
+    //    int lignesEtatJeu = 3;
+//
+    //    // Calculer les lignes pour la section de gestion
+    //    int lignesGestion = 16; // En-têtes + section + variation ressources + élec précédente
+//
+    //    // Calculer les lignes pour la section de l'inventaire des ressources
+    //    int lignesInventaire = length(etat.ressources) + 2; // Ressources + en-têtes + section
+//
+    //    // Calculer les lignes pour la section de la carte
+    //    int lignesCarte = (length(etat.planete.carte, 1) * length(etat.planete.carte, 2)) + 2; // Cases de la carte + en-têtes + section
+//
+    //    // Total des lignes nécessaires
+    //    int totalLignes = lignesColons + lignesGestion + lignesInventaire + lignesCarte + lignesEtatJeu;
+//
+    //    // Vérifier que le total des lignes est au moins 773
+    //    if (totalLignes < 773) {
+    //        throw new IllegalArgumentException("Erreur: Le nombre total de lignes calculé est inférieur à 773.");
+    //    }
+//
+    //    // Retourner le total des lignes calculées
+    //    return totalLignes;
+    //}
 
 
     EtatJeu chargerJeu(String nomFichier) {
@@ -600,7 +645,7 @@ class PlanetColonizer extends Program{
                     }
                 }
             }
-            
+
             // Initialiser la planète si elle n'a pas été initialisée précédemment
             if (etatCharge.planete == null) {
                 etatCharge.planete = newPlanete(etatCharge.ressources, tailleCarte);
