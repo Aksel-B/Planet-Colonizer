@@ -358,7 +358,9 @@ class PlanetColonizer extends Program{
 //-----------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------------------------
 
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
-        String[][] donneesCSV = new String[compterLignes(etat) -1 ][6]; // Toujours 6 colonnes
+        // Compter le nombre de lignes nécessaires pour le fichier CSV
+        int nombreLignes = compterLignes(etat);
+        String[][] donneesCSV = new String[773][6]; // Toujours 6 colonnes
         int index = 0;
 
         // 1. Section Colons
@@ -402,8 +404,32 @@ class PlanetColonizer extends Program{
             "" + etat.gestion.nombreVivants,
             ""
         };
+        // Ajout de la variation des ressources et l'électricité du tour précédent
+        donneesCSV[index++] = new String[] {
+            "variationRessources", "", "", "", "", ""
+        };
+        for (int i = 0; i < etat.gestion.variationRessources.length; i++) {
+            donneesCSV[index++] = new String[] {
+                "" + etat.gestion.variationRessources[i], "", "", "", "", ""
+            };
+        }
+        donneesCSV[index++] = new String[] {
+            "quantiteElecTourPrecedent", "" + etat.gestion.quantiteElecTourPrecedent[0], "", "", "", ""
+        };
 
-        // 4. Section Carte
+        // 4. Section Inventaire des Ressources
+        donneesCSV[index++] = new String[] {"#SECTION", "INVENTAIRE", "", "", "", ""};
+        donneesCSV[index++] = new String[] {"nomRessource", "quantite", "", "", "", ""};
+        for (int i = 0; i < etat.ressources.length; i++) {
+            Terrain ressource = etat.ressources[i];
+            donneesCSV[index++] = new String[] {
+                ressource.nom,
+                "" + ressource.quantite,
+                "", "", "", ""
+            };
+        }
+
+        // 5. Section Carte
         donneesCSV[index++] = new String[] {"#SECTION", "CASES_CARTE", "", "", "", ""};
         donneesCSV[index++] = new String[] {"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", ""};
         for (CaseCarte[] ligne : etat.planete.carte) {
@@ -427,16 +453,17 @@ class PlanetColonizer extends Program{
             println("Erreur lors de la sauvegarde du jeu : " + e.getMessage());
         }
     }
-
     // Fonction pour compter toutes les lignes nécessaires
     int compterLignes(EtatJeu etat) {
-        int lignesColons = etat.colons.length; // Nombre total de colons
-        int lignesCarte = etat.planete.carte.length * etat.planete.carte[0].length; // Total des cases de la carte
-        return 2 + lignesColons + 2 + 1 + 2 + lignesCarte; // Nombre de lignes nécessaires
+        int lignesColons = length(etat.colons) + 3; // Nombre de colons + en-têtes + section
+        int lignesGestion = 5; // En-têtes + section + variation ressources + élec précédente
+        int lignesInventaire = length(etat.ressources) + 2; // Nombre de ressources + en-têtes + section
+        int lignesCarte = (length(etat.planete.carte) * length(etat.planete.carte[0])) + 2; // Total des cases de la carte + en-têtes + section
+        return lignesColons + lignesGestion + lignesInventaire + lignesCarte;
     }
 
 
-     EtatJeu chargerJeu(String nomFichier) {
+    EtatJeu chargerJeu(String nomFichier) {
         EtatJeu etatCharge = new EtatJeu();
 
         try {
@@ -451,20 +478,20 @@ class PlanetColonizer extends Program{
             for (int ligne = 0; ligne < rowCount(fichierSauvegarde); ligne++) {
                 String cellule0 = getCell(fichierSauvegarde, ligne, 0);
 
-                if (equals(cellule0, "Ressources")) {
-                    // Compter le nombre de ressources
+                if (equals(cellule0, "Colons")) {
+                    // Compter le nombre de colons
                     int i = ligne + 2;
-                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "Planete")) {
-                        nombreRessources++;
+                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "")) {
+                        nombreColons++;
                         i++;
                     }
                 }
 
-                if (equals(cellule0, "Colons")) {
-                    // Compter le nombre de colons
+                if (equals(cellule0, "INVENTAIRE")) {
+                    // Compter le nombre de ressources
                     int i = ligne + 2;
-                    while (i < rowCount(fichierSauvegarde) && i < ligne + 100) {
-                        nombreColons++;
+                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "")) {
+                        nombreRessources++;
                         i++;
                     }
                 }
@@ -491,15 +518,15 @@ class PlanetColonizer extends Program{
                     etatCharge.nom = getCell(fichierSauvegarde, ligne, 1);
                 }
 
-                // Charger les ressources
-                if (equals(cellule0, "Ressources")) {
+                // Charger les ressources de l'inventaire
+                if (equals(cellule0, "INVENTAIRE")) {
                     for (int j = 0; j < nombreRessources; j++) {
                         String nom = getCell(fichierSauvegarde, ligne + 2 + j, 0);
-                        String symbole = getCell(fichierSauvegarde, ligne + 2 + j, 1);
-                        double probabilite = stringToDouble(getCell(fichierSauvegarde, ligne + 2 + j, 2));
-                        int quantite = stringToInt(getCell(fichierSauvegarde, ligne + 2 + j, 3));
+                        int quantite = stringToInt(getCell(fichierSauvegarde, ligne + 2 + j, 1));
 
-                        etatCharge.ressources[j] = newRessource(nom, symbole, probabilite, quantite);
+                        etatCharge.ressources[j] = new Terrain();
+                        etatCharge.ressources[j].nom = nom;
+                        etatCharge.ressources[j].quantite = quantite;
                     }
                 }
 
@@ -569,18 +596,8 @@ class PlanetColonizer extends Program{
             }
 
             println("Jeu chargé avec succès depuis " + nomFichier);
-            if (etatCharge != null) {
-                if (etatCharge.ressources[10] == null) {
-                    etatCharge.ressources[10] = newRessource("⚡ Electricité", "Elec",1.0,100);
-                }
-                // Vérifier que les valeurs sont dans des limites raisonnables
-                if (etatCharge.ressources[10].quantite < 0) {
-                    etatCharge.ressources[10].quantite = 0;
-                }
-                return etatCharge;          
-            }
             return etatCharge;
-            
+
         } catch (Exception e) {
             println("Erreur lors du chargement du jeu : " + e.getMessage());
             return null;
@@ -990,7 +1007,7 @@ class PlanetColonizer extends Program{
         CaseCarte batiment = etat.planete.carte[lig][col];
         if (etat.events.entrepotPlein[0]==false){
             for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
-                genererRes(etat,e,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                genererRes(etat,f,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             }
         }else{
             marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
@@ -1026,8 +1043,8 @@ class PlanetColonizer extends Program{
             batiment.ressourceActuelle.quantiteResGeneree=new int[length(listeBatimentsPossibles[id].quantiteResGeneree)];
             batiment.ressourceActuelle.fonctionne[0]=false;
         }else if(id==10 && batiment.ressourceActuelle.fonctionne[0]==true){
-            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourceConsoPuitDF[batiment.ressourceActuelle.ressourcesConso[0]-2],25};
-            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourceGenereePuitDF[batiment.ressourceActuelle.ressourcesGeneree[0]-2]};
+            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourcesConsoPuitDF[batiment.ressourceActuelle.ressourcesConso[0]-2],25};
+            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourcesGenereePuitDF[batiment.ressourceActuelle.ressourcesGeneree[0]-2]};
             batiment.ressourceActuelle.fonctionne[0]=true;
         }else{
             batiment.ressourceActuelle.quantiteResConso=listeBatimentsPossibles[id].quantiteResConso;
