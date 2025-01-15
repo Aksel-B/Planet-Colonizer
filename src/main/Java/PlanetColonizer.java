@@ -306,7 +306,7 @@ class PlanetColonizer extends Program{
         String[] tab1=new String[]{"a","ab","abc"};
         int[] tab2=new int[]{1,12,123,1234};
         assertEquals(3,maxLength(tab1,0));
-        assertEquals(4,maxLength(tab2,0))
+        assertEquals(4,maxLength(tab2,0));
     }
 
     void testFormatCharacteristic() {
@@ -396,7 +396,7 @@ class PlanetColonizer extends Program{
         // 2. Section Etat du Jeu
         donneesCSV[index++] = new String[] {"#SECTION", "ETAT_JEU", "", "", "", ""};
         donneesCSV[index++] = new String[] {"nomJeu", "score", "tour", "pollution", "", ""};
-        donneesCSV[index++] = new String[] {etat.nom, "" + etat.score, "" + etat.tour, "" + planete.pollution, "", ""};
+        donneesCSV[index++] = new String[] {etat.nom, "" + etat.score, "" + etat.tour, "" + etat.planete.pollution, "", ""};
 
         // 3. Section Gestion
         donneesCSV[index++] = new String[] {"#SECTION", "GESTION", "", "", "", ""};
