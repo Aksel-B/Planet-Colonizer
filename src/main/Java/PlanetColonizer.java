@@ -502,6 +502,7 @@ class PlanetColonizer extends Program{
         try {
             saveCSV(donneesCSV, "../save/" + nomFichier);
             println(ANSI_BOLD + "Jeu sauvegardé avec succès" + ANSI_RESET + " dans " + nomFichier);
+            delay(2000);
         } catch (Exception e) {
             println("Erreur lors de la sauvegarde du jeu : " + e.getMessage());
         }
@@ -736,7 +737,7 @@ class PlanetColonizer extends Program{
             newRessource("Cuivre", "Cu ", 0.075, 50),
             newRessource("Carbone", " C ", 0.050, 35),
             newRessource("Soufre", " S ", 0.025, 10),
-            newRessource("Plutonium", "Pu ", 0.0005, 5), // Ressource rare et polluante
+            newRessource("Uranium", " U ", 0.0005, 5), // Ressource rare et polluante
             newRessource("💧 Eau", "H2O", 1.0, 100), // Ressources essentielles
             newRessource("💨 Air", "O2", 1.0, 50), 
             newRessource("🍎 Nourriture", "Rations", 1.0, 50),
@@ -777,7 +778,7 @@ class PlanetColonizer extends Program{
                     return ANSI_GREEN + ANSI_DARK_BG;
                 case " S ":
                     return ANSI_BLUE + ANSI_DARK_BG;
-                case "Pu ":
+                case " U ":
                     return ANSI_PURPLE + ANSI_DARK_BG;
                 
                 // Bâtiments
@@ -864,12 +865,12 @@ class PlanetColonizer extends Program{
         
         newBatiment(newRecette(new int[]{2,3,5},new int[]{5,10,5}),"Capteur d'Humidité"," ⌯ ",0.0001,new int[]{10}, new int[]{20},new int[]{7}, new int[]{10}),
         newBatiment(newRecette(new int[]{2,4,7},new int[]{5,5,5}),"Ferme hydroponique"," ✲ ",-0.0005,new int[]{7,10},new int[]{7,20},new int[]{8,9},new int[]{5,10}), //10 rations 5 O2
-        newBatiment(newRecette(new int[]{3,7},new int[]{5,5}),"Recycleur d'Air"," ≎ ",0.0001,new int[]{10}, new int[]{20},new int[]{8}, new int[]{10}),
+        newBatiment(newRecette(new int[]{3,7},new int[]{5,5}),"Recycleur d'Air"," ≎ ",0.0001,new int[]{7,10}, new int[]{1,20},new int[]{8}, new int[]{10}),
 
         newBatiment(newRecette(new int[]{3,5},new int[]{5,10}),"Panneau Stellaire"," ☼ ",0.0001,new int[]{10}, new int[]{0},new int[]{10},new int[]{20}),
         newBatiment(newRecette(new int[]{2,6,7},new int[]{115,5,30}),"Centrale nucléaire"," ☢ ",0.0001,new int[]{6,7,10},new int[]{2,10,100},new int[]{10},new int[]{400}),//Conso 5 Pu 10 H2O
 
-        newBatiment(newRecette(new int[]{2,3,4},new int[]{10,5,5}),"Puit de Forage"," ⍒ ",0.005,new int[]{0,10},new int[]{0,25},new int[1],new int[1]) //Prod/Conso variable selon la ressource
+        newBatiment(newRecette(new int[]{2,3},new int[]{10,5}),"Puit de Forage"," ⍒ ",0.005,new int[]{0,10},new int[]{0,25},new int[1],new int[1]) //Prod/Conso variable selon la ressource
     };
 
     // Si on veut faire des ressources plus complexes et modifier les recettes en conséquence
@@ -1013,9 +1014,9 @@ class PlanetColonizer extends Program{
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles) {
         int capaciteEntreposee = calcCapacitéEntrepôt(etat);
+        println();
+        println(etat.events.entrepotPlein[0]);
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
-            println();
-            println(etat.events.entrepotPlein[0]);
 
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
@@ -1098,9 +1099,12 @@ class PlanetColonizer extends Program{
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
+                println("LogPlein");
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 consoRes(etat,1,batiment);
+                println("Logconso");
                 genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                println("Loggenere");
             
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
     
@@ -1812,18 +1816,17 @@ class PlanetColonizer extends Program{
             }
 
             if(etat.events.BatimentsPosed[id]==false){
-                formatEmptyLine(etat.events.posedTxt,id);
-                int max=maxLength(etat.events.posedTxt[id],0);
-                String cadre="\n        ";
-                for (int i=0;i<max+4;i++){
+                String cadre="        ";
+                int max=maxLength(etat.events.posedTxt[id],0)+length(cadre);
+
+                for (int i=0;i<max+8;i++){
                     cadre+="-";
                 }
-                println(cadre);
+                println("\n"+cadre);
                 for(int e=0;e<length(etat.events.posedTxt[id]);e++){
                     println("                "+etat.events.posedTxt[id][e]);
                 }
-                println(cadre);
-                println();
+                println(cadre+"\n");
                 etat.events.BatimentsPosed[id]=true;
             }
         }
@@ -1957,7 +1960,7 @@ class PlanetColonizer extends Program{
                     id++;
                 }
             }
-            println("\n"+(id)+" - Ne pas poser de batiment");
+            println("\n"+(id)+" - Ne pas poser de batiment\n");
         }
 
         int choix=0;
@@ -2076,11 +2079,12 @@ class PlanetColonizer extends Program{
         // Boucle principale du menu
         while (true) {
             // Affichage du menu principal
-            println("\n                                                                                                                    ========== MENU PRINCIPAL ==========");
-            println("                                                                                                                    1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-            println("                                                                                                                    2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
-            println("                                                                                                                    3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
-            println("                                                                                                                    ------------------------------------");
+            println("\n                                                                                                                       ========== MENU PRINCIPAL ==========");
+            println("                                                                                                                       1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
+            //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
+            println("                                                                                                                       2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
+            println("                                                                                                                       3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
+            println("                                                                                                                       ------------------------------------");
             
             // Demande à l'utilisateur de choisir une option
             int option = readIntSecurise(ANSI_BOLD + "                                                                                                                       Choisissez une option" + ANSI_RESET + " (1-3) : ");
@@ -2200,7 +2204,6 @@ class PlanetColonizer extends Program{
         // Lecture et affichage du contenu du fichier ASCII
         while (ready(f)) {
             String currentLine = readLine(f); // Lecture de la ligne courante
-            //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
             nbLines++; // Incrémentation du compteur de lignes
             println(currentLine); // Affichage de la ligne
         }
