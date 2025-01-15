@@ -120,6 +120,7 @@ class PlanetColonizer extends Program{
         int ligne;
         boolean valide=true;
         do {
+            valide=true;
             ligne = readIntSecurise(ANSI_BOLD + "Saisissez une ligne" + ANSI_RESET + "   (1,2,3,...) : "); // Lire un entier pour la ligne
             if (ligne < 1 || ligne > nombreLignes-1){
                 valide=false;
@@ -277,6 +278,46 @@ class PlanetColonizer extends Program{
             return caractere;
         }
     }
+
+    int getVisibleLength(String str) {
+        int visibleLength = 0;
+        boolean inAnsiCode = false;
+    
+        for (int i = 0; i < length(str); i++) {
+            if (charAt(str,i) == '\033') {
+                inAnsiCode = true;
+                continue;
+            }
+            if (inAnsiCode) {
+                if (charAt(str,i) == 'm') {
+                    inAnsiCode = false;
+                }
+                continue;
+            }
+            visibleLength++;
+        }
+        return visibleLength;
+    }
+    
+    void formatEmptyLine(String[] tab){
+        int maxLine=maxLength(tab,0);
+        
+    
+        for(int y=0;y<length(tab);y++){
+                tab[y]=formatCharacteristic(tab[y],maxLine+(length(tab[y])-getVisibleLength(tab[y])));
+            } 
+        
+    }
+
+    void formatEmptyLine(String[][] tab, int id){
+        int maxLine=maxLength(tab[id],0);
+        println(maxLine);
+        for(int y=0;y<length(tab[id]);y++){
+                tab[id][y]=formatCharacteristic(tab[id][y],maxLine+(length(tab[id][y])-getVisibleLength(tab[id][y])));
+            }
+
+    }
+
 
 //-----------------------------TEST---------------------------------------------------------------------------------------------------------------------
 
@@ -1442,28 +1483,6 @@ class PlanetColonizer extends Program{
         }
         return afficherTab;
     }
-    
-    void formatEmptyLine(String[] tab){
-        int maxLine=length(tab[0]);
-
-        for(int c=1;c<length(tab);c++){
-            if (length(tab[c])>maxLine){
-                maxLine=length(tab[c]);
-            }
-        }
-
-        for(int y=0;y<length(tab);y++){
-            if(charAt(tab[y],2)=='1'){
-                tab[y]=formatCharacteristic(tab[y],maxLine+8);
-
-            }else if(charAt(tab[y],2)=='3'){
-                tab[y]=formatCharacteristic(tab[y],maxLine+9);
-
-            }else{
-                tab[y]=formatCharacteristic(tab[y],maxLine);
-            }  
-        }
-    }
 
     String[] creerTabCarteAffic(EtatJeu etat){
         String[] carteTabAffic=new String[27];
@@ -1561,7 +1580,7 @@ class PlanetColonizer extends Program{
         }
 
         formatEmptyLine(resTabAffic);
-        resTabAffic[12]=substring(resTabAffic[12],0,length(resTabAffic[12])-1); //Pour une raison étrange l'électricité prend une case en trop (taille de l'émoji ?)
+        resTabAffic[12]=substring(resTabAffic[12],0,length(resTabAffic[12])-1);
 
         return resTabAffic;
     }
@@ -1750,7 +1769,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
         if(etat.tour>0){
-            clearScreen(); 
+            //clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
@@ -1778,12 +1797,8 @@ class PlanetColonizer extends Program{
             }
 
             if(etat.events.BatimentsPosed[id]==false){
-                int max=length(etat.events.posedTxt[id][0]);
-                for(int a=1;a<length(etat.events.posedTxt[id]);a++){
-                    if (length(etat.events.posedTxt[id][a])>max){
-                        max=length(etat.events.posedTxt[id][a]);
-                    }
-                }
+                formatEmptyLine(etat.events.posedTxt,id);
+                int max=maxLength(etat.events.posedTxt[id],0);
                 String cadre=" ";
                 for (int i=0;i<max+8;i++){
                     cadre+="-";
