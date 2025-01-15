@@ -10,8 +10,6 @@ class Events{
     final String ANSI_CYAN_LIGHT = "\033[38;2;224;255;255m";
     final String ANSI_YELLOW_BRIGHT = "\033[38;2;255;255;0m";
     final String ANSI_YELLOW =  "\033[38;5;11m";
-    final String ANSI_ORANGE_DARK = "\033[38;2;255;140;0m";
-    final String ANSI_RED_BRIGHT = "\033[38;2;255;0;0m";
 
     boolean[] entrepotPlein=new boolean[]{false};
     String entrepotPleinSTR="Les Entrepôts sont pleins !";
@@ -54,12 +52,13 @@ class Events{
                         
                         {"Le "+ANSI_BLUE_LIGHT + "Capteur d’Humidité (⌯)"+ANSI_RESET+" joue un rôle primordial dans la survie de la colonie",
                         "Le sulfate de cuivre anhydre, obtenu par la combinaison de cuivre et de soufre étant ensuite déshydraté, est un excellent indicateur d'humidité qui se révéle vital sur cette planète.",
-                        "Le fer lui permet au capteur de résister aux conditions climatiques extrèmes de la planète."},
+                        "Le fer, lui, permet au capteur de résister aux conditions climatiques extrèmes de la planète."},
 
-                        {"Se nourrir fait parti des besoins les plus basiques d'un être humain et la"+ANSI_BLUE_LIGHT + "Ferme Hydroponique (✲)"+ANSI_RESET+," y répond.",
-                        "                "}
-                        
-                        {"      ","       "},
+                        {"Se nourrir fait parti des besoins les plus basiques d'un être humain et la"+ANSI_GREEN_LIGHT + "Ferme Hydroponique (✲)"+ANSI_RESET+" y répond.",
+                        "En optant pour ce mode de cultivation, de grandes économies d'eau sont réalisées",
+                        "et grâce à la photosynthèse en plus d'apporter une nourriture saine, les plantes contribuent à la purification de l'air.",
+                        "Le fer , en servant de structure aux racks et aux supports, permet la culture par hydroponie."},
+
                         {"      ","       "},
                         {"      ","       "},
                         {"      ","       "},
