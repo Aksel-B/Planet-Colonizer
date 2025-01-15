@@ -537,7 +537,7 @@ class PlanetColonizer extends Program{
                     etatCharge.gestion.capaciteEntrepot = stringToInt(getCell(fichierSauvegarde, ligne + 1, 2));
                     etatCharge.gestion.vaisseauPlace = stringToInt(getCell(fichierSauvegarde, ligne + 1, 3));
                     etatCharge.gestion.centreDeCommunicationPlace = stringToInt(getCell(fichierSauvegarde, ligne + 1, 4));
-                    etatCharge.gestion.quantiteElecTourPrecedent[0] = stringToInt(getCell(fichierSauvegarde, ligne + 1, 5));
+                    etatCharge.gestion.quantiteElecTourPrecedent = new int[]{stringToInt(getCell(fichierSauvegarde, ligne + 1, 5))};
                 }
 
                 // Charger les colons
@@ -603,7 +603,6 @@ class PlanetColonizer extends Program{
             return null;
         }
     }
-
 //-----------------------------RESSOURCES---------------------------------------------------------------------------------------------------------------
 
     final Terrain[] RESSOURCES_INIT=new Terrain[]{ 
@@ -1753,12 +1752,12 @@ class PlanetColonizer extends Program{
         return g;
     }
 
-    EtatJeu initialiserNouvellePartie(Terrain[] RESSOURCES_INIT,Terrain[] listeBatimentsPossibles) {
+    EtatJeu initialiserNouvellePartie(Terrain[] RESSOURCES_INIT, Terrain[] listeBatimentsPossibles) {
         // Créer un nouvel état de jeu
         EtatJeu nouvelEtat = new EtatJeu();
         
         //INitialisation du nom de la colonie (fichier de sauvegarde)
-        nouvelEtat.nom=readStringSecurise(ANSI_BOLD + "Entrez le nom " + ANSI_RESET + "de votre nouvelle colonie : ") + ".csv";
+        nouvelEtat.nom = readStringSecurise(ANSI_BOLD + "Entrez le nom " + ANSI_RESET + "de votre nouvelle colonie : ") + ".csv";
 
         // Initialisation du tour à 0
         nouvelEtat.tour = 0;
@@ -1767,7 +1766,10 @@ class PlanetColonizer extends Program{
         nouvelEtat.score = 0.0;
 
         // Initialisation des ressources disponibles
-        nouvelEtat.ressources = RESSOURCES_INIT;
+        nouvelEtat.ressources = new Terrain[11];
+        for (int i = 0; i < RESSOURCES_INIT.length; i++) {
+            nouvelEtat.ressources[i] = RESSOURCES_INIT[i];
+        }
 
         // Création de la planète 
         int taille = 27;
@@ -1777,13 +1779,13 @@ class PlanetColonizer extends Program{
         nouvelEtat.colons = genererColons(6); // 6 colons de départ
 
         // Générer les paramètres initiaux
-        nouvelEtat.gestion=newGestion(RESSOURCES_INIT,listeBatimentsPossibles);
+        nouvelEtat.gestion = newGestion(RESSOURCES_INIT, listeBatimentsPossibles);
 
-        nouvelEtat.events=newEvents(nouvelEtat,listeBatimentsPossibles);
+        nouvelEtat.events = newEvents(nouvelEtat, listeBatimentsPossibles);
 
         println();
-        afficherEtat(nouvelEtat,false,false,false);
-        placerVaisseau(listeBatimentsPossibles,nouvelEtat);   
+        afficherEtat(nouvelEtat, false, false, false);
+        placerVaisseau(listeBatimentsPossibles, nouvelEtat);   
         return nouvelEtat;
     }
 
@@ -2098,6 +2100,14 @@ class PlanetColonizer extends Program{
         
         // Appel du menu principal pour initialiser ou charger une partie
         EtatJeu etatJeu = gestionMenuPrincipal();
+
+        // Vérifiez que les ressources sont initialisées correctement
+        if (etatJeu.ressources == null || etatJeu.ressources.length < 11) {
+            etatJeu.ressources = new Terrain[11];
+            for (int i = 0; i < etatJeu.ressources.length; i++) {
+                etatJeu.ressources[i] = new Terrain();
+            }
+        }
 
         boolean partieTerminee = false; // Indicateur pour savoir si la partie est terminée
         
