@@ -396,7 +396,7 @@ class PlanetColonizer extends Program{
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
         // Compter le nombre de lignes nécessaires pour le fichier CSV
         //int nombreLignes = compterLignes(etat);
-        String[][] donneesCSV = new String[15000][6]; // Toujours 6 colonnes
+        String[][] donneesCSV = new String[2500][6]; // Toujours 6 colonnes
         int index = 0;
 
         // 1. Section Colons
@@ -483,12 +483,17 @@ class PlanetColonizer extends Program{
 
         // 6. Section Events
         donneesCSV[index++] = new String[] {"#SECTION", "EVENTS", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"nomEvent", "date", "description", "", "", ""};
-        // for () {
-        //     donneesCSV[index++] = new String[] {
-        //         "", "", "", "", "", ""
-        //     };
-        // }
+        donneesCSV[index++] = new String[] {"entrepotPlein", "dortoirsPlein", "ressourceEstEpuiseeSTR", "filonEpuise", "BatimentsPosed", ""};
+        donneesCSV[index++] = new String[] {""+etat.events.entrepotPlein[0], ""+etat.events.dortoirsPlein[0], "", "", "", ""};
+        for (int i = 0; i < length(etat.events.ressourceEstEpuiseeSTR); i++){
+            donneesCSV[index++] = new String[] {etat.events.ressourceEstEpuiseeSTR[i] , "", "", "", "", ""};
+        }
+        for (int i = 0; i < length(etat.events.filonEpuise); i++){
+            donneesCSV[index++] = new String[] {etat.events.filonEpuise[i], "", "", "", "", ""};
+        }
+        for (int i = 0; i < length(etat.events.BatimentsPosed); i++){
+            donneesCSV[index++] = new String[] {"" + etat.events.BatimentsPosed[i], "", "", "", "", ""};
+        }
 
         // Sauvegarder dans un fichier CSV
         try {
