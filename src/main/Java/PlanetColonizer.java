@@ -302,6 +302,13 @@ class PlanetColonizer extends Program{
         assertEquals(-5, min(-1, -5)); // Vérifie que min(-1, -5) retourne -5
     }
 
+    void testMaxLength(){
+        String[] tab1=new String[]{"a","ab","abc"};
+        int[] tab2=new int[]{1,12,123,1234};
+        assertEquals(3,maxLength(tab1,0));
+        assertEquals(4,maxLength(tab2,0))
+    }
+
     void testFormatCharacteristic() {
         assertEquals("Test      ", formatCharacteristic("Test", 10)); // Ajout d'espaces jusqu'à 10 caractères
         assertEquals("LongText", formatCharacteristic("LongText", 5)); // Ne coupe pas les chaînes déjà longues
