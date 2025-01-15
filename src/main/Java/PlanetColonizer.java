@@ -309,7 +309,6 @@ class PlanetColonizer extends Program{
 
     void formatEmptyLine(String[][] tab, int id){
         int maxLine=maxLength(tab[id],0);
-        println(maxLine);
         for(int y=0;y<length(tab[id]);y++){
                 tab[id][y]=formatCharacteristic(tab[id][y],maxLine+(length(tab[id][y])-getVisibleLength(tab[id][y])));
             }
@@ -1802,13 +1801,13 @@ class PlanetColonizer extends Program{
             if(etat.events.BatimentsPosed[id]==false){
                 formatEmptyLine(etat.events.posedTxt,id);
                 int max=maxLength(etat.events.posedTxt[id],0);
-                String cadre=" ";
-                for (int i=0;i<max+8;i++){
+                String cadre="\n        ";
+                for (int i=0;i<max+4;i++){
                     cadre+="-";
                 }
                 println(cadre);
                 for(int e=0;e<length(etat.events.posedTxt[id]);e++){
-                    println("|   "+formatCharacteristic(etat.events.posedTxt[id][e],max+5)+"|");
+                    println("                "+formatCharacteristic(etat.events.posedTxt[id][e],max+5));
                 }
                 println(cadre);
                 println();
