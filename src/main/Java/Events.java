@@ -29,7 +29,10 @@ class Events{
                         "Le fer est idéal pour créer une structure à la fois robuste et résistante à l’usure."},
 
                         {"Afin de coordonner leurs activités ou simplement pour communiquer avec leurs proches restés sur Terre, le "+ANSI_MAGENTA+"Centre de communication Terrien (☤)"+ ANSI_RESET +" est indispensables",
-                        "La combinaison du fer, du cuivre et du carbone assure un fonctionnement des plus optimal."},
+                        "La combinaison du fer, du cuivre et du carbone assure un fonctionnement optimal.",
+                        "Le fer est essentiel dans la communication par onde grâce à ses propriétés magnétiques, qui permettent de gérer, moduler et confiner les champs électromagnétiques.",
+                        "Le Carbone agit comme bouclier contre les interférences électromagnétiques pouvant provenir des vents stellaires, il permet aussi de réduire la dissipation électrique",
+                        "Grâce à sa faible résistivité et son excellente conductivité, le cuivre minimise les pertes de signal, ce qui le rend idéal pour le transport des signaux haute fréquence."},
 
                         {"",""},
                         {"",""},
