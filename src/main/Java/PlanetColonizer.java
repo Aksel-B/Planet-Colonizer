@@ -731,7 +731,7 @@ class PlanetColonizer extends Program{
             newRessource("Fer", "Fe ", 0.100, 100), 
             newRessource("Cuivre", "Cu ", 0.075, 50),
             newRessource("Carbone", " C ", 0.050, 35),
-            newRessource("Sulfure", " S ", 0.025, 10),
+            newRessource("Soufre", " S ", 0.025, 10),
             newRessource("Plutonium", "Pu ", 0.0005, 5), // Ressource rare et polluante
             newRessource("💧 Eau", "H2O", 1.0, 100), // Ressources essentielles
             newRessource("💨 Air", "O2", 1.0, 50), 
@@ -859,7 +859,7 @@ class PlanetColonizer extends Program{
         newBatiment(newRecette(new int[]{2,3,4},new int[]{75,25,10}),"Cinema"," ◈ ",0.0007,new int[]{10},new int[]{50},new int[]{-1},new int[]{0}),
         
         newBatiment(newRecette(new int[]{2,3,5},new int[]{5,10,5}),"Capteur d'Humidité"," ⌯ ",0.0001,new int[]{10}, new int[]{20},new int[]{7}, new int[]{10}),
-        newBatiment(newRecette(new int[]{2,4,7},new int[]{5,5,5}),"Ferme hydroponique"," ✲ ",-0.0005,new int[]{7,10},new int[]{10,20},new int[]{8,9},new int[]{5,10}), //10 rations 5 O2
+        newBatiment(newRecette(new int[]{2,4,7},new int[]{5,5,5}),"Ferme hydroponique"," ✲ ",-0.0005,new int[]{7,10},new int[]{7,20},new int[]{8,9},new int[]{5,10}), //10 rations 5 O2
         newBatiment(newRecette(new int[]{3,7},new int[]{5,5}),"Recycleur d'Air"," ≎ ",0.0001,new int[]{10}, new int[]{20},new int[]{8}, new int[]{10}),
 
         newBatiment(newRecette(new int[]{3,5},new int[]{5,10}),"Panneau Stellaire"," ☼ ",0.0001,new int[]{10}, new int[]{0},new int[]{10},new int[]{20}),
@@ -1146,6 +1146,7 @@ class PlanetColonizer extends Program{
             etat.events.entrepotPlein[0]=true;
         }
     }
+
 
     void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
         int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};

@@ -47,8 +47,18 @@ class Events{
                         "Le Carbone agit comme bouclier contre les interférences électromagnétiques pouvant provenir des vents stellaires, il permet aussi de réduire la dissipation électrique",
                         "Grâce à sa faible résistivité et son excellente conductivité, le cuivre minimise les pertes de signal, ce qui le rend idéal pour le transport des signaux haute fréquence."},
 
-                        {"    ","         "},
-                        {"         ","          "},
+                        {"Avoir un "+ANSI_YELLOW+"Cinéma (◈)"+ ANSI_RESET +" permet d'améliorer la satisfaction des habitants en les divertissants et en leur rappelant leur importante mission.",
+                        "En utilisant du fer le cinéma se dote d'une armature solide, nécessaire pour une structure de cette envergure;",
+                        "le cuivre permet également de mettre en place tout un système électrique servant à l'audiovisuel.",
+                        "Le carbone, lui, permet une isolation accoustique en absorbant les sons indésirables offrant ainsi une meilleure expérience."},
+                        
+                        {"Le "+ANSI_BLUE_LIGHT + "Capteur d’Humidité (⌯)"+ANSI_RESET+" joue un rôle primordial dans la survie de la colonie",
+                        "Le sulfate de cuivre anhydre, obtenu par la combinaison de cuivre et de soufre étant ensuite déshydraté, est un excellent indicateur d'humidité qui se révéle vital sur cette planète.",
+                        "Le fer lui permet au capteur de résister aux conditions climatiques extrèmes de la planète."},
+
+                        {"Se nourrir fait parti des besoins les plus basiques d'un être humain et la"+ANSI_BLUE_LIGHT + "Ferme Hydroponique (✲)"+ANSI_RESET+," y répond.",
+                        "                "}
+                        
                         {"      ","       "},
                         {"      ","       "},
                         {"      ","       "},
