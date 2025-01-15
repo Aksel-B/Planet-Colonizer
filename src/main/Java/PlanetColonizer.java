@@ -301,8 +301,6 @@ class PlanetColonizer extends Program{
     
     void formatEmptyLine(String[] tab){
         int maxLine=maxLength(tab,0);
-        
-    
         for(int y=0;y<length(tab);y++){
                 tab[y]=formatCharacteristic(tab[y],maxLine+(length(tab[y])-getVisibleLength(tab[y])));
             } 
