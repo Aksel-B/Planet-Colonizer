@@ -486,32 +486,32 @@ class PlanetColonizer extends Program{
     //     return tableauSansNull;
     // }
 
-    //int compterLignes(EtatJeu etat) {
-    //    // Calculer les lignes pour la section des colons
-    //    int lignesColons = length(etat.colons) + 4; // Colons + en-têtes + section
-//
-    //    int lignesEtatJeu = 3;
-//
-    //    // Calculer les lignes pour la section de gestion
-    //    int lignesGestion = 16; // En-têtes + section + variation ressources + élec précédente
-//
-    //    // Calculer les lignes pour la section de l'inventaire des ressources
-    //    int lignesInventaire = length(etat.ressources) + 2; // Ressources + en-têtes + section
-//
-    //    // Calculer les lignes pour la section de la carte
-    //    int lignesCarte = (length(etat.planete.carte, 1) * length(etat.planete.carte, 2)) + 2; // Cases de la carte + en-têtes + section
-//
-    //    // Total des lignes nécessaires
-    //    int totalLignes = lignesColons + lignesGestion + lignesInventaire + lignesCarte + lignesEtatJeu;
-//
-    //    // Vérifier que le total des lignes est au moins 773
-    //    if (totalLignes < 773) {
-    //        throw new IllegalArgumentException("Erreur: Le nombre total de lignes calculé est inférieur à 773.");
-    //    }
-//
-    //    // Retourner le total des lignes calculées
-    //    return totalLignes;
-    //}
+        //int compterLignes(EtatJeu etat) {
+        //    // Calculer les lignes pour la section des colons
+        //    int lignesColons = length(etat.colons) + 4; // Colons + en-têtes + section
+    //
+        //    int lignesEtatJeu = 3;
+    //
+        //    // Calculer les lignes pour la section de gestion
+        //    int lignesGestion = 16; // En-têtes + section + variation ressources + élec précédente
+    //
+        //    // Calculer les lignes pour la section de l'inventaire des ressources
+        //    int lignesInventaire = length(etat.ressources) + 2; // Ressources + en-têtes + section
+    //
+        //    // Calculer les lignes pour la section de la carte
+        //    int lignesCarte = (length(etat.planete.carte, 1) * length(etat.planete.carte, 2)) + 2; // Cases de la carte + en-têtes + section
+    //
+        //    // Total des lignes nécessaires
+        //    int totalLignes = lignesColons + lignesGestion + lignesInventaire + lignesCarte + lignesEtatJeu;
+    //
+        //    // Vérifier que le total des lignes est au moins 773
+        //    if (totalLignes < 773) {
+        //        throw new IllegalArgumentException("Erreur: Le nombre total de lignes calculé est inférieur à 773.");
+        //    }
+    //
+        //    // Retourner le total des lignes calculées
+        //    return totalLignes;
+        //}
 
 
     EtatJeu chargerJeu(String nomFichier) {
@@ -1870,20 +1870,20 @@ class PlanetColonizer extends Program{
 
     void afficherMenuJeu(EtatJeu etat,boolean invalide,boolean afficherTipsPedago) {
         afficherEtat(etat,true,afficherTipsPedago,invalide);
-        println("\n                                                                   === ACTIONS POSSIBLES ===");
-        println("                                                                   1. " + ANSI_BOLD + "Construire" + ANSI_RESET + " un Bâtiment");
-        println("                                                                   2. " + ANSI_BOLD + "Passer" + ANSI_RESET + " cette année");
-        println("                                                                   3. " + ANSI_BOLD + "Sauvegarder" + ANSI_RESET + " la partie");
-        println("                                                                   4. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
-        println("                                                                   -------------------------");
+        println("\n=== ACTIONS POSSIBLES ===");
+        println("1. " + ANSI_BOLD + "Construire" + ANSI_RESET + " un Bâtiment");
+        println("2. " + ANSI_BOLD + "Passer" + ANSI_RESET + " cette année");
+        println("3. " + ANSI_BOLD + "Sauvegarder" + ANSI_RESET + " la partie");
+        println("4. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
+        println("-------------------------");
     }
 
     void menuPlacerBatiment(Terrain[] listeBatimentsPossibles, EtatJeu etat,boolean recursif){
         afficherEtat(etat,true,false,false);
         if (recursif){
-            println("\n                                                                   Vous ne pouvez placer aucun batiment sur cette case !\nVeuillez en saisir une autre.");
+            println("\nVous ne pouvez placer aucun batiment sur cette case !\nVeuillez en saisir une autre.");
         }
-        println("\n                                                                   ===== CONSTRUIRE =====\n");
+        println("\n===== CONSTRUIRE =====\n");
 
         Terrain[] listeBatimentsPosable=new Terrain[length(listeBatimentsPossibles)];
 
@@ -1905,7 +1905,7 @@ class PlanetColonizer extends Program{
             menuPlacerBatiment(listeBatimentsPossibles,etat,true);
             return;
         }else{
-            println("\n                                                                   Quel batiment voulez-vous construire sur cette case ?: \n");
+            println("\nQuel batiment voulez-vous construire sur cette case ?: \n");
             int maxLenRes=0;
             
             for(int c=0;c<length(listeBatimentsPosable);c++){
@@ -1922,18 +1922,18 @@ class PlanetColonizer extends Program{
                     }
                     recette=substring(recette,0,length(recette)-2)+" )";
 
-                    println("                                                                   " + id+" - "+ listeBatimentsPosable[e].symbole + " " +formatCharacteristic(listeBatimentsPosable[e].nom,maxLenRes+1)+recette);
+                    println(id+" - "+ listeBatimentsPosable[e].symbole + " " +formatCharacteristic(listeBatimentsPosable[e].nom,maxLenRes+1)+recette);
                     id++;
                 }
             }
-            println("\n                                                                   "+(id)+" - Ne pas poser de batiment");
+            println("\n"+(id)+" - Ne pas poser de batiment");
         }
 
         int choix=0;
         do{
-            choix = readIntSecurise(ANSI_BOLD + "                                                                   Choisissez une action" + ANSI_RESET + " (1-"+(id)+") : ");
+            choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-"+(id)+") : ");
             if (choix < 1 || choix > id){
-                println(ANSI_RED + "                                                                   Option invalide. Veuillez réessayer." + ANSI_RESET);
+                println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
             }
         }while(choix < 1 || choix > id);
         int place=0;
@@ -1948,7 +1948,7 @@ class PlanetColonizer extends Program{
                     gestionMenuJeu(etat,listeBatimentsPossibles);
                     return;
                 default:
-                    println(ANSI_RED + "                                                                   Option invalide. Veuillez réessayer." + ANSI_RESET);
+                    println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
         }
     }
 
@@ -1957,7 +1957,7 @@ class PlanetColonizer extends Program{
         boolean afficherTipsPedago=true;
         while (true) {
             afficherMenuJeu(etatJeu,invalide,afficherTipsPedago);
-            int choix = readIntSecurise(ANSI_BOLD + "                                                                   Choisissez une action" + ANSI_RESET + " (1-4) : ");
+            int choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-4) : ");
             
             switch (choix) {
                 case 1:
@@ -1971,7 +1971,7 @@ class PlanetColonizer extends Program{
                 case 4:
                     return gestionQuitter(etatJeu);
                 default:
-                    println(ANSI_RED + "                                                                   Option invalide. Veuillez réessayer." + ANSI_RESET);
+                    println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
                     invalide=true;
                     afficherTipsPedago=false;
             }
@@ -1981,12 +1981,12 @@ class PlanetColonizer extends Program{
     void gestionSauvegarde(EtatJeu etatJeu) {
         afficherEtat(etatJeu,false,false,false);
         String nomFichier=etatJeu.nom;
-        println("\n                                                                   === OPTIONS DE SAUVEGARDE ===");
-        println("                                                                   1. "+ ANSI_BOLD + "Sauvegarder " + ANSI_RESET + "et continuer");
-        println("                                                                   2. "+ ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET);
-        println("                                                                   3. "+ ANSI_BOLD+ "Annuler" + ANSI_RESET);
+        println("\n=== OPTIONS DE SAUVEGARDE ===");
+        println("1. "+ ANSI_BOLD + "Sauvegarder " + ANSI_RESET + "et continuer");
+        println("2. "+ ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET);
+        println("3. "+ ANSI_BOLD+ "Annuler" + ANSI_RESET);
         
-        int choix = readIntSecurise(ANSI_BOLD + "                                                                   Votre choix : " + ANSI_RESET);
+        int choix = readIntSecurise(ANSI_BOLD + "Votre choix : " + ANSI_RESET);
         
         switch (choix) {
             case 1:
@@ -1999,7 +1999,7 @@ class PlanetColonizer extends Program{
             case 3:
                 return;
             default:
-                println(ANSI_RED + "                                                                   Option invalide." + ANSI_RESET);
+                println(ANSI_RED + "Option invalide." + ANSI_RESET);
         }
     }
 
@@ -2011,13 +2011,13 @@ class PlanetColonizer extends Program{
         String nomFichier = etatJeu.nom;
 
         // Affiche le menu de gestion de la sortie
-        println("\n=                                                                   == QUITTER ===");
-        println("                                                                   1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie"); // Option pour continuer
-        println("                                                                   2. " + ANSI_BOLD + "Quitter" + ANSI_RESET + " sans sauvegarder"); // Option pour quitter sans sauvegarder
-        println("                                                                   3. " + ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET); // Option pour sauvegarder et quitter
+        println("\n=== QUITTER ===");
+        println("1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie"); // Option pour continuer
+        println("2. " + ANSI_BOLD + "Quitter" + ANSI_RESET + " sans sauvegarder"); // Option pour quitter sans sauvegarder
+        println("3. " + ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET); // Option pour sauvegarder et quitter
 
         // Demande à l'utilisateur de faire un choix
-        int choix = readIntSecurise(ANSI_BOLD + "                                                                   Votre choix : " + ANSI_RESET);
+        int choix = readIntSecurise(ANSI_BOLD + "Votre choix : " + ANSI_RESET);
 
         // Gère le choix de l'utilisateur à l'aide d'un switch
         switch (choix) {
@@ -2036,7 +2036,7 @@ class PlanetColonizer extends Program{
 
             default:
                 // Gestion des entrées invalides
-                println(ANSI_RED + "                                                                   Option invalide." + ANSI_RESET);
+                println(ANSI_RED + "Option invalide." + ANSI_RESET);
                 return true; // Renvoie `true` pour maintenir le joueur dans le menu
         }
     }
@@ -2045,14 +2045,14 @@ class PlanetColonizer extends Program{
         // Boucle principale du menu
         while (true) {
             // Affichage du menu principal
-            println("\n                                                                        ========== MENU PRINCIPAL ==========");
-            println("                                                                        1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-            println("                                                                        2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
-            println("                                                                        3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
-            println("                                                                        ------------------------------------");
+            println("========== MENU PRINCIPAL ==========");
+            println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
+            println("2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
+            println("3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
+            println("------------------------------------");
             
             // Demande à l'utilisateur de choisir une option
-            int option = readIntSecurise(ANSI_BOLD + "                                                                   Choisissez une option" + ANSI_RESET + " (1-3) : ");
+            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ");
 
             // Gestion des choix avec un switch
             switch (option) {
@@ -2079,7 +2079,7 @@ class PlanetColonizer extends Program{
 
                     // Si aucun fichier CSV n'est disponible
                     if (nombreFichiersCSV == 0) {
-                        println(ANSI_BOLD + "                                                                   Aucune sauvegarde disponible." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
+                        println(ANSI_BOLD + "Aucune sauvegarde disponible." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
                         return initialiserNouvellePartie(RESSOURCES_INIT, listeBatimentsPossibles);
                     }
 
@@ -2097,16 +2097,16 @@ class PlanetColonizer extends Program{
                     }
 
                     // Affiche les sauvegardes disponibles
-                    println(ANSI_BOLD + "                                                                   Sauvegardes disponibles :" + ANSI_RESET);
+                    println(ANSI_BOLD + "Sauvegardes disponibles :" + ANSI_RESET);
                     for (int i = 0; i < length(fichiersCSV); i++) {
                         // Affiche le nom du fichier sans l'extension ".csv"
-                        println("                                                                   " + (i + 1) + ". " + substring(fichiersCSV[i], 0, length(fichiersCSV[i]) - 4));
+                        println((i + 1) + ". " + substring(fichiersCSV[i], 0, length(fichiersCSV[i]) - 4));
                     }
 
                     // Demande à l'utilisateur de sélectionner une sauvegarde
                     int choix = -1;
                     do {
-                        choix = readIntSecurise(ANSI_BOLD + "                                                                   Entrez le numéro de la sauvegarde à charger (ou 0 pour annuler) : " + ANSI_RESET);
+                        choix = readIntSecurise(ANSI_BOLD + "Entrez le numéro de la sauvegarde à charger (ou 0 pour annuler) : " + ANSI_RESET);
                     } while (choix < 0 || choix > length(fichiersCSV)); // Validation de l'entrée utilisateur
 
                     // Si l'utilisateur choisit d'annuler
@@ -2125,15 +2125,15 @@ class PlanetColonizer extends Program{
                     }
 
                     // Si le chargement échoue, démarre une nouvelle partie
-                    println(ANSI_BOLD + "                                                                   Chargement échoué." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
+                    println(ANSI_BOLD + "Chargement échoué." + ANSI_RESET + " Démarrage d'une nouvelle partie.");
                     return initialiserNouvellePartie(RESSOURCES_INIT, listeBatimentsPossibles);
 
                 case 3: // Option 3 : Quitter le programme
-                    println("\n" + ANSI_BOLD + "                                                                   Au revoir!" + ANSI_RESET + "\n");
+                    println("\n" + ANSI_BOLD + "Au revoir!" + ANSI_RESET + "\n");
                     System.exit(0); // Quitte le programme
 
                 default: // Gestion des entrées invalides
-                    println(ANSI_BOLD + ANSI_RED + "\n                                                                   Option invalide." + ANSI_RESET + " Veuillez réessayer.");
+                    println(ANSI_BOLD + ANSI_RED + "\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
             }
         }
     }
@@ -2144,17 +2144,17 @@ class PlanetColonizer extends Program{
         
         // Vérifie si la colonie a échoué (tous les colons sont morts)
         if (etatJeu.gestion.nombreVivants == 0) {
-            println(ANSI_RED_BRIGHT + "                                                                   Votre colonie est éteinte. Vous avez échoué." + ANSI_RESET); 
+            println(ANSI_RED_BRIGHT + "Votre colonie est éteinte. Vous avez échoué." + ANSI_RESET); 
         }
         
         // Affichage de la section de fin de partie
-        println("\n                                                                   === FIN DE LA PARTIE ===");
+        println("\n=== FIN DE LA PARTIE ===");
         
         // Affiche le nombre total de tours joués
-        println(ANSI_BOLD + "                                                                   Nombre total" + ANSI_RESET + " de tours : " + etatJeu.tour); 
+        println(ANSI_BOLD + "Nombre total" + ANSI_RESET + " de tours : " + etatJeu.tour); 
         
         // Affiche le nombre final de colons vivants
-        println(ANSI_BOLD + "                                                                   Nombre final" + ANSI_RESET + " de colons : " + etatJeu.gestion.nombreVivants); 
+        println(ANSI_BOLD + "Nombre final" + ANSI_RESET + " de colons : " + etatJeu.gestion.nombreVivants); 
     }
 
 
