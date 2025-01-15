@@ -1750,7 +1750,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
         if(etat.tour>0){
-            //clearScreen(); 
+            clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
@@ -1834,6 +1834,7 @@ class PlanetColonizer extends Program{
         
         // Initialisation du nom de la colonie (fichier de sauvegarde)
         nouvelEtat.nom = readStringSecurise(ANSI_BOLD + "Entrez le nom " + ANSI_RESET + "de votre nouvelle colonie : ") + ".csv";
+     
 
         // Initialisation du tour à 0
         nouvelEtat.tour = 0;
@@ -2045,7 +2046,7 @@ class PlanetColonizer extends Program{
         // Boucle principale du menu
         while (true) {
             // Affichage du menu principal
-            println("========== MENU PRINCIPAL ==========");
+            println("\n========== MENU PRINCIPAL ==========");
             println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
             println("2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
             println("3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
