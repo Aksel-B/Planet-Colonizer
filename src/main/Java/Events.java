@@ -29,7 +29,7 @@ class Events{
                         "Le fer est idéal pour créer une structure à la fois robuste et résistante à l’usure."},
 
                         {"Afin de coordonner leurs activités ou simplement pour communiquer avec leurs proches restés sur Terre, le "+ANSI_MAGENTA+"Centre de communication Terrien (☤)"+ ANSI_RESET +" est indispensables",
-                        ""},
+                        "La combinaison du fer, du cuivre et du carbone assure un fonctionnement des plus optimal."},
 
                         {"",""},
                         {"",""},

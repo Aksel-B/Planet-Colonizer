@@ -42,16 +42,6 @@ class PlanetColonizer extends Program{
         return max;
     }
 
-    // int maxLength(Terrain[] tab, int idDebut){
-    //     int max=length(tab[idDebut]);
-    //     for(int i=idDebut+1;i<length(tab);i++){
-    //         if (length(""+tab[i])>max){
-    //             max=length(""+tab[i]);
-    //         }
-    //     }
-    //     return max;
-    // }
-
     // Fonction pour formater une caractéristique
     String formatCharacteristic(String name, int maxLength) {
         return name + repeatChar(' ', maxLength - length(name));
