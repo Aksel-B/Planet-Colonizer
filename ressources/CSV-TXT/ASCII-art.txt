@@ -1,25 +1,25 @@
-                                                                    _____  _                  _      _____      _             _              (TM)
-                                                                   |  __ \| |                | |    / ____|    | |           (_)             
-                                                                   | |__) | | __ _ _ __   ___| |_  | |     ___ | | ___  _ __  _ _______ _ __ 
-                                                                   |  ___/| |/ _` | '_ \ / _ \ __| | |    / _ \| |/ _ \| '_ \| |_  / _ \ '__|
-                                                                   | |    | | (_| | | | |  __/ |_  | |___| (_) | | (_) | | | | |/ /  __/ |   
-                                                                   |_|    |_|\__,_|_| |_|\___\__|   \_____\___/|_|\___/|_| |_|_/___\___|_|   
+                                                                                            _____  _                  _      _____      _             _              (TM)
+                                                                                           |  __ \| |                | |    / ____|    | |           (_)             
+                                                                                           | |__) | | __ _ _ __   ___| |_  | |     ___ | | ___  _ __  _ _______ _ __ 
+                                                                                           |  ___/| |/ _` | '_ \ / _ \ __| | |    / _ \| |/ _ \| '_ \| |_  / _ \ '__|
+                                                                                           | |    | | (_| | | | |  __/ |_  | |___| (_) | | (_) | | | | |/ /  __/ |   
+                                                                                           |_|    |_|\__,_|_| |_|\___\__|   \_____\___/|_|\___/|_| |_|_/___\___|_|   
 
-                                                                                      A game by Aksel Bouri and Rémy Martin                                                                          
+                                                                                                         A game by Aksel Bouri and Rémy Martin
 
-                                                                  🚀 Bienvenue dans Planet Colonizer : Votre Mission de Survie Interplanétaire ! 🌍
-                                                                        -------------------------------------------------------------------
-                                                                         Votre objectif : Établir et faire prospérer une colonie sur Mars.
+                                                                                         🚀 Bienvenue dans Planet Colonizer: Votre Mission de Survie Interplanétaire ! 🌍
+                                                                                           ----------------------------------------------------------------------------
+                                                                                               Votre objectif : Établir et faire prospérer une colonie sur Mars.
 
-                                                                      Règles du jeu :
-                                                                        - Gérez vos ressources limitées
-                                                                        - Exploiter les ressources de la planète pour agrandir votre colonie
-                                                                        - Surveillez la santé et le bien-être de vos colons
-                                                                        - Faites face aux défis de la reproduction et de la survie
-                                                                        - Minimisez la pollution planétaire
+                                                                                             Règles du jeu :
+                                                                                               - Gérez vos ressources limitées
+                                                                                               - Exploiter les ressources de la planète pour agrandir votre colonie
+                                                                                               - Surveillez la santé et le bien-être de vos colons
+                                                                                               - Faites face aux défis de la reproduction et de la survie
+                                                                                               - Minimisez la pollution planétaire
 
-                                                                            Chaque tour représente une année de votre mission spatiale.
-                                                                      Votre succès sera mesuré à la survie et à la croissance de votre colonie !
-                                                                        -------------------------------------------------------------------
+                                                                                                   Chaque tour représente une année de votre mission spatiale.
+                                                                                           Votre succès sera mesuré à la survie et à la croissance de votre colonie !
+                                                                                           ----------------------------------------------------------------------------
 
-                                                                        Préparez-vous à relever le défi ultime de la colonisation spatiale !
+                                                                                               Préparez-vous à relever le défi ultime de la colonisation spatiale !
