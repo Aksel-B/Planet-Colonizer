@@ -57,7 +57,8 @@ class Events{
                         {"Se nourrir fait parti des besoins les plus basiques d'un être humain et la"+ANSI_GREEN_LIGHT + "Ferme Hydroponique (✲)"+ANSI_RESET+" y répond.",
                         "En optant pour ce mode de cultivation, de grandes économies d'eau sont réalisées",
                         "et grâce à la photosynthèse en plus d'apporter une nourriture saine, les plantes contribuent à la purification de l'air.",
-                        "Le fer , en servant de structure aux racks et aux supports, permet la culture par hydroponie."},
+                        "Le fer , en servant de structure aux racks et aux supports, permet la culture par hydroponie.",
+                        "Le Carbone est utilisé pour filtrer et purifier l'eau; il élimine les impuretés, les produits chimiques, et les agents pathogènes, garantissant une eau propre pour les plantes."},
 
                         {"      ","       "},
                         {"      ","       "},
