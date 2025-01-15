@@ -1756,6 +1756,13 @@ class PlanetColonizer extends Program{
         }else{
             planeteTabAffic[2]=ANSI_BOLD + "Pollution: "+ ANSI_RESET+": 0.0";
         }
+        if(etat.planete.pollution>0.05){
+            planeteTabAffic[4]=ANSI_YELLOW + "⚠ Niveaux de Pollution inqiuétants ⚠ "+ ANSI_RESET;
+        }else if(etat.planete.pollution>0.15){
+            planeteTabAffic[4]=ANSI_RED_BRIGHT + "⚠ Niveaux de Pollution Dangereux ⚠ "+ ANSI_RESET;
+        }else if(etat.planete.pollution>0.35){
+            planeteTabAffic[4]=ANSI_BLACK + ANSI_WHITE_BG + "⚠ Niveaux de Pollution Critiques ⚠ "+ ANSI_RESET;
+        }
 
         formatEmptyLine(planeteTabAffic);
 
