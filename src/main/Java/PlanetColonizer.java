@@ -2064,14 +2064,14 @@ class PlanetColonizer extends Program{
         // Boucle principale du menu
         while (true) {
             // Affichage du menu principal
-            println("\n                                                                                                          ========== MENU PRINCIPAL ==========");
-            println("                                                                                                          1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-            println("                                                                                                          2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
-            println("                                                                                                          3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
-            println("                                                                                                          ------------------------------------");
+            println("\n                                                                                                                 ========== MENU PRINCIPAL ==========");
+            println("                                                                                                               1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
+            println("                                                                                                               2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
+            println("                                                                                                               3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
+            println("                                                                                                               ------------------------------------");
             
             // Demande à l'utilisateur de choisir une option
-            int option = readIntSecurise(ANSI_BOLD + "                                                                                                          Choisissez une option" + ANSI_RESET + " (1-3) : ");
+            int option = readIntSecurise(ANSI_BOLD + "                                                                                                                  Choisissez une option" + ANSI_RESET + " (1-3) : ");
 
             // Gestion des choix avec un switch
             switch (option) {
