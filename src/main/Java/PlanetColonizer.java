@@ -442,6 +442,15 @@ class PlanetColonizer extends Program{
             }
         }
 
+        // 6. Section Events
+        donneesCSV[index++] = new String[] {"#SECTION", "EVENTS", "", "", "", ""};
+        donneesCSV[index++] = new String[] {"nomEvent", "date", "description", "", "", ""};
+        // for () {
+        //     donneesCSV[index++] = new String[] {
+        //         "", "", "", "", "", ""
+        //     };
+        // }
+
         // Sauvegarder dans un fichier CSV
         try {
             saveCSV(donneesCSV, "../save/" + nomFichier);
@@ -2036,7 +2045,6 @@ class PlanetColonizer extends Program{
         // Boucle principale du menu
         while (true) {
             // Affichage du menu principal
-            println("");
             println("========== MENU PRINCIPAL ==========");
             println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
             println("2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
