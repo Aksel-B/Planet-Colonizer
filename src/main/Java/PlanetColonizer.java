@@ -1365,6 +1365,7 @@ class PlanetColonizer extends Program{
         }else{
             etat.colons[id].sante-=0.10;
         }
+        etat.colons[id].sante-=etat.planete.pollution;
         // Si la santé tombe à 0 ou moins, le colon meurt
         if (etat.colons[id].sante <= 0.0) {
             etat.events.deces[findLastIndex(etat.events.deces)]="☠ Le colon N°" + etat.colons[id].id + " est décédé à l'âge de " + etat.colons[id].age + ".";
@@ -1807,7 +1808,7 @@ class PlanetColonizer extends Program{
                 }
                 println(cadre);
                 for(int e=0;e<length(etat.events.posedTxt[id]);e++){
-                    println("                "+formatCharacteristic(etat.events.posedTxt[id][e],max+5));
+                    println("                "+etat.events.posedTxt[id][e]);
                 }
                 println(cadre);
                 println();
