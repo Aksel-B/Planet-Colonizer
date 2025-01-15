@@ -389,6 +389,10 @@ class PlanetColonizer extends Program{
         assertEquals("", spaceEraser("")); // Une chaîne vide reste vide
     }
 
+    void testGetVisibleLength(){
+        assertEquals(4,ANSI_MAGENTA+"test"+ANSI_RESET);
+        assertEquals(0,ANSI_RESET);
+    }
 
 //-----------------------------SAUVEGARDE/Chargement----------------------------------------------------------------------------------------------------
 
