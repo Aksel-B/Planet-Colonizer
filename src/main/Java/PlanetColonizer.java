@@ -501,6 +501,12 @@ class PlanetColonizer extends Program{
             etatCharge.ressources = new Terrain[nombreRessources];
             etatCharge.colons = new Colon[nombreColons];
 
+            // Initialiser l'objet gestion
+            etatCharge.gestion = newGestion(etatCharge.ressources, new Terrain[0]);
+
+            // Initialiser l'objet events
+            etatCharge.events = newEvents(etatCharge, new Terrain[0]);
+
             // Phase 2 : Remplir les données
             for (int ligne = 0; ligne < rowCount(fichierSauvegarde); ligne++) {
                 String cellule0 = getCell(fichierSauvegarde, ligne, 0);
@@ -594,6 +600,11 @@ class PlanetColonizer extends Program{
                     }
                 }
             }
+            
+            // Initialiser la planète si elle n'a pas été initialisée précédemment
+            if (etatCharge.planete == null) {
+                etatCharge.planete = newPlanete(etatCharge.ressources, tailleCarte);
+            }
 
             println("Jeu chargé avec succès depuis " + nomFichier);
             return etatCharge;
@@ -603,6 +614,7 @@ class PlanetColonizer extends Program{
             return null;
         }
     }
+
 //-----------------------------RESSOURCES---------------------------------------------------------------------------------------------------------------
 
     final Terrain[] RESSOURCES_INIT=new Terrain[]{ 
@@ -1756,7 +1768,7 @@ class PlanetColonizer extends Program{
         // Créer un nouvel état de jeu
         EtatJeu nouvelEtat = new EtatJeu();
         
-        //INitialisation du nom de la colonie (fichier de sauvegarde)
+        // Initialisation du nom de la colonie (fichier de sauvegarde)
         nouvelEtat.nom = readStringSecurise(ANSI_BOLD + "Entrez le nom " + ANSI_RESET + "de votre nouvelle colonie : ") + ".csv";
 
         // Initialisation du tour à 0
@@ -1781,6 +1793,7 @@ class PlanetColonizer extends Program{
         // Générer les paramètres initiaux
         nouvelEtat.gestion = newGestion(RESSOURCES_INIT, listeBatimentsPossibles);
 
+        // Initialiser l'objet events
         nouvelEtat.events = newEvents(nouvelEtat, listeBatimentsPossibles);
 
         println();
