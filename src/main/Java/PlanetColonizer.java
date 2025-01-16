@@ -511,7 +511,7 @@ class PlanetColonizer extends Program{
     // String[] retirerNullEnPartantDeLaFin(String[] tableau) {
     //     // Trouver l'index du dernier élément non-null
     //     int dernierIndexNonNull = -1;
-    //     for (int i = tableau.length - 1; i >= 0; i--) {
+    //     for (int i = length(tableau) - 1; i >= 0; i--) {
     //         if (tableau[i] != null) {
     //             dernierIndexNonNull = i;
     //             break;
@@ -1877,7 +1877,7 @@ class PlanetColonizer extends Program{
 
         // Initialisation des ressources disponibles
         nouvelEtat.ressources = new Terrain[11];
-        for (int i = 0; i < RESSOURCES_INIT.length; i++) {
+        for (int i = 0; i < length(RESSOURCES_INIT); i++) {
             nouvelEtat.ressources[i] = RESSOURCES_INIT[i];
         }
 
@@ -2212,9 +2212,9 @@ class PlanetColonizer extends Program{
         EtatJeu etatJeu = gestionMenuPrincipal();
 
         // Vérifiez que les ressources sont initialisées correctement
-        if (etatJeu.ressources == null || etatJeu.ressources.length < 11) {
+        if (etatJeu.ressources == null || length(etatJeu.ressources) < 11) {
             etatJeu.ressources = new Terrain[11];
-            for (int i = 0; i < etatJeu.ressources.length; i++) {
+            for (int i = 0; i < length(etatJeu.ressources); i++) {
                 etatJeu.ressources[i] = new Terrain();
             }
         }
