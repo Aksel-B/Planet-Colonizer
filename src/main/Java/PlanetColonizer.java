@@ -2087,7 +2087,7 @@ class PlanetColonizer extends Program{
             println("------------------------------------");
             
             // Demande à l'utilisateur de choisir une option
-            int option = readIntSecurise(ANSI_BOLD + "                                                                                                                       Choisissez une option" + ANSI_RESET + " (1-3) : ");
+            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ");
 
             // Gestion des choix avec un switch
             switch (option) {
