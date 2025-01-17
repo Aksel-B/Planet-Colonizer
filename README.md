@@ -21,6 +21,19 @@ Affrontez des défis tels que l'épuisement des ressources, la surpopulation, ou
 
 ---
 
+## **Pédagogie**
+🧪 Chimie de la pollution et des matériaux
+   - Les bâtiments et usines produisent des déchets chimiques qui augmentent la pollution planétaire. Ce système pédagogique met en avant :
+   - Les réactions chimiques impliquées dans la production industrielle (par exemple, l'extraction du fer à partir d'oxydes).
+   - Les effets des gaz à effet de serre sur l'atmosphère de la planète.
+   - La dégradation des sols et les conséquences de l'acidification sur l'écosystème.
+
+### Exemple en jeu :
+
+La production intensive de fer pour construire des infrastructures génère du dioxyde de carbone (CO₂). Si les niveaux de pollution atmosphérique augmentent trop, vos colons commenceront à souffrir de problèmes de santé, illustrant les conséquences réelles de l'industrialisation non contrôlée.
+
+---
+
 ## **Fonctionnalités**  
 ### 🌍 Planète et Ressources  
 - Différents types de ressources comme l'eau, la nourriture, et le fer.  
