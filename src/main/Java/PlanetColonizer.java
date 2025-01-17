@@ -1103,7 +1103,8 @@ class PlanetColonizer extends Program{
             println();
             println("LogDebut:"+etat.events.entrepotPlein[0]);
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
-
+            
+            println("LogBat:"+batiment.ressourceActuelle.nom);
             if (batiment.ressourceActuelle.fonctionne[0] == false) {
                 println("LogFonctionnePas");
                 if (etat.events.entrepotPlein[0] == false) {
