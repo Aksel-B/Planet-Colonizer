@@ -49,6 +49,11 @@ class PlanetColonizer extends Program{
     final int RESOURCE_INDEX_MIN = 2;
     final int RESOURCE_INDEX_MAX = 7;
     final int PUITS_INDEX = 10;
+    final double RANDOM_CORRECTION = 0.0005;
+    final int RANDOM_MULTIPLIER = 1000;
+    final int AGE_REPRODUCTION_MIN = 20; // Âge minimum pour la reproduction
+    final int AGE_REPRODUCTION_MAX = 50; // Âge maximum pour la reproduction
+    final double PROBABILITE_REPRODUCTION = 0.1; // Probabilité qu'un colon puisse se reproduire
 
 //-----------------------------FONCTIONS POUR TOUT------------------------------------------------------------------------------------------------------
     
@@ -1287,9 +1292,9 @@ class PlanetColonizer extends Program{
     void init(Planete planete, Terrain[] RESSOURCES_INIT) {
         for (int l = 0; l < length(planete.carte, 1); l++) {
             for (int c = 0; c < length(planete.carte, 2); c++) {
-                double random = (double)(int)(random() * 1000) / 1000; // Génération d'une probabilité aléatoire
-                if (random == 0.0000) {
-                    random += 0.0005; // Correction pour éviter une valeur nulle
+                double random = (double)(int)(random() * RANDOM_MULTIPLIER) / RANDOM_MULTIPLIER; // Génération d'une probabilité aléatoire
+                if (random == 0.0) {
+                    random += RANDOM_CORRECTION; // Correction pour éviter une valeur nulle
                 }
                 // Assignation d'une ressource à la case en fonction de la probabilité
                 int IDRessource=encadrement(RESSOURCES_INIT, random);
@@ -1314,10 +1319,6 @@ class PlanetColonizer extends Program{
     }
 
 //-----------------------------COLONS-------------------------------------------------------------------------------------------------------------------
-
-    final int AGE_REPRODUCTION_MIN = 20; // Âge minimum pour la reproduction
-    final int AGE_REPRODUCTION_MAX = 50; // Âge maximum pour la reproduction
-    final double PROBABILITE_REPRODUCTION = 0.1; // Probabilité qu'un colon puisse se reproduire
 
     // Fonction pour créer un nouveau colon avec des caractéristiques aléatoires
     Colon newColon(int age, int id) {
