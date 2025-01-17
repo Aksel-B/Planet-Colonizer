@@ -478,17 +478,16 @@ class PlanetColonizer extends Program{
 
     void sauvegarderJeu(EtatJeu etat, String nomFichier) {
         // Compter le nombre de lignes nécessaires pour le fichier CSV
-        //int nombreLignes = compterLignes(etat);
-        String[][] donneesCSV = new String[2500][6]; // Toujours 6 colonnes
+        String[][] donneesCSV = new String[2500][6];
         int index = 0;
 
-        // 1. Section Colons
-        donneesCSV[index++] = new String[] {"#SECTION", "COLONS", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"id", "age", "sante", "satisfaction", "energie", "anneesDerniereNaissance"};
+        // Section 1 : Colons
+        donneesCSV[index++] = new String[]{"#SECTION", "COLONS", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"id", "age", "sante", "satisfaction", "energie", "anneesDerniereNaissance"};
         int morts = 0;
-        for (int i = 0; i < length(etat.colons); i++) {
+        for (int i = 0; i < etat.colons.length; i++) {
             if (etat.colons[i] != null) {
-                donneesCSV[index++] = new String[] {
+                donneesCSV[index++] = new String[]{
                     "" + etat.colons[i].id,
                     "" + etat.colons[i].age,
                     "" + etat.colons[i].sante,
@@ -500,22 +499,26 @@ class PlanetColonizer extends Program{
                 morts++;
             }
         }
+        donneesCSV[index++] = new String[]{"Colons vivants", "" + compterColonsVivants(etat.colons), "", "", "", ""};
+        donneesCSV[index++] = new String[]{"Colons morts", "" + morts, "", "", "", ""};
 
-        int vivants = compterColonsVivants(etat.colons);
-        donneesCSV[index++] = new String[] {"Colons vivants", "" + vivants, "", "", "", ""};
-        donneesCSV[index++] = new String[] {"Colons morts", "" + morts, "", "", "", ""};
+        // Section 2 : État du Jeu
+        donneesCSV[index++] = new String[]{"#SECTION", "ETAT_JEU", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"nomJeu", "score", "tour", "pollution", "", ""};
+        donneesCSV[index++] = new String[]{
+            etat.nom,
+            "" + etat.score,
+            "" + etat.tour,
+            "" + etat.planete.pollution,
+            "", ""
+        };
 
-        // 2. Section Etat du Jeu
-        donneesCSV[index++] = new String[] {"#SECTION", "ETAT_JEU", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"nomJeu", "score", "tour", "pollution", "", ""};
-        donneesCSV[index++] = new String[] {etat.nom, "" + etat.score, "" + etat.tour, "" + etat.planete.pollution, "", ""};
-
-        // 3. Section Gestion
-        donneesCSV[index++] = new String[] {"#SECTION", "GESTION", "", "", "", ""};
-        donneesCSV[index++] = new String[] {
+        // Section 3 : Gestion
+        donneesCSV[index++] = new String[]{"#SECTION", "GESTION", "", "", "", ""};
+        donneesCSV[index++] = new String[]{
             "capaciteTotalPop", "capaciteEntrepot", "vaisseauPlace", "centreDeCommunicationPlace", "nombreVivants", ""
         };
-        donneesCSV[index++] = new String[] {
+        donneesCSV[index++] = new String[]{
             "" + etat.gestion.capaciteTotalePop,
             "" + etat.gestion.capaciteEntrepot,
             "" + etat.gestion.vaisseauPlace,
@@ -523,62 +526,51 @@ class PlanetColonizer extends Program{
             "" + etat.gestion.nombreVivants,
             ""
         };
-        // Ajout de la variation des ressources et l'électricité du tour précédent
-        donneesCSV[index++] = new String[] {
-            "variationRessources", "", "", "", "", ""
-        };
-        for (int i = 0; i < length(etat.gestion.variationRessources); i++) {
-            donneesCSV[index++] = new String[] {
-                "" + etat.gestion.variationRessources[i], "", "", "", "", ""
-            };
-        }
-        donneesCSV[index++] = new String[] {
-            "quantiteElecTourPrecedent", "" + etat.gestion.quantiteElecTourPrecedent[0], "", "", "", ""
-        };
 
-        // 4. Section Inventaire des Ressources
-        donneesCSV[index++] = new String[] {"#SECTION", "INVENTAIRE", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"nomRessource", "quantite", "", "", "", ""};
-        for (int i = 0; i < length(etat.ressources); i++) {
-            Terrain ressource = etat.ressources[i];
-            donneesCSV[index++] = new String[] {
-                ressource.nom,
-                "" + ressource.quantite,
-                "", "", "", ""
+        // Section 4 : Inventaire des Ressources
+        donneesCSV[index++] = new String[]{"#SECTION", "INVENTAIRE", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"nomRessource", "quantite", "probaApparition", "", "", ""};
+        for (int i = 0; i < etat.ressources.length; i++) {
+            donneesCSV[index++] = new String[]{
+                etat.ressources[i].nom,
+                "" + etat.ressources[i].quantite,
+                "" + etat.ressources[i].probaApparition,
+                "", "", ""
             };
         }
 
-        // 5. Section Carte
-        donneesCSV[index++] = new String[] {"#SECTION", "CASES_CARTE", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", ""};
-        for (CaseCarte[] ligne : etat.planete.carte) {
-            for (CaseCarte caseCarte : ligne) {
-                donneesCSV[index++] = new String[] {
+        // Section 5 : Carte
+        donneesCSV[index++] = new String[]{"#SECTION", "CASES_CARTE", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", ""};
+        for (int i = 0; i < etat.planete.carte.length; i++) {
+            for (int j = 0; j < etat.planete.carte[i].length; j++) {
+                CaseCarte caseCarte = etat.planete.carte[i][j];
+                donneesCSV[index++] = new String[]{
                     caseCarte.symbole,
                     "" + caseCarte.quantiteRestante,
-                    (caseCarte.ressourceActuelle != null) ? caseCarte.ressourceActuelle.nom : "null",
-                    (caseCarte.ressourceCaseInit != null) ? caseCarte.ressourceCaseInit.nom : "null",
+                    caseCarte.ressourceActuelle != null ? caseCarte.ressourceActuelle.nom : "null",
+                    caseCarte.ressourceCaseInit != null ? caseCarte.ressourceCaseInit.nom : "null",
                     "" + caseCarte.exploitee,
                     ""
                 };
             }
         }
 
-        // 6. Section Events
-        donneesCSV[index++] = new String[] {"#SECTION", "EVENTS", "", "", "", ""};
-        donneesCSV[index++] = new String[] {"entrepotPlein", "dortoirsPlein", "ressourceEstEpuiseeSTR", "filonEpuise", "BatimentsPosed", ""};
-        donneesCSV[index++] = new String[] {""+etat.events.entrepotPlein[0], ""+etat.events.dortoirsPlein[0], "", "", "", ""};
-        for (int i = 0; i < length(etat.events.ressourceEstEpuiseeSTR); i++){
-            donneesCSV[index++] = new String[] {etat.events.ressourceEstEpuiseeSTR[i] , "", "", "", "", ""};
+        // Section 6 : Événements
+        donneesCSV[index++] = new String[]{"#SECTION", "EVENTS", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"entrepotPlein", "dortoirsPlein", "ressourceEstEpuiseeSTR", "filonEpuise", "BatimentsPosed", ""};
+        donneesCSV[index++] = new String[]{"" + etat.events.entrepotPlein[0], "" + etat.events.dortoirsPlein[0], "", "", "", ""};
+        for (int i = 0; i < etat.events.ressourceEstEpuiseeSTR.length; i++) {
+            donneesCSV[index++] = new String[]{etat.events.ressourceEstEpuiseeSTR[i], "", "", "", "", ""};
         }
-        for (int i = 0; i < length(etat.events.filonEpuise); i++){
-            donneesCSV[index++] = new String[] {etat.events.filonEpuise[i], "", "", "", "", ""};
+        for (int i = 0; i < etat.events.filonEpuise.length; i++) {
+            donneesCSV[index++] = new String[]{etat.events.filonEpuise[i], "", "", "", "", ""};
         }
-        for (int i = 0; i < length(etat.events.BatimentsPosed); i++){
-            donneesCSV[index++] = new String[] {"" + etat.events.BatimentsPosed[i], "", "", "", "", ""};
+        for (int i = 0; i < etat.events.BatimentsPosed.length; i++) {
+            donneesCSV[index++] = new String[]{"" + etat.events.BatimentsPosed[i], "", "", "", "", ""};
         }
 
-        // Sauvegarder dans un fichier CSV
+        // Sauvegarde du fichier CSV
         try {
             saveCSV(donneesCSV, "../save/" + nomFichier);
             println(ANSI_BOLD + "Jeu sauvegardé avec succès" + ANSI_RESET + " dans " + nomFichier);
@@ -587,60 +579,18 @@ class PlanetColonizer extends Program{
             println("Erreur lors de la sauvegarde du jeu : " + e.getMessage());
         }
     }
-
-    // String[] retirerNullEnPartantDeLaFin(String[] tableau) {
-    //     // Trouver l'index du dernier élément non-null
-    //     int dernierIndexNonNull = -1;
-    //     for (int i = length(tableau) - 1; i >= 0; i--) {
-    //         if (tableau[i] != null) {
-    //             dernierIndexNonNull = i;
-    //             break;
-    //         }
-    //     }
-
-    //     // Si tous les éléments sont null, retourner un tableau vide
-    //     if (dernierIndexNonNull == -1) {
-    //         return new String[0];
-    //     }
-
-    //     // Créer un nouveau tableau de la taille appropriée
-    //     String[] tableauSansNull = new String[dernierIndexNonNull + 1];
-
-    //     // Copier les éléments non-nuls dans le nouveau tableau
-    //     for (int i = 0; i <= dernierIndexNonNull; i++) {
-    //         tableauSansNull[i] = tableau[i];
-    //     }
-
-    //     return tableauSansNull;
-    // }
-
-        //int compterLignes(EtatJeu etat) {
-        //    // Calculer les lignes pour la section des colons
-        //    int lignesColons = length(etat.colons) + 4; // Colons + en-têtes + section
-    //
-        //    int lignesEtatJeu = 3;
-    //
-        //    // Calculer les lignes pour la section de gestion
-        //    int lignesGestion = 16; // En-têtes + section + variation ressources + élec précédente
-    //
-        //    // Calculer les lignes pour la section de l'inventaire des ressources
-        //    int lignesInventaire = length(etat.ressources) + 2; // Ressources + en-têtes + section
-    //
-        //    // Calculer les lignes pour la section de la carte
-        //    int lignesCarte = (length(etat.planete.carte, 1) * length(etat.planete.carte, 2)) + 2; // Cases de la carte + en-têtes + section
-    //
-        //    // Total des lignes nécessaires
-        //    int totalLignes = lignesColons + lignesGestion + lignesInventaire + lignesCarte + lignesEtatJeu;
-    //
-        //    // Vérifier que le total des lignes est au moins 773
-        //    if (totalLignes < 773) {
-        //        throw new IllegalArgumentException("Erreur: Le nombre total de lignes calculé est inférieur à 773.");
-        //    }
-    //
-        //    // Retourner le total des lignes calculées
-        //    return totalLignes;
-        //}
-
+    boolean isNumeric(String str) {
+        if (str == null || length(str) == 0) {
+            return false;
+        }
+        for (int i = 0; i < length(str); i++) {
+            char c = charAt(str, i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
 
     EtatJeu chargerJeu(String nomFichier) {
         EtatJeu etatCharge = new EtatJeu();
@@ -653,148 +603,65 @@ class PlanetColonizer extends Program{
             int nombreRessources = 0;
             int tailleCarte = 0;
 
-            // Phase 1 : Parcourir une première fois pour compter les éléments et trouver la taille de la carte
+            // Étape 1 : Analyser les sections pour déterminer les tailles
             for (int ligne = 0; ligne < rowCount(fichierSauvegarde); ligne++) {
-                String cellule0 = getCell(fichierSauvegarde, ligne, 0);
+                String section = getCell(fichierSauvegarde, ligne, 1);
 
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "COLONS")) {
-                    // Compter le nombre de colons non-nuls
-                    int i = ligne + 2; // Sauter l'en-tête
-                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "#SECTION")) {
-                        String id = getCell(fichierSauvegarde, i, 0);
-                        if (!equals(id, "") && !equals(id, "Colons vivants") && !equals(id, "Colons morts")) {
-                            nombreColons++;
-                        }
-                        i++;
-                    }
-                }
+                switch (section) {
+                    case "COLONS":
+                        nombreColons = compterEntrees(fichierSauvegarde, ligne + 2, "Colons vivants");
+                        break;
 
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "INVENTAIRE")) {
-                    // Compter le nombre de ressources
-                    int i = ligne + 2; // Sauter l'en-tête
-                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "#SECTION")) {
-                        if (!equals(getCell(fichierSauvegarde, i, 0), "")) {
-                            nombreRessources++;
-                        }
-                        i++;
-                    }
-                }
+                    case "INVENTAIRE":
+                        nombreRessources = compterEntrees(fichierSauvegarde, ligne + 2, "#SECTION");
+                        break;
 
-                // Trouver la taille de la carte
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "CASES_CARTE")) {
-                    tailleCarte = 27; // Taille fixe de la carte
+                    case "CASES_CARTE":
+                        tailleCarte = 27; // Taille fixe (ou dynamique si nécessaire)
+                        break;
+
+                    default:
+                        // Ignorer les autres sections ici
+                        break;
                 }
             }
 
-            // Initialiser les tableaux avec les tailles détectées
-            etatCharge.ressources = new Terrain[nombreRessources];
+            // Initialiser les objets et les tableaux
             etatCharge.colons = new Colon[nombreColons];
-
-            // Initialiser l'objet gestion
+            etatCharge.ressources = new Terrain[nombreRessources];
             etatCharge.gestion = newGestion(etatCharge.ressources, new Terrain[0]);
-
-            // Initialiser l'objet events
             etatCharge.events = newEvents(etatCharge, new Terrain[0]);
-
-            // Initialiser la planète
             etatCharge.planete = newPlanete(etatCharge.ressources, tailleCarte);
 
-            // Phase 2 : Remplir les données
-            int colonIndex = 0;
+            // Étape 2 : Charger les données pour chaque section
             for (int ligne = 0; ligne < rowCount(fichierSauvegarde); ligne++) {
                 String cellule0 = getCell(fichierSauvegarde, ligne, 0);
+                String section = getCell(fichierSauvegarde, ligne, 1);
 
-                // Charger les informations de l'état du jeu
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "ETAT_JEU")) {
-                    int i = ligne + 2;
-                    etatCharge.nom = getCell(fichierSauvegarde, i, 0);
-                    etatCharge.score = stringToDouble(getCell(fichierSauvegarde, i, 1));
-                    etatCharge.tour = stringToInt(getCell(fichierSauvegarde, i, 2));
-                }
+                switch (section) {
+                    case "ETAT_JEU":
+                        chargerEtatJeu(etatCharge, fichierSauvegarde, ligne + 2);
+                        break;
 
-                // Charger la gestion
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "GESTION")) {
-                    int i = ligne + 2;
-                    etatCharge.gestion.capaciteTotalePop = stringToInt(getCell(fichierSauvegarde, i, 0));
-                    etatCharge.gestion.capaciteEntrepot = stringToInt(getCell(fichierSauvegarde, i, 1));
-                    etatCharge.gestion.vaisseauPlace = stringToInt(getCell(fichierSauvegarde, i, 2));
-                    etatCharge.gestion.centreDeCommunicationPlace = stringToInt(getCell(fichierSauvegarde, i, 3));
-                    etatCharge.gestion.nombreVivants = stringToInt(getCell(fichierSauvegarde, i, 4));
+                    case "GESTION":
+                        chargerGestion(etatCharge, fichierSauvegarde, ligne + 2, nombreRessources);
+                        break;
 
-                    // Charger les variations de ressources
-                    i += 2; // Passer à la section variation
-                    for (int j = 0; j < nombreRessources && !equals(getCell(fichierSauvegarde, i + j, 0), "quantiteElecTourPrecedent"); j++) {
-                        etatCharge.gestion.variationRessources[j] = stringToInt(getCell(fichierSauvegarde, i + j, 0));
-                    }
-                    i = i + nombreRessources + 1;
-                    etatCharge.gestion.quantiteElecTourPrecedent = new int[]{stringToInt(getCell(fichierSauvegarde, i, 1))};
-                }
+                    case "INVENTAIRE":
+                        chargerInventaire(etatCharge, fichierSauvegarde, ligne + 2, nombreRessources);
+                        break;
 
-                // Charger les ressources
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "INVENTAIRE")) {
-                    for (int j = 0; j < nombreRessources; j++) {
-                        String nom = getCell(fichierSauvegarde, ligne + 2 + j, 0);
-                        int quantite = stringToInt(getCell(fichierSauvegarde, ligne + 2 + j, 1));
+                    case "COLONS":
+                        chargerColons(etatCharge, fichierSauvegarde, ligne + 2, nombreColons);
+                        break;
 
-                        etatCharge.ressources[j] = new Terrain();
-                        etatCharge.ressources[j].nom = nom;
-                        etatCharge.ressources[j].quantite = quantite;
-                    }
-                }
+                    case "CASES_CARTE":
+                        chargerCarte(etatCharge, fichierSauvegarde, ligne + 2, tailleCarte);
+                        break;
 
-                // Charger les colons
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "COLONS")) {
-                    int i = ligne + 2; // Sauter l'en-tête
-                    while (i < rowCount(fichierSauvegarde) && !equals(getCell(fichierSauvegarde, i, 0), "#SECTION")) {
-                        String idStr = getCell(fichierSauvegarde, i, 0);
-                        if (!equals(idStr, "") && !equals(idStr, "Colons vivants") && !equals(idStr, "Colons morts")) {
-                            Colon colon = new Colon();
-                            colon.id = stringToInt(idStr);
-                            colon.age = stringToInt(getCell(fichierSauvegarde, i, 1));
-                            colon.sante = stringToDouble(getCell(fichierSauvegarde, i, 2));
-                            colon.satisfaction = stringToDouble(getCell(fichierSauvegarde, i, 3));
-                            colon.energie = stringToDouble(getCell(fichierSauvegarde, i, 4));
-                            colon.anneesDerniereNaissance = stringToInt(getCell(fichierSauvegarde, i, 5));
-
-                            etatCharge.colons[colonIndex] = colon;
-                            colonIndex++;
-                        }
-                        i++;
-                    }
-                }
-
-                // Charger la carte
-                if (equals(cellule0, "#SECTION") && equals(getCell(fichierSauvegarde, ligne, 1), "CASES_CARTE")) {
-                    int i = ligne + 2; // Sauter l'en-tête
-                    for (int l = 0; l < tailleCarte; l++) {
-                        for (int c = 0; c < tailleCarte; c++) {
-                            String symbole = getCell(fichierSauvegarde, i, 0);
-                            int quantiteRestante = stringToInt(getCell(fichierSauvegarde, i, 1));
-                            String ressourceActuelleNom = getCell(fichierSauvegarde, i, 2);
-                            String ressourceCaseInitNom = getCell(fichierSauvegarde, i, 3);
-                            boolean exploitee = stringToBoolean(getCell(fichierSauvegarde, i, 4));
-
-                            // Trouver les ressources correspondantes
-                            Terrain ressourceActuelle = null;
-                            Terrain ressourceCaseInit = null;
-                            for (Terrain terrain : etatCharge.ressources) {
-                                if (terrain != null) {
-                                    if (equals(terrain.nom, ressourceActuelleNom)) {
-                                        ressourceActuelle = terrain;
-                                    }
-                                    if (equals(terrain.nom, ressourceCaseInitNom)) {
-                                        ressourceCaseInit = terrain;
-                                    }
-                                }
-                            }
-
-                            if (ressourceActuelle == null) ressourceActuelle = etatCharge.ressources[0];
-                            if (ressourceCaseInit == null) ressourceCaseInit = etatCharge.ressources[0];
-
-                            etatCharge.planete.carte[l][c] = newCaseCarte(ressourceActuelle, quantiteRestante, ressourceCaseInit, exploitee);
-                            i++;
-                        }
-                    }
+                    default:
+                        // Autres sections ignorées
+                        break;
                 }
             }
 
@@ -807,6 +674,93 @@ class PlanetColonizer extends Program{
             return null;
         }
     }
+
+    void chargerEtatJeu(EtatJeu etat, CSVFile fichier, int ligne) {
+        etat.nom = getCell(fichier, ligne, 0);
+        etat.score = stringToDouble(getCell(fichier, ligne, 1));
+        etat.tour = stringToInt(getCell(fichier, ligne, 2));
+    }
+
+    void chargerInventaire(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
+        for (int i = 0; i < nombreRessources; i++) {
+            String nom = getCell(fichier, ligne + i, 0);
+            int quantite = stringToInt(getCell(fichier, ligne + i, 1));
+            double probaApparition = stringToDouble(getCell(fichier, ligne + i, 2));
+
+            if (nom == null || quantite < 0 || probaApparition < 0) {
+                // Si une des données est invalide, loggez l'erreur et passez à la ressource suivante
+                println("Erreur : Ressource invalide à la ligne " + (ligne + i));
+                continue; // Ignore cette ressource et passe à la suivante
+            }
+
+            etat.ressources[i] = new Terrain();
+            etat.ressources[i].nom = nom;
+            etat.ressources[i].quantite = quantite;
+            etat.ressources[i].probaApparition = probaApparition;
+        }
+    }
+
+
+    int compterEntrees(CSVFile fichier, int debut, String stopSection) {
+        int count = 0;
+        for (int i = debut; i < rowCount(fichier) && !equals(getCell(fichier, i, 0), stopSection); i++) {
+            if (!equals(getCell(fichier, i, 0), "")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    void chargerGestion(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
+        etat.gestion.capaciteTotalePop = stringToInt(getCell(fichier, ligne, 0));
+        etat.gestion.capaciteEntrepot = stringToInt(getCell(fichier, ligne, 1));
+        etat.gestion.vaisseauPlace = stringToInt(getCell(fichier, ligne, 2));
+        etat.gestion.centreDeCommunicationPlace = stringToInt(getCell(fichier, ligne, 3));
+        etat.gestion.nombreVivants = stringToInt(getCell(fichier, ligne, 4));
+    }
+
+    void chargerColons(EtatJeu etat, CSVFile fichier, int ligne, int nombreColons) {
+        for (int i = 0; i < nombreColons; i++) {
+            Colon colon = new Colon();
+            colon.id = stringToInt(getCell(fichier, ligne + i, 0));
+            colon.age = stringToInt(getCell(fichier, ligne + i, 1));
+            colon.sante = stringToDouble(getCell(fichier, ligne + i, 2));
+            colon.satisfaction = stringToDouble(getCell(fichier, ligne + i, 3));
+            colon.energie = stringToDouble(getCell(fichier, ligne + i, 4));
+            colon.anneesDerniereNaissance = stringToInt(getCell(fichier, ligne + i, 5));
+
+            etat.colons[i] = colon;
+        }
+    }
+
+    void chargerCarte(EtatJeu etat, CSVFile fichier, int ligne, int tailleCarte) {
+        for (int l = 0; l < tailleCarte; l++) {
+            for (int c = 0; c < tailleCarte; c++) {
+                String symbole = getCell(fichier, ligne, 0);
+                int quantiteRestante = stringToInt(getCell(fichier, ligne, 1));
+                String ressourceActuelleNom = getCell(fichier, ligne, 2);
+                String ressourceCaseInitNom = getCell(fichier, ligne, 3);
+                boolean exploitee = stringToBoolean(getCell(fichier, ligne, 4));
+
+                // Identifier les ressources
+                Terrain ressourceActuelle = trouverRessource(etat.ressources, ressourceActuelleNom);
+                Terrain ressourceCaseInit = trouverRessource(etat.ressources, ressourceCaseInitNom);
+
+                etat.planete.carte[l][c] = newCaseCarte(ressourceActuelle, quantiteRestante, ressourceCaseInit, exploitee);
+                ligne++;
+            }
+        }
+    }
+
+    Terrain trouverRessource(Terrain[] ressources, String nom) {
+        for (Terrain ressource : ressources) {
+            if (ressource != null && equals(ressource.nom, nom)) {
+                return ressource;
+            }
+        }
+        return null; // Par défaut, retourne null si introuvable
+    }
+
 //-----------------------------RESSOURCES---------------------------------------------------------------------------------------------------------------
 
     final Terrain[] RESSOURCES_INIT=new Terrain[]{ 
@@ -845,7 +799,7 @@ class PlanetColonizer extends Program{
     }
 
     String getResourceColor(String ressource,CaseCarte caseC) {
-        if(caseC.ressourceActuelle.fonctionne[0]==true){
+        if(caseC.ressourceActuelle.fonctionne==true){
             switch (ressource) {
                 // Ressources initiales
                 case " + ":
@@ -1100,71 +1054,54 @@ class PlanetColonizer extends Program{
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
             verifCapaciteEntrepot(etat);
             println();
-            println("LogDebut:"+etat.events.entrepotPlein[0]);
+
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
+
+            // Si le bâtiment est un puits de forage, traitement spécial
+            if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[10].nom)) {
+                batiment.ressourceActuelle.fonctionne=mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
+                continue;
+            }
             
-            println("LogBat:"+batiment.ressourceActuelle.nom);
-            if (batiment.ressourceActuelle.fonctionne[0] == false && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[10].nom)) {
-                println("LogFonctionnePas");
-                if (etat.events.entrepotPlein[0] == false) {
-                    int peutConsommerRes = 0;
-                    int cmpt = 0;
-                    int idRes = 0;
-                    while (cmpt < length(batiment.ressourceActuelle.ressourcesConso)) {
-                        print("LogRes:");
-                        idRes = batiment.ressourceActuelle.ressourcesConso[cmpt];
-                        if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) >= 0) {
-                            peutConsommerRes++;
-                        }
-                        cmpt++;
-                    }
-                    if (peutConsommerRes == length(batiment.ressourceActuelle.ressourcesConso)) {
-                        println("LogMarche");
-                        marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+            // Pour les autres bâtiments
+            if (batiment.ressourceActuelle.ressourcesGeneree[0] != -1) {
+                boolean peutConsommer = true;
+                
+                // Vérifier si le bâtiment peut consommer ses ressources
+                for (int j = 0; j < length(batiment.ressourceActuelle.ressourcesConso); j++) {
+                    int idRes = batiment.ressourceActuelle.ressourcesConso[j];
+                    if (etat.ressources[idRes].quantite < batiment.ressourceActuelle.quantiteResConso[j]) {
+                        peutConsommer = false;
+                        break;
                     }
                 }
-            }else if(batiment.ressourceActuelle.fonctionne[0] == true && etat.events.entrepotPlein[0] == true){
-                marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
-            }
-
-            if (batiment.ressourceActuelle.fonctionne[0] == true) {
-                println("LogFonctionne");
-                if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[10].nom)) {
-                    mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
-                    verifCapaciteEntrepot(etat);
-                } else {
+                
+                // Si le bâtiment ne fonctionnait pas et peut maintenant consommer
+                if (!batiment.ressourceActuelle.fonctionne && peutConsommer && !etat.events.entrepotPlein[0]) {
+                    batiment.ressourceActuelle.fonctionne = true;
+                }
+                // Si le bâtiment fonctionnait mais ne peut plus consommer
+                else if (batiment.ressourceActuelle.fonctionne && (!peutConsommer || etat.events.entrepotPlein[0])) {
+                    batiment.ressourceActuelle.fonctionne = false;
+                }
+                
+                // Si le bâtiment fonctionne, gérer la production
+                if (batiment.ressourceActuelle.fonctionne) {
                     int id = 0;
                     while (id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[id].nom)) {
                         id++;
                     }
-                    if (batiment.ressourceActuelle.ressourcesGeneree[0] != -1) { // Si le batiment genere quelque chose
-                        boolean peutConsommerRes = true;
-                        int cmpt = 0;
-                        int idRes = 0;
-                        while (cmpt < length(batiment.ressourceActuelle.ressourcesConso) && peutConsommerRes != false) {
-                            idRes = batiment.ressourceActuelle.ressourcesConso[cmpt];
-                            if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) < 0) {
-                                peutConsommerRes = false;
-                                marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
-                                etat.events.ressourceEstEpuiseeSTR[idRes] = ANSI_RED + "<" + etat.ressources[idRes].nom + "> n'est pas en quantité suffisante !" + ANSI_RESET;
-                            }
-                            cmpt++;
-                        }
-                        if (peutConsommerRes) {
-                            etat.gestion.tabMoyennepollution[id] += batiment.ressourceActuelle.pollutionGeneree;
-
-                            consommer(etat, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
-                            generer(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
-                            verifCapaciteEntrepot(etat);
-                        }
-                    }
+                    
+                    etat.gestion.tabMoyennepollution[id] += batiment.ressourceActuelle.pollutionGeneree;
+                    consommer(etat, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+                    batiment.ressourceActuelle.fonctionne=generer(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
                 }
-                println("LogFin:"+etat.events.entrepotPlein[0]);
             }
+            verifCapaciteEntrepot(etat);
         }
     }
 
-   void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+   boolean mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
@@ -1172,7 +1109,7 @@ class PlanetColonizer extends Program{
         }
 
         if(batiment.quantiteRestante<=0){
-            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
             String ligSTR="";
             if (lig>9){
                 ligSTR+=lig;
@@ -1185,20 +1122,21 @@ class PlanetColonizer extends Program{
             if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
                 batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
                 consoRes(etat,1,batiment);
-                genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
 
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 consoRes(etat,1,batiment);
-                genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             }
         }else{
-            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
+        return batiment.ressourceActuelle.fonctionne;
     }
 
 
@@ -1215,18 +1153,19 @@ class PlanetColonizer extends Program{
         etat.gestion.variationRessources[idRes]-=batiment.ressourceActuelle.quantiteResConso[id];
     }
 
-    void generer(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+    boolean generer(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         if (etat.events.entrepotPlein[0]==false){
             for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
-                genererRes(etat,f,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                batiment.ressourceActuelle.fonctionne=genererRes(etat,f,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             }
         }else{
-            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
+        return batiment.ressourceActuelle.fonctionne;
     }
 
-    void genererRes(EtatJeu etat, int id, CaseCarte batiment, int capaciteEntreposee, Terrain[] listeBatimentsPossibles, int lig, int col){
+    boolean genererRes(EtatJeu etat, int id, CaseCarte batiment, int capaciteEntreposee, Terrain[] listeBatimentsPossibles, int lig, int col){
         int idRes = batiment.ressourceActuelle.ressourcesGeneree[id];
         if(((batiment.ressourceActuelle.quantiteResGeneree[id]+capaciteEntreposee)<=etat.gestion.capaciteEntrepot) || batiment.ressourceActuelle.ressourcesGeneree[id]==10){// L'electricite n'est pas comprise dans le stockage
             
@@ -1237,27 +1176,18 @@ class PlanetColonizer extends Program{
             etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
             
             etat.events.entrepotPlein[0]=true;
-            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
+        return batiment.ressourceActuelle.fonctionne;
     }
 
 
-    void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
+    boolean marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
         println("LogMarcheArret");
 
         CaseCarte batiment=carte[lig][col];
-        int id=0;
-        while(id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[id].nom)){
-            id++;
-        }
         
-        if (batiment.ressourceActuelle.fonctionne[0]) {
-            // Si le bâtiment est en marche, on l'arrête
-            batiment.ressourceActuelle.fonctionne[0] = false;
-        } else {
-            // Si le bâtiment est arrêté, on le met en marche
-            batiment.ressourceActuelle.fonctionne[0] = true;
-        }
+        return !batiment.ressourceActuelle.fonctionne;
     }
 
 

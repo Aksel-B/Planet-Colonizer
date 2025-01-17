@@ -8,7 +8,7 @@ class Terrain{
     int quantite; //quantite stockee
 
     double pollutionGeneree;
-    boolean[] fonctionne=new boolean[]{true};
+    boolean fonctionne = true;
 
     String nom;
     String symbole;
