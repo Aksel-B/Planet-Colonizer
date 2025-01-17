@@ -974,7 +974,6 @@ class PlanetColonizer extends Program{
             int idRes = batiment.ResNecessaire.coutDeConstruction[i];
             etat.ressources[idRes].quantite -= batiment.ResNecessaire.quantiteNecessaire[i];
             etat.gestion.variationPoseRessources[idRes] -= batiment.ResNecessaire.quantiteNecessaire[i];
-            println("VarRes:"+etat.gestion.variationPoseRessources[idRes]);
         }
         
         switch (id) {
@@ -1105,7 +1104,7 @@ class PlanetColonizer extends Program{
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
             
             println("LogBat:"+batiment.ressourceActuelle.nom);
-            if (batiment.ressourceActuelle.fonctionne[0] == false) {
+            if (batiment.ressourceActuelle.fonctionne[0] == false && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[10].nom)) {
                 println("LogFonctionnePas");
                 if (etat.events.entrepotPlein[0] == false) {
                     int peutConsommerRes = 0;
@@ -1245,8 +1244,6 @@ class PlanetColonizer extends Program{
 
     void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
         println("LogMarcheArret");
-        int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};
-        int[]quantiteRessourcesGenereePuitDF=new int[]{10,7,5,5,1};
 
         CaseCarte batiment=carte[lig][col];
         int id=0;
@@ -1257,18 +1254,9 @@ class PlanetColonizer extends Program{
         if (batiment.ressourceActuelle.fonctionne[0]) {
             // Si le bâtiment est en marche, on l'arrête
             batiment.ressourceActuelle.fonctionne[0] = false;
-            batiment.ressourceActuelle.quantiteResConso = new int[length(listeBatimentsPossibles[id].quantiteResConso)];
-            batiment.ressourceActuelle.quantiteResGeneree = new int[length(listeBatimentsPossibles[id].quantiteResGeneree)];
         } else {
             // Si le bâtiment est arrêté, on le met en marche
             batiment.ressourceActuelle.fonctionne[0] = true;
-            if (id == 10) { // Si c'est un puits de forage
-                batiment.ressourceActuelle.quantiteResConso = new int[]{quantiteRessourcesConsoPuitDF[batiment.ressourceActuelle.ressourcesConso[0]-2], 25};
-                batiment.ressourceActuelle.quantiteResGeneree = new int[]{quantiteRessourcesGenereePuitDF[batiment.ressourceActuelle.ressourcesGeneree[0]-2]};
-            } else {
-                batiment.ressourceActuelle.quantiteResConso = listeBatimentsPossibles[id].quantiteResConso;
-                batiment.ressourceActuelle.quantiteResGeneree = listeBatimentsPossibles[id].quantiteResGeneree;
-            }
         }
     }
 
