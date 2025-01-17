@@ -88,7 +88,6 @@ class PlanetColonizer extends Program{
     int maxLength(int[] tab, int idDebut){
         int max=length(""+tab[idDebut]);
         for(int i=idDebut+1;i<length(tab);i++){
-            println(tab[i]);
             if (length(""+tab[i])>max){
                 max=length(""+tab[i]);
             }
@@ -873,7 +872,7 @@ class PlanetColonizer extends Program{
                     return ANSI_MAGENTA + ANSI_DARK_BG;
                 case " ◈ ":  // Cinema
                     return ANSI_YELLOW + ANSI_DARK_BG;
-                case " ⌯ ":  // Capteur d'Humidité
+                case " ⌯ ":  // Capteur d'Humiditée
                     return ANSI_BLUE_LIGHT + ANSI_DARK_BG;
                 case " ✲ ":  // Ferme hydroponique
                     return ANSI_GREEN_LIGHT + ANSI_DARK_BG;
@@ -901,7 +900,7 @@ class PlanetColonizer extends Program{
                     return ANSI_RED_BRIGHT + ANSI_DARK_BG;
                 case " ◈ ":  // Cinema
                     return ANSI_RED_BRIGHT + ANSI_DARK_BG;
-                case " ⌯ ":  // Capteur d'Humidité
+                case " ⌯ ":  // Capteur d'Humiditée
                     return ANSI_RED_BRIGHT + ANSI_DARK_BG;
                 case " ✲ ":  // Ferme hydroponique
                     return ANSI_RED_BRIGHT + ANSI_DARK_BG;
@@ -927,7 +926,7 @@ class PlanetColonizer extends Program{
         newBatiment(newRecette(new int[]{2}, new int[]{15}), "Entrepôt", " ⌧ ", POLLUTION_ENTREPOT, new int[]{10}, new int[]{5}, new int[]{-1}, new int[]{0}),
         newBatiment(newRecette(new int[]{2, 3, 4}, new int[]{125, 35, 30}), "Centre de Communication Terrien", " ☤ ", POLLUTION_CCT, new int[]{10}, new int[]{35}, new int[]{-1}, new int[]{0}),
         newBatiment(newRecette(new int[]{2, 3, 4}, new int[]{75, 25, 10}), "Cinema", " ◈ ", POLLUTION_CINEMA, new int[]{10}, new int[]{50}, new int[]{-1}, new int[]{0}),
-        newBatiment(newRecette(new int[]{2, 3, 5}, new int[]{5, 10, 5}), "Capteur d'Humidité", " ⌯ ", POLLUTION_CAPTEUR, new int[]{10}, new int[]{20}, new int[]{7}, new int[]{10}),
+        newBatiment(newRecette(new int[]{2, 3, 5}, new int[]{5, 10, 5}), "Capteur d'Humiditée", " ⌯ ", POLLUTION_CAPTEUR, new int[]{10}, new int[]{20}, new int[]{7}, new int[]{10}),
         newBatiment(newRecette(new int[]{2, 4, 7}, new int[]{5, 5, 5}), "Ferme hydroponique", " ✲ ", POLLUTION_FERME, new int[]{7, 10}, new int[]{7, 20}, new int[]{8, 9}, new int[]{5, 10}),
         newBatiment(newRecette(new int[]{3, 7}, new int[]{5, 5}), "Recycleur d'Air", " ≎ ", POLLUTION_RECYCLEUR, new int[]{7, 10}, new int[]{1, 20}, new int[]{8}, new int[]{10}),
         newBatiment(newRecette(new int[]{3, 5}, new int[]{5, 10}), "Panneau Stellaire", " ☼ ", POLLUTION_PANNEAU, new int[]{10}, new int[]{0}, new int[]{10}, new int[]{20}),
@@ -1194,7 +1193,6 @@ class PlanetColonizer extends Program{
                 genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
-                etat.events.entrepotPlein[0]=true;
             }
         }else{
             marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
@@ -1236,8 +1234,8 @@ class PlanetColonizer extends Program{
             etat.ressources[idRes].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
             etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
             
-            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
             etat.events.entrepotPlein[0]=true;
+            marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
     }
 
