@@ -1116,6 +1116,7 @@ class PlanetColonizer extends Program{
                         if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) >= 0) {
                             peutConsommerRes++;
                         }
+                        cmpt++;
                     }
                     if (peutConsommerRes == length(batiment.ressourceActuelle.ressourcesConso)) {
                         println("LogMarche");
