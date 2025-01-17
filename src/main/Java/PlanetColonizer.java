@@ -1111,14 +1111,15 @@ class PlanetColonizer extends Program{
                     int cmpt = 0;
                     int idRes = 0;
                     while (cmpt < length(batiment.ressourceActuelle.ressourcesConso)) {
+                        print("LogRes:");
                         idRes = batiment.ressourceActuelle.ressourcesConso[cmpt];
                         if (((etat.ressources[idRes].quantite) - batiment.ressourceActuelle.quantiteResConso[cmpt]) >= 0) {
                             peutConsommerRes++;
                         }
                     }
                     if (peutConsommerRes == length(batiment.ressourceActuelle.ressourcesConso)) {
-                        marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
                         println("LogMarche");
+                        marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
                     }
                 }
             }else if(batiment.ressourceActuelle.fonctionne[0] == true && etat.events.entrepotPlein[0] == true){
@@ -1250,18 +1251,22 @@ class PlanetColonizer extends Program{
         while(id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[id].nom)){
             id++;
         }
-        if (batiment.ressourceActuelle.fonctionne[0]==true){
-            batiment.ressourceActuelle.quantiteResConso=new int[length(listeBatimentsPossibles[id].quantiteResConso)];
-            batiment.ressourceActuelle.quantiteResGeneree=new int[length(listeBatimentsPossibles[id].quantiteResGeneree)];
-            batiment.ressourceActuelle.fonctionne[0]=false;
-        }else if(id==10 && batiment.ressourceActuelle.fonctionne[0]==true){
-            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourcesConsoPuitDF[batiment.ressourceActuelle.ressourcesConso[0]-2],25};
-            batiment.ressourceActuelle.quantiteResConso=new int[]{quantiteRessourcesGenereePuitDF[batiment.ressourceActuelle.ressourcesGeneree[0]-2]};
-            batiment.ressourceActuelle.fonctionne[0]=true;
-        }else{
-            batiment.ressourceActuelle.quantiteResConso=listeBatimentsPossibles[id].quantiteResConso;
-            batiment.ressourceActuelle.quantiteResGeneree=listeBatimentsPossibles[id].quantiteResGeneree;
-            batiment.ressourceActuelle.fonctionne[0]=true;
+        
+        if (batiment.ressourceActuelle.fonctionne[0]) {
+            // Si le bâtiment est en marche, on l'arrête
+            batiment.ressourceActuelle.fonctionne[0] = false;
+            batiment.ressourceActuelle.quantiteResConso = new int[length(listeBatimentsPossibles[id].quantiteResConso)];
+            batiment.ressourceActuelle.quantiteResGeneree = new int[length(listeBatimentsPossibles[id].quantiteResGeneree)];
+        } else {
+            // Si le bâtiment est arrêté, on le met en marche
+            batiment.ressourceActuelle.fonctionne[0] = true;
+            if (id == 10) { // Si c'est un puits de forage
+                batiment.ressourceActuelle.quantiteResConso = new int[]{quantiteRessourcesConsoPuitDF[batiment.ressourceActuelle.ressourcesConso[0]-2], 25};
+                batiment.ressourceActuelle.quantiteResGeneree = new int[]{quantiteRessourcesGenereePuitDF[batiment.ressourceActuelle.ressourcesGeneree[0]-2]};
+            } else {
+                batiment.ressourceActuelle.quantiteResConso = listeBatimentsPossibles[id].quantiteResConso;
+                batiment.ressourceActuelle.quantiteResGeneree = listeBatimentsPossibles[id].quantiteResGeneree;
+            }
         }
     }
 
