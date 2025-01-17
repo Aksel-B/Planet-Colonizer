@@ -2,6 +2,54 @@ import extensions.*;
 
 class PlanetColonizer extends Program{
 
+//-----------------------------Constantes---------------------------------------------------------------------------------------------------------------
+    final char ANSI_ESCAPE_CHAR = '\033';
+    final char ANSI_CODE_END_CHAR = 'm';
+    final int ASCII_LOWERCASE_A = 'a';
+    final int ASCII_LOWERCASE_Z = 'z';
+    final int ASCII_UPPERCASE_A = 'A';
+    final int ASCII_UPPERCASE_Z = 'Z';
+    final int ASCII_CASE_DIFFERENCE = 32;
+    final double POLLUTION_VAISSEAU = 0.0001;
+    final double POLLUTION_DORTOIR = 0.0005;
+    final double POLLUTION_ENTREPOT = 0.0002;
+    final double POLLUTION_CCT = 0.0007;
+    final double POLLUTION_CINEMA = 0.0007;
+    final double POLLUTION_CAPTEUR = 0.0001;
+    final double POLLUTION_FERME = -0.0005;
+    final double POLLUTION_RECYCLEUR = 0.0001;
+    final double POLLUTION_PANNEAU = 0.0001;
+    final double POLLUTION_CENTRALE = 0.0001;
+    final double POLLUTION_PUIT = 0.005;
+    final int VAISSEAU_INDEX = 0;
+    final int DORTOIR_INDEX = 1;
+    final int ENTREPOT_INDEX = 2;
+    final int CCT_INDEX = 3;
+    final int MAX_BUILDING_INDEX = 10;
+    final int INFINITE_RESOURCE = -1;
+    final int DORTOIR_CAPACITY = 15;
+    final int ENTREPOT_CAPACITY = 150;
+    final int[] QUANTITE_RESSOURCES_CONSO_PUIT_DF = {10, 12, 15, 15, 15};
+    final int[] QUANTITE_RESSOURCES_GENEREE_PUIT_DF = {10, 7, 5, 5, 1};
+    final int BASE_RESOURCE_AMOUNT = 600;
+    final int RESOURCE_DECREMENT = 100;
+    final String ANSI_MAGENTA = "\033[35m";
+    final String ANSI_ORANGE = "\033[38;2;255;165;0m";
+    final String ANSI_GREENKINDOF = "\033[38;5;42m";
+    final String ANSI_DARK_BG = "\033[48;2;52;40;61m";
+    final String ANSI_BROWN = "\033[38;2;139;69;19m";
+    final String ANSI_GRAY = "\033[38;2;128;128;128m";
+    final String ANSI_BLUE_LIGHT = "\033[38;2;173;216;230m";
+    final String ANSI_GREEN_LIGHT = "\033[38;2;144;238;144m";
+    final String ANSI_CYAN_LIGHT = "\033[38;2;224;255;255m";
+    final String ANSI_YELLOW_BRIGHT = "\033[38;2;255;255;0m";
+    final String ANSI_YELLOW =  "\033[38;5;11m";
+    final String ANSI_ORANGE_DARK = "\033[38;2;255;140;0m";
+    final String ANSI_RED_BRIGHT = "\033[38;2;255;0;0m";
+    final int RESOURCE_INDEX_MIN = 2;
+    final int RESOURCE_INDEX_MAX = 7;
+    final int PUITS_INDEX = 10;
+
 //-----------------------------FONCTIONS POUR TOUT------------------------------------------------------------------------------------------------------
     
     // Fonction pour trouver le maximum entre deux entiers
@@ -261,35 +309,41 @@ class PlanetColonizer extends Program{
 
     char readCharMajSecurise(String prompt) {
         while (true) {
-            // Utiliser la méthode de lecture sécurisée
             char caractere = readCharSecurise(prompt);
-            
-            // Convertir en majuscule manuellement
-            if (caractere >= 'a' && caractere <= 'z') {
-                caractere -= 32;
-            }
-            
-            // Vérifier si le caractère est une lettre
-            if (!((caractere >= 'A' && caractere <= 'Z'))) {
+            caractere = convertToUpperCase(caractere);
+
+            if (!isLetter(caractere)) {
                 println(ANSI_RED + ANSI_BOLD + "Erreur : Veuillez saisir une lettre." + ANSI_RESET);
                 continue;
             }
-            
+
             return caractere;
         }
+    }
+
+    char convertToUpperCase(char caractere) {
+        if (caractere >= ASCII_LOWERCASE_A && caractere <= ASCII_LOWERCASE_Z) {
+            caractere -= ASCII_CASE_DIFFERENCE;
+        }
+        return caractere;
+    }
+
+    boolean isLetter(char caractere) {
+        return caractere >= ASCII_UPPERCASE_A && caractere <= ASCII_UPPERCASE_Z;
     }
 
     int getVisibleLength(String str) {
         int visibleLength = 0;
         boolean inAnsiCode = false;
-    
+
         for (int i = 0; i < length(str); i++) {
-            if (charAt(str,i) == '\033') {
+            char currentChar = charAt(str, i);
+            if (currentChar == ANSI_ESCAPE_CHAR) {
                 inAnsiCode = true;
                 continue;
             }
             if (inAnsiCode) {
-                if (charAt(str,i) == 'm') {
+                if (currentChar == ANSI_CODE_END_CHAR) {
                     inAnsiCode = false;
                 }
                 continue;
@@ -299,20 +353,18 @@ class PlanetColonizer extends Program{
         return visibleLength;
     }
     
-    void formatEmptyLine(String[] tab){
-        int maxLine=maxLength(tab,0);
-        for(int y=0;y<length(tab);y++){
-                tab[y]=formatCharacteristic(tab[y],maxLine+(length(tab[y])-getVisibleLength(tab[y])));
-            } 
-        
+    void formatEmptyLine(String[] tab) {
+        int maxLine = maxLength(tab, 0);
+        for (int y = 0; y < length(tab); y++) {
+            tab[y] = formatCharacteristic(tab[y], maxLine + (length(tab[y]) - getVisibleLength(tab[y])));
+        }
     }
 
-    void formatEmptyLine(String[][] tab, int id){
-        int maxLine=maxLength(tab[id],0);
-        for(int y=0;y<length(tab[id]);y++){
-                tab[id][y]=formatCharacteristic(tab[id][y],maxLine+(length(tab[id][y])-getVisibleLength(tab[id][y])));
-            }
-
+    void formatEmptyLine(String[][] tab, int id) {
+        int maxLine = maxLength(tab[id], 0);
+        for (int y = 0; y < length(tab[id]); y++) {
+            tab[id][y] = formatCharacteristic(tab[id][y], maxLine + (length(tab[id][y]) - getVisibleLength(tab[id][y])));
+        }
     }
 
 
@@ -838,182 +890,183 @@ class PlanetColonizer extends Program{
         }
     }
 
-    final String ANSI_MAGENTA = "\033[35m";
-    final String ANSI_ORANGE = "\033[38;2;255;165;0m";
-    final String ANSI_GREENKINDOF = "\033[38;5;42m";
-    final String ANSI_DARK_BG = "\033[48;2;52;40;61m";
-    final String ANSI_BROWN = "\033[38;2;139;69;19m";
-    final String ANSI_GRAY = "\033[38;2;128;128;128m";
-    final String ANSI_BLUE_LIGHT = "\033[38;2;173;216;230m";
-    final String ANSI_GREEN_LIGHT = "\033[38;2;144;238;144m";
-    final String ANSI_CYAN_LIGHT = "\033[38;2;224;255;255m";
-    final String ANSI_YELLOW_BRIGHT = "\033[38;2;255;255;0m";
-    final String ANSI_YELLOW =  "\033[38;5;11m";
-    final String ANSI_ORANGE_DARK = "\033[38;2;255;140;0m";
-    final String ANSI_RED_BRIGHT = "\033[38;2;255;0;0m";
-
 //-----------------------------BATIMENTS----------------------------------------------------------------------------------------------------------------
     
-    final Terrain[] listeBatimentsPossibles=new Terrain[]{
-                  //Recette ResNecessaire, String nom,String symbole,,double pollutionGeneree,int[] ressourcesConso, int[] quantiteResConso,int[] ressourcesGeneree, int[] quantiteResGeneree
-        newBatiment(newRecette(),"Vaisseau"," V ",0.0001,new int[]{10},new int[]{100},new int[]{10},new int[]{250}),
-
-        newBatiment(newRecette(new int[]{2,3},new int[]{5,10}),"Dortoir"," ⌂ ",0.0005,new int[]{10},new int[]{10},new int[]{-1},new int[]{0}),
-        newBatiment(newRecette(new int[]{2},new int[]{15}),"Entrepôt"," ⌧ ",0.0002,new int[]{10},new int[]{5},new int[]{-1},new int[]{0}),
-        newBatiment(newRecette(new int[]{2,3,4},new int[]{125,35,30}),"Centre de Communication Terrien"," ☤ ",0.0007,new int[]{10},new int[]{35},new int[]{-1},new int[]{0}),
-        newBatiment(newRecette(new int[]{2,3,4},new int[]{75,25,10}),"Cinema"," ◈ ",0.0007,new int[]{10},new int[]{50},new int[]{-1},new int[]{0}),
-        
-        newBatiment(newRecette(new int[]{2,3,5},new int[]{5,10,5}),"Capteur d'Humidité"," ⌯ ",0.0001,new int[]{10}, new int[]{20},new int[]{7}, new int[]{10}),
-        newBatiment(newRecette(new int[]{2,4,7},new int[]{5,5,5}),"Ferme hydroponique"," ✲ ",-0.0005,new int[]{7,10},new int[]{7,20},new int[]{8,9},new int[]{5,10}), //10 rations 5 O2
-        newBatiment(newRecette(new int[]{3,7},new int[]{5,5}),"Recycleur d'Air"," ≎ ",0.0001,new int[]{7,10}, new int[]{1,20},new int[]{8}, new int[]{10}),
-
-        newBatiment(newRecette(new int[]{3,5},new int[]{5,10}),"Panneau Stellaire"," ☼ ",0.0001,new int[]{10}, new int[]{0},new int[]{10},new int[]{20}),
-        newBatiment(newRecette(new int[]{2,6,7},new int[]{115,5,30}),"Centrale nucléaire"," ☢ ",0.0001,new int[]{6,7,10},new int[]{2,10,100},new int[]{10},new int[]{400}),//Conso 5 Pu 10 H2O
-
-        newBatiment(newRecette(new int[]{2,3},new int[]{10,5}),"Puit de Forage"," ⍒ ",0.005,new int[]{0,10},new int[]{0,25},new int[1],new int[1]) //Prod/Conso variable selon la ressource
+    final Terrain[] listeBatimentsPossibles = new Terrain[]{
+        newBatiment(newRecette(), "Vaisseau", " V ", POLLUTION_VAISSEAU, new int[]{10}, new int[]{100}, new int[]{10}, new int[]{250}),
+        newBatiment(newRecette(new int[]{2, 3}, new int[]{5, 10}), "Dortoir", " ⌂ ", POLLUTION_DORTOIR, new int[]{10}, new int[]{10}, new int[]{-1}, new int[]{0}),
+        newBatiment(newRecette(new int[]{2}, new int[]{15}), "Entrepôt", " ⌧ ", POLLUTION_ENTREPOT, new int[]{10}, new int[]{5}, new int[]{-1}, new int[]{0}),
+        newBatiment(newRecette(new int[]{2, 3, 4}, new int[]{125, 35, 30}), "Centre de Communication Terrien", " ☤ ", POLLUTION_CCT, new int[]{10}, new int[]{35}, new int[]{-1}, new int[]{0}),
+        newBatiment(newRecette(new int[]{2, 3, 4}, new int[]{75, 25, 10}), "Cinema", " ◈ ", POLLUTION_CINEMA, new int[]{10}, new int[]{50}, new int[]{-1}, new int[]{0}),
+        newBatiment(newRecette(new int[]{2, 3, 5}, new int[]{5, 10, 5}), "Capteur d'Humidité", " ⌯ ", POLLUTION_CAPTEUR, new int[]{10}, new int[]{20}, new int[]{7}, new int[]{10}),
+        newBatiment(newRecette(new int[]{2, 4, 7}, new int[]{5, 5, 5}), "Ferme hydroponique", " ✲ ", POLLUTION_FERME, new int[]{7, 10}, new int[]{7, 20}, new int[]{8, 9}, new int[]{5, 10}),
+        newBatiment(newRecette(new int[]{3, 7}, new int[]{5, 5}), "Recycleur d'Air", " ≎ ", POLLUTION_RECYCLEUR, new int[]{7, 10}, new int[]{1, 20}, new int[]{8}, new int[]{10}),
+        newBatiment(newRecette(new int[]{3, 5}, new int[]{5, 10}), "Panneau Stellaire", " ☼ ", POLLUTION_PANNEAU, new int[]{10}, new int[]{0}, new int[]{10}, new int[]{20}),
+        newBatiment(newRecette(new int[]{2, 6, 7}, new int[]{115, 5, 30}), "Centrale nucléaire", " ☢ ", POLLUTION_CENTRALE, new int[]{6, 7, 10}, new int[]{2, 10, 100}, new int[]{10}, new int[]{400}),
+        newBatiment(newRecette(new int[]{2, 3}, new int[]{10, 5}), "Puit de Forage", " ⍒ ", POLLUTION_PUIT, new int[]{0, 10}, new int[]{0, 25}, new int[1], new int[1])
     };
 
     // Si on veut faire des ressources plus complexes et modifier les recettes en conséquence
     //newBatiment(newRecette(new Terrain[]{RESSOURCES_INIT[2],RESSOURCES_INIT[3],RESSOURCES_INIT[4]},new int[]{75,25,10}),"Usine de Transformation"," ⌬ ",0.001,25,new int[1],new int[1]), //Prod/Conso variable selon la ressource
 
-
-    Recette newRecette(){
-        Recette r=new Recette();
-        r.coutDeConstruction=new int[0];
+    Recette newRecette() {
+        Recette r = new Recette();
+        r.coutDeConstruction = new int[0];
         return r;
     }
-    
-    Recette newRecette(int[] ressources,int[] quantiteNecessaire){
-        Recette r=new Recette ();
-        r.coutDeConstruction=ressources;
-        r.quantiteNecessaire=quantiteNecessaire;
+
+    Recette newRecette(int[] ressources, int[] quantiteNecessaire) {
+        Recette r = new Recette();
+        r.coutDeConstruction = ressources;
+        r.quantiteNecessaire = quantiteNecessaire;
         return r;
     }
-    
-    Terrain newBatiment(Recette ResNecessaire, String nom,String symbole,double pollutionGeneree,int[] ressourcesConso, int[] quantiteResConso,int[] ressourcesGeneree, int[] quantiteResGeneree){
-        Terrain b=new Terrain();
-        b.ResNecessaire=ResNecessaire;
-        b.ressourcesGeneree=ressourcesGeneree;
-        b.quantiteResGeneree=quantiteResGeneree;
-        b.ressourcesConso=ressourcesConso;
-        b.quantiteResConso=quantiteResConso;
-        b.pollutionGeneree=pollutionGeneree;
 
-        b.nom=nom;
-        b.symbole=symbole;
+    Terrain newBatiment(Recette ResNecessaire, String nom, String symbole, double pollutionGeneree, int[] ressourcesConso, int[] quantiteResConso, int[] ressourcesGeneree, int[] quantiteResGeneree) {
+        Terrain b = new Terrain();
+        b.ResNecessaire = ResNecessaire;
+        b.ressourcesGeneree = ressourcesGeneree;
+        b.quantiteResGeneree = quantiteResGeneree;
+        b.ressourcesConso = ressourcesConso;
+        b.quantiteResConso = quantiteResConso;
+        b.pollutionGeneree = pollutionGeneree;
+        b.nom = nom;
+        b.symbole = symbole;
         return b;
     }
 
-    int placerBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles,int lig,int col,Terrain batiment){
-        etat.gestion.posBat[countLastPos(etat.gestion.posBat)]=new int[]{lig,col};
-        int id=0;
-        while(id<length(listeBatimentsPossibles) && batiment!=listeBatimentsPossibles[id]){
+    int placerBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, Terrain batiment) {
+        etat.gestion.posBat[countLastPos(etat.gestion.posBat)] = new int[]{lig, col};
+        int id = 0;
+        while (id < length(listeBatimentsPossibles) && batiment != listeBatimentsPossibles[id]) {
             id++;
         }
-        if(batiment==listeBatimentsPossibles[0]){// Vaisseau
-            etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true); //-1 car ressource inépuisable
-            etat.gestion.vaisseauPlace=1;
-            return etat.gestion.vaisseauPlace;
 
-        }else if(batiment==listeBatimentsPossibles[1]){ //Dortoirs
-            etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true);
-            etat.gestion.capaciteTotalePop+=15;
-            return etat.gestion.capaciteTotalePop;
-
-        }else if(batiment==listeBatimentsPossibles[2]){ //Entrepots
-            etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true);
-            etat.gestion.capaciteEntrepot+=150;
-            return etat.gestion.capaciteEntrepot;
-
-        }else if(batiment==listeBatimentsPossibles[3]){ //Centre de Communication Terrien
-            etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true);
-            etat.gestion.centreDeCommunicationPlace=1;
-            return etat.gestion.centreDeCommunicationPlace;
-
-        }else if(id < 10){
-            etat.planete.carte[lig][col]=newCaseCarte(batiment,-1,batiment,true);
-        }else{
-            placerPuitDeForage(etat, lig, col, batiment);
+        for (int i = 0; i < length(batiment.ResNecessaire.coutDeConstruction); i++) {
+            int idRes = batiment.ResNecessaire.coutDeConstruction[i];
+            etat.ressources[idRes].quantite -= batiment.ResNecessaire.quantiteNecessaire[i];
+            etat.gestion.variationRessources[idRes] -= batiment.ResNecessaire.quantiteNecessaire[i];
         }
-        for (int i=0;i<length(batiment.ResNecessaire.coutDeConstruction);i++){
-            int idRes=batiment.ResNecessaire.coutDeConstruction[i];
-            etat.ressources[idRes].quantite-=batiment.ResNecessaire.quantiteNecessaire[i];
-            etat.gestion.variationRessources[idRes]-=batiment.ResNecessaire.quantiteNecessaire[i];
+
+        switch (id) {
+            case VAISSEAU_INDEX:
+                return placerVaisseau(etat, lig, col, batiment);
+            case DORTOIR_INDEX:
+                return placerDortoir(etat, lig, col, batiment);
+            case ENTREPOT_INDEX:
+                return placerEntrepot(etat, lig, col, batiment);
+            case CCT_INDEX:
+                return placerCCT(etat, lig, col, batiment);
+            default:
+                if (id < MAX_BUILDING_INDEX) {
+                    etat.planete.carte[lig][col] = newCaseCarte(batiment, INFINITE_RESOURCE, batiment, true);
+                } else {
+                    placerPuitDeForage(etat, lig, col, batiment);
+                }
+                break;
         }
         return id;
     }
 
-    void placerPuitDeForage(EtatJeu etat,int lig,int col,Terrain batiment){
-        int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};
-        int[]quantiteRessourcesGenereePuitDF=new int[]{10,7,5,5,1};
+    int placerVaisseau(EtatJeu etat, int lig, int col, Terrain batiment) {
+        etat.planete.carte[lig][col] = newCaseCarte(batiment, INFINITE_RESOURCE, batiment, true);
+        etat.gestion.vaisseauPlace = 1;
+        return etat.gestion.vaisseauPlace;
+    }
 
-        String batimentNom=etat.planete.carte[lig][col].ressourceCaseInit.nom;
-        for(int i=0;i<5;i++){
-            int j=i+2;
-            if(equals(batimentNom,etat.ressources[j].nom)){
-                etat.planete.carte[lig][col]=newCaseCarte(batiment,(600-i*100),etat.planete.carte[lig][col].ressourceCaseInit,true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0]=j;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0]=quantiteRessourcesConsoPuitDF[i];
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0]=j;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0]=quantiteRessourcesGenereePuitDF[i]; 
+    int placerDortoir(EtatJeu etat, int lig, int col, Terrain batiment) {
+        etat.planete.carte[lig][col] = newCaseCarte(batiment, INFINITE_RESOURCE, batiment, true);
+        etat.gestion.capaciteTotalePop += DORTOIR_CAPACITY;
+        return etat.gestion.capaciteTotalePop;
+    }
+
+    int placerEntrepot(EtatJeu etat, int lig, int col, Terrain batiment) {
+        etat.planete.carte[lig][col] = newCaseCarte(batiment, INFINITE_RESOURCE, batiment, true);
+        etat.gestion.capaciteEntrepot += ENTREPOT_CAPACITY;
+        return etat.gestion.capaciteEntrepot;
+    }
+
+    int placerCCT(EtatJeu etat, int lig, int col, Terrain batiment) {
+        etat.planete.carte[lig][col] = newCaseCarte(batiment, INFINITE_RESOURCE, batiment, true);
+        etat.gestion.centreDeCommunicationPlace = 1;
+        return etat.gestion.centreDeCommunicationPlace;
+    }
+
+    void placerPuitDeForage(EtatJeu etat, int lig, int col, Terrain batiment) {
+        String batimentNom = etat.planete.carte[lig][col].ressourceCaseInit.nom;
+        for (int i = 0; i < length(QUANTITE_RESSOURCES_CONSO_PUIT_DF); i++) {
+            int j = i + 2;
+            if (equals(batimentNom, etat.ressources[j].nom)) {
+                etat.planete.carte[lig][col] = newCaseCarte(batiment, (BASE_RESOURCE_AMOUNT - i * RESOURCE_DECREMENT), etat.planete.carte[lig][col].ressourceCaseInit, true);
+                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0] = j;
+                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0] = QUANTITE_RESSOURCES_CONSO_PUIT_DF[i];
+                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0] = j;
+                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0] = QUANTITE_RESSOURCES_GENEREE_PUIT_DF[i];
             }
         }
     }
 
     // Repère la dernière position enregistrée d'un batiment
-    int countLastPos(int[][] posBat){      
-        int id=0;
-        while(id < length(posBat) && posBat[id][0]!=0){
+    int countLastPos(int[][] posBat) {
+        int id = 0;
+        while (id < length(posBat) && posBat[id][0] != 0) {
             id++;
         }
         return id;
     }
 
-    boolean batimentPosable(EtatJeu etat, Terrain[] listeBatimentsPossibles,int lig, int col, Terrain batiment){
-        boolean posableTerrain=true;
-        boolean posableRessource=true;
+    boolean batimentPosable(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, Terrain batiment) {
+        boolean posableTerrain = true;
+        boolean posableRessource = true;
 
-        if((etat.planete.carte[lig][col].ressourceCaseInit==etat.ressources[0] || etat.planete.carte[lig][col].ressourceCaseInit==etat.ressources[1]) && equals(batiment.nom,listeBatimentsPossibles[10].nom)){
-            posableTerrain=false;
+        // Vérifier si le bâtiment est un puits et la ressource est de type non posable
+        if ((etat.planete.carte[lig][col].ressourceCaseInit == etat.ressources[0] || etat.planete.carte[lig][col].ressourceCaseInit == etat.ressources[1]) && equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
+            posableTerrain = false;
         }
-        int id=0;
-        while(id<length(etat.ressources) && etat.planete.carte[lig][col].ressourceCaseInit!=etat.ressources[id]){
+
+        // Vérifier si la ressource est dans la plage non posable pour les autres bâtiments
+        int id = 0;
+        while (id < length(etat.ressources) && etat.planete.carte[lig][col].ressourceCaseInit != etat.ressources[id]) {
             id++;
         }
-        if(!equals(batiment.nom,listeBatimentsPossibles[10].nom) && (id>=2 && id<7)){
-            posableTerrain=false;
+        if (!equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom) && (id >= RESOURCE_INDEX_MIN && id < RESOURCE_INDEX_MAX)) {
+            posableTerrain = false;
         }
-        if((batiment==listeBatimentsPossibles[3] && etat.gestion.centreDeCommunicationPlace==1) || (batiment==listeBatimentsPossibles[0] && etat.gestion.vaisseauPlace==1)){
-            posableTerrain=false;
+
+        // Vérifier si le bâtiment est déjà placé
+        if ((batiment == listeBatimentsPossibles[CCT_INDEX] && etat.gestion.centreDeCommunicationPlace == 1) || (batiment == listeBatimentsPossibles[VAISSEAU_INDEX] && etat.gestion.vaisseauPlace == 1)) {
+            posableTerrain = false;
         }
-        id=0;
-        while(id<length(batiment.ResNecessaire.coutDeConstruction) && posableRessource){
-            int idRes=batiment.ResNecessaire.coutDeConstruction[id];
-            if(batiment.ResNecessaire.quantiteNecessaire[id]>etat.ressources[idRes].quantite){
-                posableRessource=false;
+
+        // Vérifier les ressources nécessaires pour la construction
+        id = 0;
+        while (id < length(batiment.ResNecessaire.coutDeConstruction) && posableRessource) {
+            int idRes = batiment.ResNecessaire.coutDeConstruction[id];
+            if (batiment.ResNecessaire.quantiteNecessaire[id] > etat.ressources[idRes].quantite) {
+                posableRessource = false;
             }
             id++;
         }
 
-        return (posableTerrain==true && posableRessource==true && etat.planete.carte[lig][col].exploitee==false) ? true:false;
+        return posableTerrain && posableRessource && !etat.planete.carte[lig][col].exploitee;
     }
 
-    int calcCapacitéEntrepôt(EtatJeu etat){
-        int capaciteEntreposee=0;
-        for(int i=0;i<length(etat.ressources)-1;i++){       // L'electricite n'est pas comprise dans le stockage
-            capaciteEntreposee+=etat.ressources[i].quantite;
+    int calcCapaciteEntrepot(EtatJeu etat) {
+        int capaciteEntreposee = 0;
+        for (int i = 0; i < length(etat.ressources) - 1; i++) { // L'électricité n'est pas comprise dans le stockage
+            capaciteEntreposee += etat.ressources[i].quantite;
         }
         return capaciteEntreposee;
     }
 
-    void verifCapacitéEntrepot(EtatJeu etat){
-        if(calcCapacitéEntrepôt(etat) < etat.gestion.capaciteEntrepot){
+    void verifCapaciteEntrepot(EtatJeu etat){
+        if(calcCapaciteEntrepot(etat) < etat.gestion.capaciteEntrepot){
             etat.events.entrepotPlein[0]=false;
         }
     }
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles) {
-        int capaciteEntreposee = calcCapacitéEntrepôt(etat);
+        int capaciteEntreposee = calcCapaciteEntrepot(etat);
         println();
         println(etat.events.entrepotPlein[0]);
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
@@ -1063,7 +1116,7 @@ class PlanetColonizer extends Program{
 
                             consommer(etat, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
                             generer(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
-                            verifCapacitéEntrepot(etat);
+                            verifCapaciteEntrepot(etat);
                         }
                     }
                 }
@@ -1072,8 +1125,7 @@ class PlanetColonizer extends Program{
         }
     }
 
-
-    void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+   void mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
@@ -1115,6 +1167,7 @@ class PlanetColonizer extends Program{
             marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
         }
     }
+
 
     void consommer(EtatJeu etat,int lig, int col){
         CaseCarte batiment=etat.planete.carte[lig][col];
@@ -1415,7 +1468,7 @@ class PlanetColonizer extends Program{
                 //satisfactionColon(colon[i]);
             }
         }
-        verifCapacitéEntrepot(etat);
+        verifCapaciteEntrepot(etat);
         triTableau(etat.colons);
     }
 
@@ -1577,7 +1630,7 @@ class PlanetColonizer extends Program{
             }
         }
         resTabAffic[7]=ANSI_BOLD + "Ressources Vitales:"+ ANSI_RESET;
-        resTabAffic[14]=ANSI_BOLD + "Capacité de l'entrepôt"+ ANSI_RESET+": "+calcCapacitéEntrepôt(etat)+"/"+etat.gestion.capaciteEntrepot;
+        resTabAffic[14]=ANSI_BOLD + "Capacité de l'entrepôt"+ ANSI_RESET+": "+calcCapaciteEntrepot(etat)+"/"+etat.gestion.capaciteEntrepot;
         
         int idDortoirs=16;
         if(etat.events.entrepotPlein[0]){
@@ -2237,7 +2290,7 @@ class PlanetColonizer extends Program{
 
             // Vérifications et mises à jour des ressources et des bâtiments
             ressourceEmptyVerif(etatJeu); // Vérifie si des ressources sont épuisées
-            verifCapacitéEntrepot(etatJeu); // Vérifie la capacité de stockage des entrepôts
+            verifCapaciteEntrepot(etatJeu); // Vérifie la capacité de stockage des entrepôts
             mettreAJourBatiment(etatJeu, listeBatimentsPossibles); // Met à jour les bâtiments en fonction de leur production et de leurs effets
             etatJeu.planete.pollution = pollutionTotale(etatJeu); // Calcule la pollution totale de la planète
             mettreAJourColons(etatJeu); // Met à jour les colons (santé, besoins, etc.)
