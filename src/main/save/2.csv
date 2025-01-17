@@ -1,0 +1,2500 @@
+#SECTION,COLONS,,,,
+id,age,sante,satisfaction,energie,anneesDerniereNaissance
+1,39,0.4139329999999996,1.0,1.0,3
+2,44,0.4139329999999996,1.0,1.0,3
+3,48,0.26393299999999964,1.0,1.0,5
+4,36,0.4139329999999996,1.0,1.0,2
+5,43,0.4139329999999996,1.0,1.0,2
+6,35,0.4139329999999996,1.0,1.0,7
+7,8,0.8037329999999998,1.0,1.0,8
+8,7,0.8234669999999998,1.0,1.0,7
+9,7,0.8234669999999998,1.0,1.0,7
+10,6,0.8431759999999998,1.0,1.0,6
+11,5,0.8638639999999999,1.0,1.0,5
+12,3,0.9111789999999999,1.0,1.0,3
+13,2,0.9378059999999999,1.0,1.0,2
+Colons vivants,13,,,,
+Colons morts,13,,,,
+#SECTION,ETAT_JEU,,,,
+nomJeu,score,tour,pollution,,
+2.csv,0.0,11,0.012587,,
+#SECTION,GESTION,,,,
+capaciteTotalPop,capaciteEntrepot,vaisseauPlace,centreDeCommunicationPlace,nombreVivants,
+15,400,1,0,13,
+variationRessources,,,,,
+0,,,,,
+0,,,,,
+0,,,,,
+0,,,,,
+0,,,,,
+15,,,,,
+0,,,,,
+-1,,,,,
+2,,,,,
+-3,,,,,
+-5,,,,,
+quantiteElecTourPrecedent,95,,,,
+#SECTION,INVENTAIRE,,,,
+nomRessource,quantite,,,,
+Terre,0,,,,
+Terre,0,,,,
+Fer,115,,,,
+Cuivre,17,,,,
+Carbone,30,,,,
+Soufre,30,,,,
+Uranium,5,,,,
+💧 Eau,79,,,,
+💨 Air,66,,,,
+🍎 Nourriture,46,,,,
+⚡ Electricité,95,,,,
+#SECTION,CASES_CARTE,,,,
+symbole,quantiteRestante,ressourceActuelle,ressourceCaseInit,exploitee,
+Cu ,500,Cuivre,Cuivre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ V ,-1,Vaisseau,Vaisseau,true,
+ ✲ ,-1,Ferme hydroponique,Ferme hydroponique,true,
+ ⌯ ,-1,Capteur d'Humidité,Capteur d'Humidité,true,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ ⌯ ,-1,Capteur d'Humidité,Capteur d'Humidité,true,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ ≎ ,-1,Recycleur d'Air,Recycleur d'Air,true,
+ ⍒ ,428,Puit de Forage,Cuivre,true,
+ ⍒ ,270,Puit de Forage,Soufre,true,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ ⍒ ,540,Puit de Forage,Fer,true,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+Fe ,500,Fer,Fer,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ U ,500,Uranium,Uranium,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ S ,500,Soufre,Soufre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ C ,500,Carbone,Carbone,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+Cu ,500,Cuivre,Cuivre,false,
+Fe ,500,Fer,Fer,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+ + ,500,Terre,Terre,false,
+#SECTION,EVENTS,,,,
+entrepotPlein,dortoirsPlein,ressourceEstEpuiseeSTR,filonEpuise,BatimentsPosed,
+false,false,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+true,,,,,
+false,,,,,
+false,,,,,
+false,,,,,
+false,,,,,
+true,,,,,
+true,,,,,
+true,,,,,
+false,,,,,
+false,,,,,
+true,,,,,
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null
+null,null,null,null,null,null

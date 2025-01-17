@@ -88,6 +88,7 @@ class PlanetColonizer extends Program{
     int maxLength(int[] tab, int idDebut){
         int max=length(""+tab[idDebut]);
         for(int i=idDebut+1;i<length(tab);i++){
+            println(tab[i]);
             if (length(""+tab[i])>max){
                 max=length(""+tab[i]);
             }
@@ -117,7 +118,7 @@ class PlanetColonizer extends Program{
         return id;
     }
 
-    boolean TerrainTabIsEmpty(Terrain[] tab){
+    boolean TabIsEmpty(Terrain[] tab){
         boolean isEmpty=false;
         int nullCmpt=0;
         int id=0;
@@ -133,13 +134,7 @@ class PlanetColonizer extends Program{
         return isEmpty;
     }
 
-    void tabEmptier(String[] tab){
-        for (int i=0;i<length(tab);i++){
-            tab[i]="";
-        }
-    }
-
-    boolean StringTabIsEmpty(String[] tab){
+    boolean TabIsEmpty(String[] tab){
         boolean isEmpty=false;
         int nullCmpt=0;
         int id=0;
@@ -153,6 +148,28 @@ class PlanetColonizer extends Program{
             isEmpty=true;
         }
         return isEmpty;
+    }
+
+    boolean TabIsEmpty(int[] tab){
+        boolean isEmpty=false;
+        int nullCmpt=0;
+        int id=0;
+        while(id<length(tab)){
+            if(tab[id]==0){
+                nullCmpt++;
+            }
+            id++;
+        }
+        if (nullCmpt==length(tab)){
+            isEmpty=true;
+        }
+        return isEmpty;
+    }
+
+    void tabEmptier(String[] tab){
+        for (int i=0;i<length(tab);i++){
+            tab[i]="";
+        }
     }
 
     // Convertit un entier en caractère (utile pour l'affichage de la carte)
@@ -414,21 +431,28 @@ class PlanetColonizer extends Program{
     void testTerrainTabIsEmpty() {
         Terrain[] emptyTab = {null, null, null};
         Terrain[] nonEmptyTab = {new Terrain(), null};
-        assertTrue(TerrainTabIsEmpty(emptyTab)); // Vérifie que le tableau vide retourne true
-        assertFalse(TerrainTabIsEmpty(nonEmptyTab)); // Vérifie qu'un tableau non vide retourne false
-    }
-
-    void testTabEmptier() {
-        String[] tab = {"a", "b", "c"};
-        tabEmptier(tab);
-        assertTrue(StringTabIsEmpty(tab)); // Après vidage, le tableau doit être vide
+        assertTrue(TabIsEmpty(emptyTab)); // Vérifie que le tableau vide retourne true
+        assertFalse(TabIsEmpty(nonEmptyTab)); // Vérifie qu'un tableau non vide retourne false
     }
 
     void testStringTabIsEmpty() {
         String[] emptyTab = {"", "", ""};
         String[] nonEmptyTab = {"a", "", ""};
-        assertTrue(StringTabIsEmpty(emptyTab)); // Doit être vide
-        assertFalse(StringTabIsEmpty(nonEmptyTab)); // Ne doit pas être vide
+        assertTrue(TabIsEmpty(emptyTab)); // Doit être vide
+        assertFalse(TabIsEmpty(nonEmptyTab)); // Ne doit pas être vide
+    }
+
+    void testIntTabIsEmpty() {
+        int[] emptyTab = {0,0,0};
+        int[] nonEmptyTab = {1,0,0};
+        assertTrue(TabIsEmpty(emptyTab)); // Doit être vide
+        assertFalse(TabIsEmpty(nonEmptyTab)); // Ne doit pas être vide
+    }
+
+    void testTabEmptier() {
+        String[] tab = {"a", "b", "c"};
+        tabEmptier(tab);
+        assertTrue(TabIsEmpty(tab)); // Après vidage, le tableau doit être vide
     }
 
     void testIntToChar() {
@@ -950,9 +974,10 @@ class PlanetColonizer extends Program{
         for (int i = 0; i < length(batiment.ResNecessaire.coutDeConstruction); i++) {
             int idRes = batiment.ResNecessaire.coutDeConstruction[i];
             etat.ressources[idRes].quantite -= batiment.ResNecessaire.quantiteNecessaire[i];
-            etat.gestion.variationRessources[idRes] -= batiment.ResNecessaire.quantiteNecessaire[i];
+            etat.gestion.variationPoseRessources[idRes] -= batiment.ResNecessaire.quantiteNecessaire[i];
+            println("VarRes:"+etat.gestion.variationPoseRessources[idRes]);
         }
-
+        
         switch (id) {
             case VAISSEAU_INDEX:
                 return placerVaisseau(etat, lig, col, batiment);
@@ -1067,18 +1092,21 @@ class PlanetColonizer extends Program{
     void verifCapaciteEntrepot(EtatJeu etat){
         if(calcCapaciteEntrepot(etat) < etat.gestion.capaciteEntrepot){
             etat.events.entrepotPlein[0]=false;
+        }else{
+            etat.events.entrepotPlein[0]=true;
         }
     }
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles) {
         int capaciteEntreposee = calcCapaciteEntrepot(etat);
-        println();
-        println(etat.events.entrepotPlein[0]);
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
-
+            verifCapaciteEntrepot(etat);
+            println();
+            println("LogDebut:"+etat.events.entrepotPlein[0]);
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
             if (batiment.ressourceActuelle.fonctionne[0] == false) {
+                println("LogFonctionnePas");
                 if (etat.events.entrepotPlein[0] == false) {
                     int peutConsommerRes = 0;
                     int cmpt = 0;
@@ -1091,13 +1119,18 @@ class PlanetColonizer extends Program{
                     }
                     if (peutConsommerRes == length(batiment.ressourceActuelle.ressourcesConso)) {
                         marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
+                        println("LogMarche");
                     }
                 }
+            }else if(batiment.ressourceActuelle.fonctionne[0] == true && etat.events.entrepotPlein[0] == true){
+                marcheArret(listeBatimentsPossibles, etat.planete.carte, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1]);
             }
 
             if (batiment.ressourceActuelle.fonctionne[0] == true) {
+                println("LogFonctionne");
                 if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[10].nom)) {
                     mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
+                    verifCapaciteEntrepot(etat);
                 } else {
                     int id = 0;
                     while (id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[id].nom)) {
@@ -1125,7 +1158,7 @@ class PlanetColonizer extends Program{
                         }
                     }
                 }
-                println(etat.events.entrepotPlein[0]);
+                println("LogFin:"+etat.events.entrepotPlein[0]);
             }
         }
     }
@@ -1156,16 +1189,11 @@ class PlanetColonizer extends Program{
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
-                println("LogPlein");
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 consoRes(etat,1,batiment);
-                println("Logconso");
                 genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
-                println("Loggenere");
             
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
-    
-                marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
                 etat.events.entrepotPlein[0]=true;
             }
         }else{
@@ -1215,6 +1243,7 @@ class PlanetColonizer extends Program{
 
 
     void marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
+        println("LogMarcheArret");
         int[]quantiteRessourcesConsoPuitDF=new int[]{10,12,15,15,15};
         int[]quantiteRessourcesGenereePuitDF=new int[]{10,7,5,5,1};
 
@@ -1683,7 +1712,7 @@ class PlanetColonizer extends Program{
         }
 
         eventsTabAffic[0]=ANSI_BOLD + "Événements:"+ ANSI_RESET;
-        if (StringTabIsEmpty(etat.events.naissance) && StringTabIsEmpty(etat.events.deces) && StringTabIsEmpty(etat.events.filonEpuise) && StringTabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
+        if (TabIsEmpty(etat.events.naissance) && TabIsEmpty(etat.events.deces) && TabIsEmpty(etat.events.filonEpuise) && TabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
             eventsTabAffic[2]="Il n'y à pas eu d'événements cette année";
         }else{
             String[] tabFusion=new String[length(etat.events.naissance)+length(etat.events.deces)+length(etat.events.filonEpuise)+length(etat.events.ressourceEstEpuiseeSTR)];
@@ -1709,13 +1738,13 @@ class PlanetColonizer extends Program{
             int maxFusion=maxLength(tabFusion,0);
 
             int id=1; 
-            if (!StringTabIsEmpty(etat.events.naissance) || !StringTabIsEmpty(etat.events.deces)){
+            if (!TabIsEmpty(etat.events.naissance) || !TabIsEmpty(etat.events.deces)){
                 int last=0;
                 boolean tooMuch=false;
                 eventsTabAffic[id]=ANSI_BOLD +"Colonie:"+ANSI_RESET;
                 id+=2;
 
-                if(!StringTabIsEmpty(etat.events.naissance)){
+                if(!TabIsEmpty(etat.events.naissance)){
                     last=findLastIndex(etat.events.naissance);
                     if(last==1){
                         eventsTabAffic[id]=ANSI_BOLD + "Nouvelle naissance ! :" +ANSI_RESET;
@@ -1741,7 +1770,7 @@ class PlanetColonizer extends Program{
                     tabEmptier(etat.events.naissance);
                     id++;
                 }
-                if(!StringTabIsEmpty(etat.events.deces)){
+                if(!TabIsEmpty(etat.events.deces)){
                     last=findLastIndex(etat.events.deces);
                     tooMuch=false;
                     if(last==1){
@@ -1769,7 +1798,7 @@ class PlanetColonizer extends Program{
                 }
             }
 
-            if(!StringTabIsEmpty(etat.events.filonEpuise) || !StringTabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
+            if(!TabIsEmpty(etat.events.filonEpuise) || !TabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
                 String separator="";
                 for (int s=0;s<maxFusion;s++){
                     separator=repeatChar('-',maxFusion);
@@ -1781,7 +1810,7 @@ class PlanetColonizer extends Program{
                 eventsTabAffic[id]="Gestion des Ressources: ";
                 id++;
 
-                if(!StringTabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
+                if(!TabIsEmpty(etat.events.ressourceEstEpuiseeSTR)){
                     for (int q=2;q<length(etat.ressources);q++){
                         if(!equals(etat.events.ressourceEstEpuiseeSTR[q],"")){
                             eventsTabAffic[id]=etat.events.ressourceEstEpuiseeSTR[q];
@@ -1790,7 +1819,7 @@ class PlanetColonizer extends Program{
                     }
                     id++;
                 }
-                if(!StringTabIsEmpty(etat.events.filonEpuise)){
+                if(!TabIsEmpty(etat.events.filonEpuise)){
                     for (int a=0;a<findLastIndex(etat.events.filonEpuise);a++){
                         eventsTabAffic[id]=etat.events.filonEpuise[a];
                         id++;
@@ -1912,6 +1941,8 @@ class PlanetColonizer extends Program{
     Gestion newGestion(Terrain[] RESSOURCES_INIT,Terrain[] listeBatimentsPossibles){
         Gestion g=new Gestion();
         g.tabMoyennepollution=new double[length(listeBatimentsPossibles)];
+        g.variationRessources=new int[length(RESSOURCES_INIT)];
+        g.variationPoseRessources=new int[length(RESSOURCES_INIT)];
         return g;
     }
 
@@ -1989,7 +2020,7 @@ class PlanetColonizer extends Program{
         }
 
         id=1;
-        if (TerrainTabIsEmpty(listeBatimentsPosable)){
+        if (TabIsEmpty(listeBatimentsPosable)){
             menuPlacerBatiment(listeBatimentsPossibles,etat,true);
             return;
         }else{
@@ -2037,6 +2068,7 @@ class PlanetColonizer extends Program{
                     return;
                 default:
                     println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
+        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         }
     }
 
@@ -2135,7 +2167,6 @@ class PlanetColonizer extends Program{
             // Affichage du menu principal
             println("\n========== MENU PRINCIPAL ==========");
             println("1. Commencer une " + ANSI_BOLD + "nouvelle partie" + ANSI_RESET);
-            //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
             println("2. " + ANSI_BOLD + "Charger " + ANSI_RESET + "une ancienne sauvegarde");
             println("3. " + ANSI_BOLD + "Quitter" + ANSI_RESET);
             println("------------------------------------");
@@ -2288,6 +2319,12 @@ class PlanetColonizer extends Program{
             // Réinitialisation de la ressource "Électricité" à chaque tour
             etatJeu.ressources[10] = newRessource("⚡ Electricité", "Elec", 1.0, 100);
             etatJeu.gestion.variationRessources = new int[length(etatJeu.ressources)]; // Réinitialise les variations de ressources
+            if(!TabIsEmpty(etatJeu.gestion.variationPoseRessources)){
+                for (int i = 0; i < length(etatJeu.gestion.variationPoseRessources); i++) {
+                    etatJeu.gestion.variationRessources[i] = etatJeu.gestion.variationPoseRessources[i];
+                }
+                etatJeu.gestion.variationPoseRessources = new int[length(etatJeu.ressources)];
+            }
 
             // Vérifications et mises à jour des ressources et des bâtiments
             ressourceEmptyVerif(etatJeu); // Vérifie si des ressources sont épuisées
