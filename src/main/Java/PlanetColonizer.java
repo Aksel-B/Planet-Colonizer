@@ -1053,8 +1053,6 @@ class PlanetColonizer extends Program{
         int capaciteEntreposee = calcCapaciteEntrepot(etat);
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
             verifCapaciteEntrepot(etat);
-            println();
-
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
             // Si le bâtiment est un puits de forage, traitement spécial
@@ -1183,8 +1181,6 @@ class PlanetColonizer extends Program{
 
 
     boolean marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
-        println("LogMarcheArret");
-
         CaseCarte batiment=carte[lig][col];
         
         return !batiment.ressourceActuelle.fonctionne;
@@ -1794,7 +1790,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
         if(etat.tour>0){
-            //clearScreen(); 
+            clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
@@ -1991,7 +1987,6 @@ class PlanetColonizer extends Program{
                     return;
                 default:
                     println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
-        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         }
     }
 
@@ -2079,6 +2074,7 @@ class PlanetColonizer extends Program{
 
             default:
                 // Gestion des entrées invalides
+                //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
                 println(ANSI_RED + "Option invalide." + ANSI_RESET);
                 return true; // Renvoie `true` pour maintenir le joueur dans le menu
         }
