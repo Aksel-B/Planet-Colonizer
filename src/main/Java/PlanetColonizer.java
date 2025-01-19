@@ -979,11 +979,20 @@ class PlanetColonizer extends Program{
         for (int i = 0; i < length(QUANTITE_RESSOURCES_CONSO_PUIT_DF); i++) {
             int j = i + 2;
             if (equals(batimentNom, etat.ressources[j].nom)) {
-                etat.planete.carte[lig][col] = newCaseCarte(batiment, (BASE_RESOURCE_AMOUNT - i * RESOURCE_DECREMENT), etat.planete.carte[lig][col].ressourceCaseInit, true);
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesConso[0] = j;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResConso[0] = QUANTITE_RESSOURCES_CONSO_PUIT_DF[i];
-                etat.planete.carte[lig][col].ressourceActuelle.ressourcesGeneree[0] = j;
-                etat.planete.carte[lig][col].ressourceActuelle.quantiteResGeneree[0] = QUANTITE_RESSOURCES_GENEREE_PUIT_DF[i];
+                CaseCarte nouvelleCarte = newCaseCarte(batiment, (BASE_RESOURCE_AMOUNT - i * RESOURCE_DECREMENT), etat.planete.carte[lig][col].ressourceCaseInit, true);
+            
+                // Créer de nouveaux tableaux spécifiques à cette case
+                nouvelleCarte.ressourceActuelle = newBatiment(
+                    batiment.ResNecessaire,
+                    batiment.nom,
+                    batiment.symbole,
+                    batiment.pollutionGeneree,
+                    new int[] { j, 10 },                                  // ressourcesConso
+                    new int[] { QUANTITE_RESSOURCES_CONSO_PUIT_DF[i], 25 }, // quantiteResConso
+                    new int[] { j },                                      // ressourcesGeneree
+                    new int[] { QUANTITE_RESSOURCES_GENEREE_PUIT_DF[i] }    // quantiteResGeneree
+                );
+                etat.planete.carte[lig][col] = nouvelleCarte;
             }
         }
     }
@@ -1105,7 +1114,12 @@ class PlanetColonizer extends Program{
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
             id++;
         }
-
+        println();
+        println(etat.ressources[id].nom);
+        println(batiment.ressourceActuelle.ressourcesConso[0]);
+        println(batiment.ressourceActuelle.quantiteResConso[0]);
+        println(batiment.ressourceActuelle.quantiteResGeneree[0]);
+        
         if(batiment.quantiteRestante<=0){
             batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
             String ligSTR="";
@@ -2060,6 +2074,7 @@ class PlanetColonizer extends Program{
         // Gère le choix de l'utilisateur à l'aide d'un switch
         switch (choix) {
             case 1:
+                //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
                 // Option 1 : Continuer la partie
                 return true; // Renvoie `true` pour indiquer que la partie continue
 
@@ -2074,7 +2089,6 @@ class PlanetColonizer extends Program{
 
             default:
                 // Gestion des entrées invalides
-                //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
                 println(ANSI_RED + "Option invalide." + ANSI_RESET);
                 return true; // Renvoie `true` pour maintenir le joueur dans le menu
         }
