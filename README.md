@@ -119,9 +119,8 @@ La production intensive de fer pour construire des infrastructures génère du d
 ## **Bugs connus**
 
 1. **Chargement :** Non fonctionnels pour le moment.
-2. **Batiments :** 2 puits de forage extrayant une ressource différente ne peuvent pas fonctionner en même temps
-3. **Batiments :** les batiments ne se redémarrent pas correctement après s'être éteins
-4. **Compatibilité limitée :** Testé principalement sur Linux.
+2. **Batiments :** les batiments ne se redémarrent pas correctement après s'être éteins
+4. **Compatibilité limitée :** Testé principalement sur Linux et nécessitant un terminal utilisant de l'UTF-8.
 
 ---
 
