@@ -917,12 +917,28 @@ class PlanetColonizer extends Program{
         return b;
     }
 
+    Terrain cloneTerrain(Terrain original) {
+        return newBatiment(
+            original.ResNecessaire,
+            original.nom,
+            original.symbole,
+            original.pollutionGeneree,
+            original.ressourcesConso,
+            original.quantiteResConso,
+            original.ressourcesGeneree,
+            original.quantiteResGeneree
+        );
+    }
+
     int placerBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, Terrain batiment) {
         etat.gestion.posBat[countLastPos(etat.gestion.posBat)] = new int[]{lig, col};
         int id = 0;
         while (id < length(listeBatimentsPossibles) && batiment != listeBatimentsPossibles[id]) {
             id++;
         }
+
+        // Créer un clone du bâtiment pour que deux bâtiments de même type ne soient pas liés
+        Terrain batimentClone = cloneTerrain(batiment);
 
         for (int i = 0; i < length(batiment.ResNecessaire.coutDeConstruction); i++) {
             int idRes = batiment.ResNecessaire.coutDeConstruction[i];
@@ -1011,21 +1027,25 @@ class PlanetColonizer extends Program{
         boolean posableRessource = true;
 
         // Vérifier si le bâtiment est un puits et la ressource est de type non posable
-        if ((etat.planete.carte[lig][col].ressourceCaseInit == etat.ressources[0] || etat.planete.carte[lig][col].ressourceCaseInit == etat.ressources[1]) && equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
+        if ((equals(etat.planete.carte[lig][col].ressourceCaseInit.nom, etat.ressources[0].nom) || 
+            equals(etat.planete.carte[lig][col].ressourceCaseInit.nom, etat.ressources[1].nom)) && 
+            equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
             posableTerrain = false;
         }
 
         // Vérifier si la ressource est dans la plage non posable pour les autres bâtiments
         int id = 0;
-        while (id < length(etat.ressources) && etat.planete.carte[lig][col].ressourceCaseInit != etat.ressources[id]) {
+        while (id < length(etat.ressources) && 
+            !equals(etat.planete.carte[lig][col].ressourceCaseInit.nom, etat.ressources[id].nom)) {
             id++;
         }
-        if (!equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom) && (id >= RESOURCE_INDEX_MIN && id < RESOURCE_INDEX_MAX)) {
+        if (!equals(batiment.nom, listeBatimentsPossibles[PUITS_INDEX].nom) && 
+            (id >= RESOURCE_INDEX_MIN && id < RESOURCE_INDEX_MAX)) {
             posableTerrain = false;
         }
 
-        // Vérifier si le bâtiment est déjà placé
-        if ((batiment == listeBatimentsPossibles[CCT_INDEX] && etat.gestion.centreDeCommunicationPlace == 1) || (batiment == listeBatimentsPossibles[VAISSEAU_INDEX] && etat.gestion.vaisseauPlace == 1)) {
+        // Vérifier c'est bâtiments spécifiques sont déjà placés
+        if ((equals(batiment.nom,listeBatimentsPossibles[CCT_INDEX].nom) && etat.gestion.centreDeCommunicationPlace == 1) || (batiment == listeBatimentsPossibles[VAISSEAU_INDEX] && etat.gestion.vaisseauPlace == 1)) {
             posableTerrain = false;
         }
 
@@ -1082,14 +1102,14 @@ class PlanetColonizer extends Program{
                         break;
                     }
                 }
-                
+
                 // Si le bâtiment ne fonctionnait pas et peut maintenant consommer
                 if (!batiment.ressourceActuelle.fonctionne && peutConsommer && !etat.events.entrepotPlein[0]) {
-                    batiment.ressourceActuelle.fonctionne = true;
+                    batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
                 }
                 // Si le bâtiment fonctionnait mais ne peut plus consommer
                 else if (batiment.ressourceActuelle.fonctionne && (!peutConsommer || etat.events.entrepotPlein[0])) {
-                    batiment.ressourceActuelle.fonctionne = false;
+                    batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
                 }
                 
                 // Si le bâtiment fonctionne, gérer la production
@@ -1114,14 +1134,9 @@ class PlanetColonizer extends Program{
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
             id++;
         }
-        println();
-        println(etat.ressources[id].nom);
-        println(batiment.ressourceActuelle.ressourcesConso[0]);
-        println(batiment.ressourceActuelle.quantiteResConso[0]);
-        println(batiment.ressourceActuelle.quantiteResGeneree[0]);
         
         if(batiment.quantiteRestante<=0){
-            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
             String ligSTR="";
             if (lig>9){
                 ligSTR+=lig;
@@ -1146,7 +1161,7 @@ class PlanetColonizer extends Program{
                 etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
             }
         }else{
-            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
         }
         return batiment.ressourceActuelle.fonctionne;
     }
@@ -1172,7 +1187,7 @@ class PlanetColonizer extends Program{
                 batiment.ressourceActuelle.fonctionne=genererRes(etat,f,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             }
         }else{
-            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
         }
         return batiment.ressourceActuelle.fonctionne;
     }
@@ -1188,15 +1203,13 @@ class PlanetColonizer extends Program{
             etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
             
             etat.events.entrepotPlein[0]=true;
-            batiment.ressourceActuelle.fonctionne=marcheArret(listeBatimentsPossibles,etat.planete.carte,lig,col);
+            batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
         }
         return batiment.ressourceActuelle.fonctionne;
     }
 
 
-    boolean marcheArret(Terrain[] listeBatimentsPossibles,CaseCarte[][] carte, int lig, int col){
-        CaseCarte batiment=carte[lig][col];
-        
+    boolean marcheArret(CaseCarte batiment){
         return !batiment.ressourceActuelle.fonctionne;
     }
 
@@ -1217,10 +1230,12 @@ class PlanetColonizer extends Program{
 
     CaseCarte newCaseCarte(Terrain ressourceActuelle, int quantiteRestante, Terrain ressourceCaseInit,boolean exploitee){
         CaseCarte c = new CaseCarte();
-        c.ressourceActuelle=ressourceActuelle;
-        c.ressourceCaseInit=ressourceCaseInit;
+        c.ressourceActuelle = cloneTerrain(ressourceActuelle);
+        // Si ressourceCaseInit est différent de ressourceActuelle, le cloner aussi
+        c.ressourceCaseInit = (ressourceCaseInit == ressourceActuelle) ? 
+                        c.ressourceActuelle : 
+                        cloneTerrain(ressourceCaseInit);
         c.exploitee=exploitee;
-
         c.symbole=ressourceActuelle.symbole;
         c.quantiteRestante=quantiteRestante;
         return c;
@@ -1599,9 +1614,9 @@ class PlanetColonizer extends Program{
         if(etat.events.entrepotPlein[0]){
             idDortoirs++;
             resTabAffic[15]=ANSI_RED+etat.events.entrepotPleinSTR+ANSI_RESET;
-            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits disponibles"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
+            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits occupés"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
         }else{
-            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits disponibles"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
+            resTabAffic[idDortoirs]=ANSI_BOLD + "Lits occupés"+ ANSI_RESET+": "+etat.gestion.nombreVivants+"/"+etat.gestion.capaciteTotalePop;
         }
         if(etat.events.dortoirsPlein[0]){
             resTabAffic[idDortoirs+1]=ANSI_RED+etat.events.dortoirsPleinSTR+ANSI_RESET;
@@ -2059,6 +2074,7 @@ class PlanetColonizer extends Program{
         // Affiche l'état actuel du jeu
         afficherEtat(etatJeu, false, false, false);
 
+        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         // Récupère le nom du fichier associé à l'état actuel du jeu
         String nomFichier = etatJeu.nom;
 
@@ -2074,7 +2090,6 @@ class PlanetColonizer extends Program{
         // Gère le choix de l'utilisateur à l'aide d'un switch
         switch (choix) {
             case 1:
-                //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
                 // Option 1 : Continuer la partie
                 return true; // Renvoie `true` pour indiquer que la partie continue
 
@@ -2262,9 +2277,9 @@ class PlanetColonizer extends Program{
             // Vérifications et mises à jour des ressources et des bâtiments
             ressourceEmptyVerif(etatJeu); // Vérifie si des ressources sont épuisées
             verifCapaciteEntrepot(etatJeu); // Vérifie la capacité de stockage des entrepôts
+            mettreAJourColons(etatJeu); // Met à jour les colons (santé, besoins, etc.)
             mettreAJourBatiment(etatJeu, listeBatimentsPossibles); // Met à jour les bâtiments en fonction de leur production et de leurs effets
             etatJeu.planete.pollution = pollutionTotale(etatJeu); // Calcule la pollution totale de la planète
-            mettreAJourColons(etatJeu); // Met à jour les colons (santé, besoins, etc.)
 
             // Gestion de la population
             etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Compte le nombre de colons vivants
