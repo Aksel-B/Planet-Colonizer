@@ -1883,6 +1883,19 @@ class PlanetColonizer extends Program{
             e.BatimentsPosed[o]=false;
         }
 
+        final String POSEDTXT = "../../../ressources/CSV-TXT/Posed.csv";
+        CSVFile f = loadCSV(POSEDTXT,'/'); // Création d'un objet fichier pour lire le fichier des events
+        e.posedTxt=new String[length(listeBatimentsPossibles)][columnCount(f)];
+
+        for(int l=0;l<length(listeBatimentsPossibles);l++){
+            int column=columnCount(f,l);
+            String[] tmp=new String[column];
+            for(int c=0;c<column;c++){
+                tmp[c]=getCell(f,l,c);
+            }
+            e.posedTxt[l]=tmp;
+        }
+    
         return e;
     }
 
