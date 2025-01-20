@@ -582,7 +582,7 @@ class PlanetColonizer extends Program{
 
         // Section 5 : Carte
         donneesCSV[index++] = new String[]{"#SECTION", "CASES_CARTE", "", "", "", ""};
-        donneesCSV[index++] = new String[]{"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", ""};
+        donneesCSV[index++] = new String[]{"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", "fonctionne"};
         for (int i = 0; i < length(etat.planete.carte); i++) {
             for (int j = 0; j < length(etat.planete.carte[i]); j++) {
                 CaseCarte caseCarte = etat.planete.carte[i][j];
@@ -592,7 +592,7 @@ class PlanetColonizer extends Program{
                     caseCarte.ressourceActuelle != null ? caseCarte.ressourceActuelle.nom : "null",
                     caseCarte.ressourceCaseInit != null ? caseCarte.ressourceCaseInit.nom : "null",
                     "" + caseCarte.exploitee,
-                    ""
+                    "" + caseCarte.ressourceActuelle.fonctionne
                 };
             }
         }
@@ -786,11 +786,12 @@ class PlanetColonizer extends Program{
                 String ressourceActuelleNom = getCell(fichier, ligne, 2);
                 String ressourceCaseInitNom = getCell(fichier, ligne, 3);
                 boolean exploitee = stringToBoolean(getCell(fichier, ligne, 4));
-
+                boolean fonctionne= stringToBoolean(getCell(fichier, ligne, 5));
+                
                 // Identifier les ressources
                 Terrain ressourceActuelle = trouverRessource(etat.ressources, ressourceActuelleNom);
                 Terrain ressourceCaseInit = trouverRessource(etat.ressources, ressourceCaseInitNom);
-
+                ressourceActuelle.fonctionne=fonctionne;
                 etat.planete.carte[l][c] = newCaseCarte(ressourceActuelle, quantiteRestante, ressourceCaseInit, exploitee);
                 ligne++;
             }
