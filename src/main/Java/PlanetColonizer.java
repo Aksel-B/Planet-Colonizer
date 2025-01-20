@@ -214,15 +214,12 @@ class PlanetColonizer extends Program{
     }
 
     String spaceEraser(String chaine){
-        String output=chaine;
-        // Supprimer les espaces au début
-        while (length(output) > 0 && charAt(output, 0) == ' ') {
-            output = substring(output, 1, length(output)); // Enlève le premier caractère si c'est un espace
-        }
-
-        // Supprimer les espaces à la fin
-        while (length(output) > 0 && charAt(output, length(output) - 1) == ' ') {
-            output = substring(output, 0, length(output) - 1); // Enlève le dernier caractère si c'est un espace
+        String output="";
+        // regarde chaque caractère et ne retiens que ceux qui ne sont pas espaces
+        for (int i=0;i<length(chaine);i++){
+            if(charAt(chaine,i)!=' '){
+                output+=charAt(chaine,i);
+            }
         }
         return output;
     }
@@ -389,7 +386,7 @@ class PlanetColonizer extends Program{
     }
 
     String replace(String str, String oldStr, String newStr) {
-        if (str == null || oldStr == null || newStr == null) {
+        if ((str == null || oldStr == null || newStr == null) || (equals(str,"") || equals(oldStr,"") || equals(newStr,""))) {
             return str;
         }
         
@@ -504,8 +501,8 @@ class PlanetColonizer extends Program{
     }
 
     void testGetVisibleLength(){
-        assertEquals(4,ANSI_MAGENTA+"test"+ANSI_RESET);
-        assertEquals(0,ANSI_RESET);
+        assertEquals(4,getVisibleLength(ANSI_MAGENTA+"test"+ANSI_RESET));
+        assertEquals(0,getVisibleLength(ANSI_RESET));
     }
 
     void testReplace() {
@@ -787,7 +784,7 @@ class PlanetColonizer extends Program{
                 String ressourceCaseInitNom = getCell(fichier, ligne, 3);
                 boolean exploitee = stringToBoolean(getCell(fichier, ligne, 4));
                 boolean fonctionne= stringToBoolean(getCell(fichier, ligne, 5));
-                
+
                 // Identifier les ressources
                 Terrain ressourceActuelle = trouverRessource(etat.ressources, ressourceActuelleNom);
                 Terrain ressourceCaseInit = trouverRessource(etat.ressources, ressourceCaseInitNom);
@@ -2328,7 +2325,7 @@ class PlanetColonizer extends Program{
 
 //-----------------------------VOID ALGORITHM---------------------------------------------------------------------------------------------------------
     // Fonction principale de l'algorithme du jeu
-    void algorithm() {
+    void _algorithm() {
         // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
         File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
