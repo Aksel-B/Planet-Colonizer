@@ -542,13 +542,12 @@ class PlanetColonizer extends Program{
 
         // Section 2 : État du Jeu
         donneesCSV[index++] = new String[]{"#SECTION", "ETAT_JEU", "", "", "", ""};
-        donneesCSV[index++] = new String[]{"nomJeu", "score", "tour", "pollution", "", ""};
+        donneesCSV[index++] = new String[]{"nomJeu", "score", "tour", "", "", ""};
         donneesCSV[index++] = new String[]{
             etat.nom,
             "" + etat.score,
             "" + etat.tour,
-            "" + etat.planete.pollution,
-            "", ""
+            "","","", ""
         };
 
         // Section 3 : Gestion
@@ -575,7 +574,15 @@ class PlanetColonizer extends Program{
             };
         }
 
-        // Section 5 : Carte
+        // Section 5: Planete
+        donneesCSV[index++] = new String[]{"#SECTION", "POLLUTION", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"pollution", "", "", "", "", ""};
+        donneesCSV[index++] = new String[]{
+            "" + etat.planete.pollution,
+            "", "", "", "", ""
+        };
+
+        // Section 6 : Carte
         donneesCSV[index++] = new String[]{"#SECTION", "CASES_CARTE", "", "", "", ""};
         donneesCSV[index++] = new String[]{"symbole", "quantiteRestante", "ressourceActuelle", "ressourceCaseInit", "exploitee", "fonctionne"};
         for (int i = 0; i < length(etat.planete.carte); i++) {
@@ -592,7 +599,7 @@ class PlanetColonizer extends Program{
             }
         }
 
-        // Section 6 : Événements
+        // Section 7 : Événements
         donneesCSV[index++] = new String[]{"#SECTION", "EVENTS", "", "", "", ""};
         donneesCSV[index++] = new String[]{"entrepotPlein", "dortoirsPlein", "ressourceEstEpuiseeSTR", "filonEpuise", "BatimentsPosed", ""};
         donneesCSV[index++] = new String[]{"" + etat.events.entrepotPlein[0], "" + etat.events.dortoirsPlein[0], "", "", "", ""};
@@ -667,7 +674,6 @@ class PlanetColonizer extends Program{
             etatCharge.ressources = new Terrain[nombreRessources];
             etatCharge.gestion = newGestion(etatCharge.ressources, new Terrain[0]);
             etatCharge.events = newEvents(etatCharge, new Terrain[0]);
-            etatCharge.planete = newPlanete(etatCharge.ressources, tailleCarte);
 
             // Étape 2 : Charger les données pour chaque section
             for (int ligne = 0; ligne < rowCount(fichierSauvegarde); ligne++) {
@@ -687,6 +693,10 @@ class PlanetColonizer extends Program{
                         chargerInventaire(etatCharge, fichierSauvegarde, ligne + 2, nombreRessources);
                         break;
 
+                    case "POLLUTION":
+                        etatCharge.planete = chargerPlanete(etatCharge, fichierSauvegarde, ligne,tailleCarte);
+                        break;
+
                     case "COLONS":
                         chargerColons(etatCharge, fichierSauvegarde, ligne + 2, nombreColons);
                         break;
@@ -698,6 +708,7 @@ class PlanetColonizer extends Program{
                     case "EVENTS":
                         chargerEvents(etatCharge, fichierSauvegarde, ligne + 2);
                         break;
+
 
                     default:
                         // Autres sections ignorées
@@ -723,7 +734,7 @@ class PlanetColonizer extends Program{
 
     void chargerInventaire(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
         for (int i = 0; i < nombreRessources; i++) {
-            int quantite = stringToInt(getCell(fichier, ligne + i, 1));
+            int quantite = stringToInt(getCell(fichier, ligne + i, 0));
 
             if (quantite < 0) {
                 // Si une des données est invalide, loggez l'erreur et passez à la ressource suivante
@@ -731,14 +742,16 @@ class PlanetColonizer extends Program{
                 continue; // Ignore cette ressource et passe à la suivante
             }
             
-            println(RESSOURCES_INIT[i].nom);
             etat.ressources[i] = RESSOURCES_INIT[i];
             etat.ressources[i].quantite=quantite;
-
-            println("Log"+etat.ressources[0].nom);
         }
     }
 
+    Planete chargerPlanete(EtatJeu etat, CSVFile fichier, int ligne,int tailleCarte) {
+        etat.planete=newPlanete(etat.ressources, tailleCarte);
+        etat.planete.pollution=stringToDouble(getCell(fichier, ligne+2, 0));
+        return etat.planete;
+    }
 
     int compterEntrees(CSVFile fichier, int debut, String stopSection) {
         int count = 0;
@@ -777,18 +790,56 @@ class PlanetColonizer extends Program{
             for (int c = 0; c < tailleCarte; c++) {
                 String symbole = getCell(fichier, ligne, 0);
                 int quantiteRestante = stringToInt(getCell(fichier, ligne, 1));
-                String ressourceActuelleNom = getCell(fichier, ligne, 2);
+                String ressourceCaseActuelleNom = getCell(fichier, ligne, 2);
                 String ressourceCaseInitNom = getCell(fichier, ligne, 3);
                 boolean exploitee = stringToBoolean(getCell(fichier, ligne, 4));
                 boolean fonctionne= stringToBoolean(getCell(fichier, ligne, 5));
 
                 // Identifier les ressources
-                Terrain ressourceActuelle = trouverRessource(etat.ressources, ressourceActuelleNom);
-                Terrain ressourceCaseInit = trouverRessource(etat.ressources, ressourceCaseInitNom);
-                ressourceActuelle.fonctionne=fonctionne;
-                ressourceActuelle.symbole=symbole;
 
-                etat.planete.carte[l][c] = newCaseCarte(ressourceActuelle, quantiteRestante, ressourceCaseInit, exploitee);
+                int idRes=0;
+                while(idRes<length(etat.ressources) && !equals(etat.ressources[idRes].nom,ressourceCaseActuelleNom)){
+                    idRes++;
+                }
+                println();
+                println(idRes);
+                if (idRes==length(etat.ressources)){
+                    println("Login");
+                    int idBat=0;
+                    while(idBat<length(listeBatimentsPossibles) && !equals(listeBatimentsPossibles[idBat].nom,ressourceCaseActuelleNom)){
+                        idBat++;
+                    }
+                    Terrain batiment=listeBatimentsPossibles[idBat];
+                    if (idBat==10){
+                        int idResInit=0;
+                        while(idResInit<length(etat.ressources) && !equals(etat.ressources[idResInit].nom,ressourceCaseInitNom)){
+                            idResInit++;
+                        }
+                        println("LogCasePDF");
+                        println(idBat);
+                        println(idResInit);
+                        CaseCarte nouvelleCarte =newCaseCarte(batiment, quantiteRestante, RESSOURCES_INIT[idRes], exploitee);
+                            nouvelleCarte.ressourceActuelle = newBatiment(
+                                batiment.ResNecessaire,
+                                batiment.nom,
+                                batiment.symbole,
+                                batiment.pollutionGeneree,
+                                new int[] { idRes, 10 },                                  // ressourcesConso
+                                new int[] { QUANTITE_RESSOURCES_CONSO_PUIT_DF[idRes-2], 25 }, // quantiteResConso
+                                new int[] { idRes },                                      // ressourcesGeneree
+                                new int[] { QUANTITE_RESSOURCES_GENEREE_PUIT_DF[idRes-2] }    // quantiteResGeneree
+                            );
+                        etat.planete.carte[l][c] = nouvelleCarte;
+                    }else{
+                        println("LogCaseNONPDF");
+                        etat.planete.carte[l][c] = newCaseCarte(batiment, quantiteRestante, batiment, exploitee);
+                    }
+                    etat.planete.carte[l][c].ressourceActuelle.fonctionne=fonctionne;
+                }else{
+                    println("LogCaseVierge");
+                    etat.planete.carte[l][c] = newCaseCarte(RESSOURCES_INIT[idRes], quantiteRestante, RESSOURCES_INIT[idRes], exploitee);
+                }
+
                 ligne++;
             }
         }
@@ -810,10 +861,9 @@ class PlanetColonizer extends Program{
     }
 
     Terrain trouverRessource(Terrain[] ressources, String nom) {
-        for (Terrain ressource : ressources) {
-            println(ressource.nom);
-            if (ressource != null && equals(ressource.nom, nom)) {
-                return ressource;
+        for (int i=0;i<length(ressources);i++){ 
+            if (ressources[i] != null && equals(ressources[i].nom, nom)) {
+                return ressources[i];
             }
         }
         return null; // Par défaut, retourne null si introuvable
@@ -1295,13 +1345,6 @@ class PlanetColonizer extends Program{
     }
 
     CaseCarte newCaseCarte(Terrain ressourceActuelle, int quantiteRestante, Terrain ressourceCaseInit, boolean exploitee) {
-        if (ressourceActuelle == null) {
-            ressourceActuelle = new Terrain();
-        }
-        if (ressourceCaseInit == null) {
-            ressourceCaseInit = new Terrain();
-        }
-
         CaseCarte c = new CaseCarte();
         c.ressourceActuelle = cloneTerrain(ressourceActuelle);
         // Si ressourceCaseInit est différent de ressourceActuelle, le cloner aussi
