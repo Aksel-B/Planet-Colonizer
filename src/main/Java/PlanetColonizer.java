@@ -1895,57 +1895,60 @@ class PlanetColonizer extends Program{
         return separAffic;
     }
 
-    void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
-        if(etat.tour>0){
+    void afficherEtat(EtatJeu etat, boolean afficherNbVivNecessaire, boolean afficherTipsPedago, boolean optionInvalide) {
+        if (etat.tour > 0) {
             clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
-        String[][] affichage=afficherEtatCreerTab(etat);
-        String affiche="";
+        String[][] affichage = afficherEtatCreerTab(etat);
+        String affiche = "";
 
         println(affichage[0][0]);
-        for (int c=0;c<length(affichage[1]);c++){
-            for (int l=1;l<length(affichage,1);l++){
-                affiche+=affichage[l][c];
+        for (int c = 0; c < length(affichage[1]); c++) {
+            for (int l = 1; l < length(affichage, 1); l++) {
+                affiche += affichage[l][c];
             }
             println(affiche);
-            affiche="";
+            affiche = "";
         }
         println();
-        if(afficherNbVivNecessaire){
-            println("\n" + ANSI_BOLD + "Nombre de colons survivants : "+ ANSI_RESET + etat.gestion.nombreVivants);
+        if (afficherNbVivNecessaire) {
+            println("\n" + ANSI_BOLD + "Nombre de colons survivants : " + ANSI_RESET + etat.gestion.nombreVivants);
         }
 
-        if(etat.tour >=1 && afficherTipsPedago){
+        if (etat.tour >= 1 && afficherTipsPedago) {
             int lastIndex = countLastPos(etat.gestion.posBat) - 1;
-            int lig = etat.gestion.posBat[lastIndex][0];
-            int col = etat.gestion.posBat[lastIndex][1];
-            CaseCarte batiment = etat.planete.carte[lig][col];
-            
-            int id=0;
-            while(id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[id].nom)){
-                id++;
-            }
+            if (lastIndex >= 0 && lastIndex < length(etat.gestion.posBat)) {
+                int lig = etat.gestion.posBat[lastIndex][0];
+                int col = etat.gestion.posBat[lastIndex][1];
 
-            if(etat.events.BatimentsPosed[id]==false){
-                String cadre="        ";
-                int max=maxLength(etat.events.posedTxt[id],0)+length(cadre);
+                if (lig >= 0 && lig < length(etat.planete.carte, 1) && col >= 0 && col < length(etat.planete.carte, 2)) {
+                    CaseCarte batiment = etat.planete.carte[lig][col];
+                    int id = 0;
+                    while (id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[id].nom)) {
+                        id++;
+                    }
 
-                for (int i=0;i<max+8;i++){
-                    cadre+="-";
+                    if (id < length(listeBatimentsPossibles) && etat.events.BatimentsPosed[id] == false) {
+                        String cadre = "        ";
+                        int max = maxLength(etat.events.posedTxt[id], 0) + length(cadre);
+
+                        for (int i = 0; i < max + 8; i++) {
+                            cadre += "-";
+                        }
+                        println("\n" + cadre);
+                        for (int e = 0; e < length(etat.events.posedTxt[id]); e++) {
+                            println("                " + etat.events.posedTxt[id][e]);
+                        }
+                        println(cadre + "\n");
+                        etat.events.BatimentsPosed[id] = true;
+                    }
                 }
-                println("\n"+cadre);
-                for(int e=0;e<length(etat.events.posedTxt[id]);e++){
-                    String ligne = replace(etat.events.posedTxt[id][e],"\\033", "\033");
-                    println("                "+ligne);
-                }
-                println(cadre+"\n");
-                etat.events.BatimentsPosed[id]=true;
             }
         }
 
-        if(optionInvalide){
+        if (optionInvalide) {
             println(ANSI_RED + "\nOption invalide. Veuillez réessayer." + ANSI_RESET);
         }
     }
