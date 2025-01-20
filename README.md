@@ -55,9 +55,9 @@ La production intensive de fer pour construire des infrastructures génère du d
 -   Simulation réaliste de la vie des colons : reproduction, vieillissement, santé et satisfaction.
 -   Gérez leurs besoins essentiels : nourriture, eau, oxygène.
 
-### 💾 Sauvegarde et Chargement _(en développement)_
+### 💾 Sauvegarde et Chargement 
 
--   Fonctionnalité de sauvegarde et chargement à venir dans une prochaine version.
+-   Fonctionnalité de sauvegarde et chargement entièrement fonctionnels !
 
 ---
 
@@ -118,8 +118,7 @@ La production intensive de fer pour construire des infrastructures génère du d
 
 ## **Bugs connus**
 
-1. **Chargement :** Non fonctionnels pour le moment.
-2. **Compatibilité limitée :** Testé principalement sur Linux et nécessitant un terminal utilisant de l'UTF-8.
+1. **Compatibilité limitée :** Testé principalement sur Linux et nécessitant un terminal utilisant de l'UTF-8.
 
 ---
 
