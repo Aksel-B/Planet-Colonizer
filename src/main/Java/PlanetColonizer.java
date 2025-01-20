@@ -2325,7 +2325,7 @@ class PlanetColonizer extends Program{
 
 //-----------------------------VOID ALGORITHM---------------------------------------------------------------------------------------------------------
     // Fonction principale de l'algorithme du jeu
-    void _algorithm() {
+    void algorithm() {
         // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
         File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
