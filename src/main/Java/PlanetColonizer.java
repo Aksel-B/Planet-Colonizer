@@ -2074,7 +2074,7 @@ class PlanetColonizer extends Program{
 
         // Initialisation du tour à 0
         nouvelEtat.tour = 0;
-        
+        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         // Initialisation du score à 0
         nouvelEtat.score = 0.0;
 
@@ -2148,7 +2148,6 @@ class PlanetColonizer extends Program{
             for(int c=0;c<length(listeBatimentsPosable);c++){
                 if (listeBatimentsPosable[c] != null && length(listeBatimentsPosable[c].nom)>maxLenRes){
                     maxLenRes=length(listeBatimentsPosable[c].nom);
-                    //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
                 }
             }
 
