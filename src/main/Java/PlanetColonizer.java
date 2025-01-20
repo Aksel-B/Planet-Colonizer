@@ -1476,6 +1476,9 @@ class PlanetColonizer extends Program{
         // Trouver deux colons éligibles pour la reproduction
         Colon[] parents;
         if (etat.gestion.capaciteTotalePop>etat.gestion.nombreVivants){
+            if (etat.events.dortoirsPlein[0]==true){
+                etat.events.dortoirsPlein[0]=false;
+            }
             parents = trouverParentsEligibles(colons,etat.gestion);
         }else{
             etat.events.dortoirsPlein[0]=true;
