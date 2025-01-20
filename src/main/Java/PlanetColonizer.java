@@ -817,7 +817,11 @@ class PlanetColonizer extends Program{
         }
     }
 
-    String getResourceColor(String ressource,CaseCarte caseC) {
+    String getRessourceColor(String ressource,CaseCarte caseC) {
+        if (caseC.ressourceActuelle == null || caseC.ressourceActuelle.symbole == null) {
+            return ANSI_RESET; // ou une autre couleur par défaut
+        }
+        
         if(caseC.ressourceActuelle.fonctionne==true){
             switch (ressource) {
                 // Ressources initiales
@@ -856,7 +860,7 @@ class PlanetColonizer extends Program{
                 case " ☢ ":  // Centrale nucléaire
                     return ANSI_YELLOW + ANSI_DARK_BG;
                 case " ⍒ ":  // Puit de Forage
-                    return getResourceColor(caseC.ressourceCaseInit.symbole,caseC);
+                    return getRessourceColor(caseC.ressourceCaseInit.symbole,caseC);
                 default:
                     return ANSI_RESET;
             }
@@ -1566,7 +1570,7 @@ class PlanetColonizer extends Program{
             carteTabAffic[l]=affichageL + " "; // Numéro de ligne
             for (int c = 1; c < length(etat.planete.carte, 2); c++) {
                 String ressource = etat.planete.carte[l][c].symbole;
-                String colorCode = getResourceColor(ressource,etat.planete.carte[l][c]);
+                String colorCode = getRessourceColor(ressource,etat.planete.carte[l][c]);
                 carteTabAffic[l]+=(colorCode + ressource + ANSI_RESET); // Ressources sous forme de grille
             }
         }
@@ -1821,52 +1825,60 @@ class PlanetColonizer extends Program{
         return separAffic;
     }
 
-    void afficherEtat(EtatJeu etat,boolean afficherNbVivNecessaire,boolean afficherTipsPedago,boolean optionInvalide){
-        if(etat.tour>0){
+    void afficherEtat(EtatJeu etat, boolean afficherNbVivNecessaire, boolean afficherTipsPedago, boolean optionInvalide) {
+        if (etat.tour > 0) {
             clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
-        String[][] affichage=afficherEtatCreerTab(etat);
-        String affiche="";
+        String[][] affichage = afficherEtatCreerTab(etat);
+        String affiche = "";
 
         println(affichage[0][0]);
-        for (int c=0;c<length(affichage[1]);c++){
-            for (int l=1;l<length(affichage,1);l++){
-                affiche+=affichage[l][c];
+        for (int c = 0; c < length(affichage[1]); c++) {
+            for (int l = 1; l < length(affichage, 1); l++) {
+                affiche += affichage[l][c];
             }
             println(affiche);
-            affiche="";
+            affiche = "";
         }
         println();
-        if(afficherNbVivNecessaire){
-            println("\n" + ANSI_BOLD + "Nombre de colons survivants : "+ ANSI_RESET + etat.gestion.nombreVivants);
+        if (afficherNbVivNecessaire) {
+            println("\n" + ANSI_BOLD + "Nombre de colons survivants : " + ANSI_RESET + etat.gestion.nombreVivants);
         }
 
-        if(etat.tour >=1 && afficherTipsPedago){
-            CaseCarte batiment=etat.planete.carte[etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][0]][etat.gestion.posBat[countLastPos(etat.gestion.posBat)-1][1]];
-            int id=0;
-            while(id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom,listeBatimentsPossibles[id].nom)){
-                id++;
-            }
+        if (etat.tour >= 1 && afficherTipsPedago) {
+            int lastIndex = countLastPos(etat.gestion.posBat) - 1;
+            if (lastIndex >= 0 && lastIndex < length(etat.gestion.posBat)) {
+                int lig = etat.gestion.posBat[lastIndex][0];
+                int col = etat.gestion.posBat[lastIndex][1];
 
-            if(etat.events.BatimentsPosed[id]==false){
-                String cadre="        ";
-                int max=maxLength(etat.events.posedTxt[id],0)+length(cadre);
+                if (lig >= 0 && lig < length(etat.planete.carte, 1) && col >= 0 && col < length(etat.planete.carte, 2)) {
+                    CaseCarte batiment = etat.planete.carte[lig][col];
+                    int id = 0;
+                    while (id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[id].nom)) {
+                        id++;
+                    }
 
-                for (int i=0;i<max+8;i++){
-                    cadre+="-";
+                    if (id < length(listeBatimentsPossibles) && etat.events.BatimentsPosed[id] == false) {
+                        String cadre = "        ";
+                        int max = maxLength(etat.events.posedTxt[id], 0) + length(cadre);
+
+                        for (int i = 0; i < max + 8; i++) {
+                            cadre += "-";
+                        }
+                        println("\n" + cadre);
+                        for (int e = 0; e < length(etat.events.posedTxt[id]); e++) {
+                            println("                " + etat.events.posedTxt[id][e]);
+                        }
+                        println(cadre + "\n");
+                        etat.events.BatimentsPosed[id] = true;
+                    }
                 }
-                println("\n"+cadre);
-                for(int e=0;e<length(etat.events.posedTxt[id]);e++){
-                    println("                "+etat.events.posedTxt[id][e]);
-                }
-                println(cadre+"\n");
-                etat.events.BatimentsPosed[id]=true;
             }
         }
 
-        if(optionInvalide){
+        if (optionInvalide) {
             println(ANSI_RED + "\nOption invalide. Veuillez réessayer." + ANSI_RESET);
         }
     }
