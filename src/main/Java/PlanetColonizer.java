@@ -2391,6 +2391,29 @@ class PlanetColonizer extends Program{
         
         // Boucle principale du jeu
         while (!partieTerminee) {
+            
+            // Vérification des conditions de fin de partie
+            if (etatJeu.gestion.nombreVivants <= 0) { // Si aucun colon n'est vivant, la partie se termine
+                partieTerminee = true;
+                continue;
+
+            } else {
+                etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
+                
+                // Calcul du score (non implémenté ici)
+                // etatJeu.score = calculerScore(nombreVivants, etatJeu.planete, etatJeu.ressources);
+                
+                // Gestion du menu de jeu
+                boolean continuerTour = gestionMenuJeu(etatJeu, listeBatimentsPossibles); // Permet au joueur de prendre des décisions pour ce tour
+                if (!continuerTour) { // Si le joueur décide d'arrêter, la partie se termine
+                    partieTerminee = true;
+                    continue;
+                }
+
+                // Séparateur visuel entre les tours
+                println("\n-----------------------\n");
+            }
+
             // Incrémentation du tour
             etatJeu.tour++;
 
@@ -2431,27 +2454,7 @@ class PlanetColonizer extends Program{
                     etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
                 }
             }
-
-            // Vérification des conditions de fin de partie
-            if (etatJeu.gestion.nombreVivants <= 0) { // Si aucun colon n'est vivant, la partie se termine
-                partieTerminee = true;
-            } else {
-                etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
-                
-                // Calcul du score (non implémenté ici)
-                // etatJeu.score = calculerScore(nombreVivants, etatJeu.planete, etatJeu.ressources);
-                
-                // Gestion du menu de jeu
-                boolean continuerTour = gestionMenuJeu(etatJeu, listeBatimentsPossibles); // Permet au joueur de prendre des décisions pour ce tour
-                if (!continuerTour) { // Si le joueur décide d'arrêter, la partie se termine
-                    partieTerminee = true;
-                }
-
-                // Séparateur visuel entre les tours
-                println("\n-----------------------\n");
-            }
         }
-
         // Affiche les résultats finaux une fois la partie terminée
         afficherResultatFinal(etatJeu);
     }
