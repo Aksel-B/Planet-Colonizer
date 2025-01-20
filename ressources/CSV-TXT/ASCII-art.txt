@@ -13,7 +13,7 @@
 
     Règles du jeu :
       - Gérez vos ressources limitées
-      - Exploiter les ressources de la planète pour agrandir votre colonie
+      - Exploitez les ressources de la planète pour agrandir votre colonie
       - Surveillez la santé et le bien-être de vos colons
       - Faites face aux défis de la reproduction et de la survie
       - Minimisez la pollution planétaire

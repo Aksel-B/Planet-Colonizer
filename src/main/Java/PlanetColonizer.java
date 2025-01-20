@@ -39,6 +39,7 @@ class PlanetColonizer extends Program{
     final String ANSI_DARK_BG = "\033[48;2;52;40;61m";
     final String ANSI_BROWN = "\033[38;2;139;69;19m";
     final String ANSI_GRAY = "\033[38;2;128;128;128m";
+    final String ANSI_GRAY_BG= "\033[48;2;128;128;128m";
     final String ANSI_BLUE_LIGHT = "\033[38;2;173;216;230m";
     final String ANSI_GREEN_LIGHT = "\033[38;2;144;238;144m";
     final String ANSI_CYAN_LIGHT = "\033[38;2;224;255;255m";
@@ -944,25 +945,25 @@ class PlanetColonizer extends Program{
                 
                 // Bâtiments
                 case " V ":  // Vaisseau
-                    return ANSI_GREENKINDOF + ANSI_DARK_BG;
+                    return ANSI_GREENKINDOF + ANSI_GRAY_BG;
                 case " ⌂ ":  // Dortoir
-                    return ANSI_BROWN + ANSI_DARK_BG;
+                    return ANSI_BROWN + ANSI_GRAY_BG;
                 case " ⌧ ":  // Entrepôt
-                    return ANSI_GRAY + ANSI_DARK_BG;
+                    return ANSI_GRAY + ANSI_GRAY_BG;
                 case " ☤ ":  // Centre de Communication Terrien
-                    return ANSI_MAGENTA + ANSI_DARK_BG;
+                    return ANSI_MAGENTA + ANSI_GRAY_BG;
                 case " ◈ ":  // Cinema
-                    return ANSI_YELLOW + ANSI_DARK_BG;
+                    return ANSI_YELLOW + ANSI_GRAY_BG;
                 case " ⌯ ":  // Capteur d'Humiditée
-                    return ANSI_BLUE_LIGHT + ANSI_DARK_BG;
+                    return ANSI_BLUE_LIGHT + ANSI_GRAY_BG;
                 case " ✲ ":  // Ferme hydroponique
-                    return ANSI_GREEN_LIGHT + ANSI_DARK_BG;
+                    return ANSI_GREEN_LIGHT + ANSI_GRAY_BG;
                 case " ≎ ":  // Recycleur d'Air
-                    return ANSI_CYAN_LIGHT + ANSI_DARK_BG;
+                    return ANSI_CYAN_LIGHT + ANSI_GRAY_BG;
                 case " ☼ ":  // Panneau Stellaire
-                    return ANSI_YELLOW_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_YELLOW_BRIGHT + ANSI_GRAY_BG;
                 case " ☢ ":  // Centrale nucléaire
-                    return ANSI_YELLOW + ANSI_DARK_BG;
+                    return ANSI_YELLOW + ANSI_GRAY_BG;
                 case " ⍒ ":  // Puit de Forage
                     return getRessourceColor(caseC.ressourceCaseInit.symbole,caseC);
                 default:
@@ -2275,8 +2276,11 @@ class PlanetColonizer extends Program{
         }
     }
 
-    EtatJeu gestionMenuPrincipal() {
+    EtatJeu gestionMenuPrincipal(boolean ascii) {
         // Boucle principale du menu
+        if (ascii){
+            printASCII();
+        }
         while (true) {
             // Affichage du menu principal
             println("\n========== MENU PRINCIPAL ==========");
@@ -2346,7 +2350,7 @@ class PlanetColonizer extends Program{
                     // Si l'utilisateur choisit d'annuler
                     if (choix == 0) {
                         clearScreen(); // Effacer l'écran
-                        gestionMenuPrincipal(); // Retour au menu principal
+                        return gestionMenuPrincipal(true); // Retour au menu principal
                     }
 
                     // Charge la sauvegarde sélectionnée
@@ -2367,6 +2371,9 @@ class PlanetColonizer extends Program{
                     System.exit(0); // Quitte le programme
 
                 default: // Gestion des entrées invalides
+                    clearScreen();
+                    cursor(1,1);
+                    printASCII();
                     println(ANSI_BOLD + ANSI_RED + "\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
             }
         }
@@ -2391,10 +2398,7 @@ class PlanetColonizer extends Program{
         println(ANSI_BOLD + "Nombre final" + ANSI_RESET + " de colons : " + etatJeu.gestion.nombreVivants); 
     }
 
-
-//-----------------------------VOID ALGORITHM---------------------------------------------------------------------------------------------------------
-    // Fonction principale de l'algorithme du jeu
-    void algorithm() {
+    void printASCII(){
         // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
         File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
@@ -2406,9 +2410,15 @@ class PlanetColonizer extends Program{
             nbLines++; // Incrémentation du compteur de lignes
             println(currentLine); // Affichage de la ligne
         }
-        
+    }
+
+
+//-----------------------------VOID ALGORITHM---------------------------------------------------------------------------------------------------------
+    // Fonction principale de l'algorithme du jeu
+    void algorithm() {
+
         // Appel du menu principal pour initialiser ou charger une partie
-        EtatJeu etatJeu = gestionMenuPrincipal();
+        EtatJeu etatJeu = gestionMenuPrincipal(true);
 
         // Vérifiez que les ressources sont initialisées correctement
         if (etatJeu.ressources == null || length(etatJeu.ressources) < 11) {
