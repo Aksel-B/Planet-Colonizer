@@ -1937,7 +1937,8 @@ class PlanetColonizer extends Program{
                         }
                         println("\n" + cadre);
                         for (int e = 0; e < length(etat.events.posedTxt[id]); e++) {
-                            println("                " + etat.events.posedTxt[id][e]);
+                            String ligne = replace(etat.events.posedTxt[id][e],"\\033", "\033");
+                            println("                " + ligne);
                         }
                         println(cadre + "\n");
                         etat.events.BatimentsPosed[id] = true;
