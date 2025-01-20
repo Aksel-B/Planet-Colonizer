@@ -2327,7 +2327,7 @@ class PlanetColonizer extends Program{
     void algorithm() {
         // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
-        extensions.File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
+        File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
         int nbLines = 0; // Variable pour compter le nombre de lignes lues
         
         // Lecture et affichage du contenu du fichier ASCII
