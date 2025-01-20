@@ -1398,7 +1398,7 @@ class PlanetColonizer extends Program{
         for (int i=0;i<length(etat.gestion.tabMoyennepollution);i++){
             pollutionTotale+=etat.gestion.tabMoyennepollution[i];
         }
-        int polluant=0;
+        int polluant=1;
         for (double e:etat.gestion.tabMoyennepollution){
             if (e!=0.0){
                 polluant++;
@@ -1936,7 +1936,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat, boolean afficherNbVivNecessaire, boolean afficherTipsPedago, boolean optionInvalide) {
         if (etat.tour > 0) {
-            clearScreen(); 
+            //clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
