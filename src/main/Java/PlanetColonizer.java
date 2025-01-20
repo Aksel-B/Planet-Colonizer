@@ -1404,8 +1404,12 @@ class PlanetColonizer extends Program{
                 polluant++;
             }
         }
+        // Calculer la nouvelle valeur de la pollution
+        double nouvellePollution = (double)(int)(((pollutionTotale/polluant)+etat.planete.pollution)*1000000)/1000000;
+        etat.planete.pollution = nouvellePollution;
+        // Réinitialisation du tableau de moyennes de pollution pour le prochian tour
         etat.gestion.tabMoyennepollution=new double[length(listeBatimentsPossibles)];
-        return (double)(int)(((pollutionTotale/polluant)+etat.planete.pollution)*1000000)/1000000;
+        return nouvellePollution;
     }
 
 //-----------------------------COLONS-------------------------------------------------------------------------------------------------------------------
