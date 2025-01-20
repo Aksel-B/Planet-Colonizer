@@ -202,7 +202,6 @@ class PlanetColonizer extends Program{
         return ligne;
     }
 
-
     int saisirColonne(int nombreColonne) {
         int colonne;
         do {
@@ -289,6 +288,7 @@ class PlanetColonizer extends Program{
         // Cette ligne ne devrait jamais être atteinte
         return "";
     }
+    
     int readIntSecurise(String prompt) {
         while (true) {
             try {
@@ -635,6 +635,7 @@ class PlanetColonizer extends Program{
             println("Erreur lors de la sauvegarde du jeu : " + e.getMessage());
         }
     }
+    
     boolean isNumeric(String str) {
         if (str == null || length(str) == 0) {
             return false;
@@ -1022,7 +1023,6 @@ class PlanetColonizer extends Program{
         newBatiment(newRecette(new int[]{2, 6, 7}, new int[]{115, 5, 30}), "Centrale nucléaire", " ☢ ", POLLUTION_CENTRALE, new int[]{6, 7, 10}, new int[]{2, 10, 100}, new int[]{10}, new int[]{400}),
         newBatiment(newRecette(new int[]{2, 3}, new int[]{10, 5}), "Puit de Forage", " ⍒ ", POLLUTION_PUIT, new int[]{0, 10}, new int[]{0, 25}, new int[1], new int[1])
     };
-
     // Si on veut faire des ressources plus complexes et modifier les recettes en conséquence
     //newBatiment(newRecette(new Terrain[]{RESSOURCES_INIT[2],RESSOURCES_INIT[3],RESSOURCES_INIT[4]},new int[]{75,25,10}),"Usine de Transformation"," ⌬ ",0.001,25,new int[1],new int[1]), //Prod/Conso variable selon la ressource
 
@@ -1301,7 +1301,6 @@ class PlanetColonizer extends Program{
         return batiment.ressourceActuelle.fonctionne;
     }
 
-
     void consommer(EtatJeu etat,int lig, int col){
         CaseCarte batiment=etat.planete.carte[lig][col];
         for(int e=0;e<length(batiment.ressourceActuelle.quantiteResConso);e++){
@@ -1343,7 +1342,6 @@ class PlanetColonizer extends Program{
         }
         return batiment.ressourceActuelle.fonctionne;
     }
-
 
     boolean marcheArret(CaseCarte batiment){
         return !batiment.ressourceActuelle.fonctionne;
@@ -1665,7 +1663,6 @@ class PlanetColonizer extends Program{
                 }
             }
         }
-
 
         if(etat.tour==0){
             afficherTab[0]=new String[]{ANSI_BOLD + "Carte de la Planète" + ANSI_RESET+"\n"};
@@ -2074,10 +2071,10 @@ class PlanetColonizer extends Program{
 
         // Initialisation du tour à 0
         nouvelEtat.tour = 0;
-        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         // Initialisation du score à 0
         nouvelEtat.score = 0.0;
 
+        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
         // Initialisation des ressources disponibles
         nouvelEtat.ressources = new Terrain[11];
         for (int i = 0; i < length(RESSOURCES_INIT); i++) {
