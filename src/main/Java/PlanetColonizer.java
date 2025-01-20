@@ -567,13 +567,11 @@ class PlanetColonizer extends Program{
 
         // Section 4 : Inventaire des Ressources
         donneesCSV[index++] = new String[]{"#SECTION", "INVENTAIRE", "", "", "", ""};
-        donneesCSV[index++] = new String[]{"nomRessource", "quantite", "probaApparition", "", "", ""};
+        donneesCSV[index++] = new String[]{"quantite", "", "", "", "", ""};
         for (int i = 0; i < length(etat.ressources); i++) {
             donneesCSV[index++] = new String[]{
-                etat.ressources[i].nom,
                 "" + etat.ressources[i].quantite,
-                "" + etat.ressources[i].probaApparition,
-                "", "", ""
+                "", "", "","",""
             };
         }
 
@@ -725,20 +723,19 @@ class PlanetColonizer extends Program{
 
     void chargerInventaire(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
         for (int i = 0; i < nombreRessources; i++) {
-            String nom = getCell(fichier, ligne + i, 0);
             int quantite = stringToInt(getCell(fichier, ligne + i, 1));
-            double probaApparition = stringToDouble(getCell(fichier, ligne + i, 2));
 
-            if (nom == null || quantite < 0 || probaApparition < 0) {
+            if (quantite < 0) {
                 // Si une des données est invalide, loggez l'erreur et passez à la ressource suivante
                 println("Erreur : Ressource invalide à la ligne " + (ligne + i));
                 continue; // Ignore cette ressource et passe à la suivante
             }
+            
+            println(RESSOURCES_INIT[i].nom);
+            etat.ressources[i] = RESSOURCES_INIT[i];
+            etat.ressources[i].quantite=quantite;
 
-            etat.ressources[i] = new Terrain();
-            etat.ressources[i].nom = nom;
-            etat.ressources[i].quantite = quantite;
-            etat.ressources[i].probaApparition = probaApparition;
+            println("Log"+etat.ressources[0].nom);
         }
     }
 
@@ -789,6 +786,8 @@ class PlanetColonizer extends Program{
                 Terrain ressourceActuelle = trouverRessource(etat.ressources, ressourceActuelleNom);
                 Terrain ressourceCaseInit = trouverRessource(etat.ressources, ressourceCaseInitNom);
                 ressourceActuelle.fonctionne=fonctionne;
+                ressourceActuelle.symbole=symbole;
+
                 etat.planete.carte[l][c] = newCaseCarte(ressourceActuelle, quantiteRestante, ressourceCaseInit, exploitee);
                 ligne++;
             }
@@ -812,6 +811,7 @@ class PlanetColonizer extends Program{
 
     Terrain trouverRessource(Terrain[] ressources, String nom) {
         for (Terrain ressource : ressources) {
+            println(ressource.nom);
             if (ressource != null && equals(ressource.nom, nom)) {
                 return ressource;
             }
