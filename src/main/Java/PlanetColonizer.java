@@ -21,11 +21,12 @@ class PlanetColonizer extends Program{
     final double POLLUTION_PANNEAU = 0.0001;
     final double POLLUTION_CENTRALE = 0.0001;
     final double POLLUTION_PUIT = 0.005;
+    final double POLLUTION_TOUR_DE_PURIFICATION = -0.0010;
     final int VAISSEAU_INDEX = 0;
     final int DORTOIR_INDEX = 1;
     final int ENTREPOT_INDEX = 2;
     final int CCT_INDEX = 3;
-    final int MAX_BUILDING_INDEX = 10;
+    final int MAX_BUILDING_INDEX = 11;
     final int INFINITE_RESOURCE = -1;
     final int DORTOIR_CAPACITY = 15;
     final int ENTREPOT_CAPACITY = 150;
@@ -46,10 +47,11 @@ class PlanetColonizer extends Program{
     final String ANSI_YELLOW_BRIGHT = "\033[38;2;255;255;0m";
     final String ANSI_YELLOW =  "\033[38;5;11m";
     final String ANSI_ORANGE_DARK = "\033[38;2;255;140;0m";
+    final String ANSI_SLIGHT_ORANGE = "\033[38;5;215m";
     final String ANSI_RED_BRIGHT = "\033[38;2;255;0;0m";
     final int RESOURCE_INDEX_MIN = 2;
     final int RESOURCE_INDEX_MAX = 7;
-    final int PUITS_INDEX = 10;
+    final int PUITS_INDEX = 11;
     final double RANDOM_CORRECTION = 0.0005;
     final int RANDOM_MULTIPLIER = 1000;
     final int AGE_REPRODUCTION_MIN = 20; // Âge minimum pour la reproduction
@@ -830,7 +832,7 @@ class PlanetColonizer extends Program{
                         idBat++;
                     }
                     Terrain batiment=listeBatimentsPossibles[idBat];
-                    if (idBat==10){
+                    if (idBat==PUITS_INDEX){
                         int idResInit=0;
                         while(idResInit<length(etat.ressources) && !equals(etat.ressources[idResInit].nom,ressourceCaseInitNom)){
                             idResInit++;
@@ -960,6 +962,8 @@ class PlanetColonizer extends Program{
                     return ANSI_GREEN_LIGHT + ANSI_GRAY_BG;
                 case " ≎ ":  // Recycleur d'Air
                     return ANSI_CYAN_LIGHT + ANSI_GRAY_BG;
+                case " ⧫ ": // Tour de Puirification de l'air
+                    return ANSI_SLIGHT_ORANGE + ANSI_GRAY_BG;
                 case " ☼ ":  // Panneau Stellaire
                     return ANSI_YELLOW_BRIGHT + ANSI_GRAY_BG;
                 case " ☢ ":  // Centrale nucléaire
@@ -973,27 +977,29 @@ class PlanetColonizer extends Program{
             switch (ressource) {
                 // Bâtiments
                 case " V ":  // Vaisseau
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ⌂ ":  // Dortoir
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ⌧ ":  // Entrepôt
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ☤ ":  // Centre de Communication Terrien
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ◈ ":  // Cinema
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ⌯ ":  // Capteur d'Humiditée
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ✲ ":  // Ferme hydroponique
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ≎ ":  // Recycleur d'Air
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
+                case " ⧫ ": // Tour de Puirification de l'air
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ☼ ":  // Panneau Stellaire
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ☢ ":  // Centrale nucléaire
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 case " ⍒ ":  // Puit de Forage
-                    return ANSI_RED_BRIGHT + ANSI_DARK_BG;
+                    return ANSI_RED_BRIGHT + ANSI_GRAY_BG;
                 default:
                     return ANSI_RESET;
             }
@@ -1011,6 +1017,7 @@ class PlanetColonizer extends Program{
         newBatiment(newRecette(new int[]{2, 3, 5}, new int[]{5, 10, 5}), "Capteur d'Humiditée", " ⌯ ", POLLUTION_CAPTEUR, new int[]{10}, new int[]{20}, new int[]{7}, new int[]{10}),
         newBatiment(newRecette(new int[]{2, 4, 7}, new int[]{5, 5, 5}), "Ferme hydroponique", " ✲ ", POLLUTION_FERME, new int[]{7, 10}, new int[]{7, 20}, new int[]{8, 9}, new int[]{5, 10}),
         newBatiment(newRecette(new int[]{3, 7}, new int[]{5, 5}), "Recycleur d'Air", " ≎ ", POLLUTION_RECYCLEUR, new int[]{7, 10}, new int[]{1, 20}, new int[]{8}, new int[]{10}),
+        newBatiment(newRecette(new int[]{2,4}, new int[]{5,5}), "Tour de Purification de l'air", " ⧫ ",POLLUTION_TOUR_DE_PURIFICATION, new int[]{10}, new int[]{2}, new int[]{8}, new int[]{5}),
         newBatiment(newRecette(new int[]{3, 5}, new int[]{5, 10}), "Panneau Stellaire", " ☼ ", POLLUTION_PANNEAU, new int[]{10}, new int[]{0}, new int[]{10}, new int[]{20}),
         newBatiment(newRecette(new int[]{2, 6, 7}, new int[]{115, 5, 30}), "Centrale nucléaire", " ☢ ", POLLUTION_CENTRALE, new int[]{6, 7, 10}, new int[]{2, 10, 100}, new int[]{10}, new int[]{400}),
         newBatiment(newRecette(new int[]{2, 3}, new int[]{10, 5}), "Puit de Forage", " ⍒ ", POLLUTION_PUIT, new int[]{0, 10}, new int[]{0, 25}, new int[1], new int[1])
@@ -1218,7 +1225,7 @@ class PlanetColonizer extends Program{
             println(batiment.ressourceActuelle.nom);
 
             // Si le bâtiment est un puits de forage, traitement spécial
-            if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[10].nom)) {
+            if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
                 batiment.ressourceActuelle.fonctionne=mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
                 continue;
             }
@@ -1284,14 +1291,14 @@ class PlanetColonizer extends Program{
                 consoRes(etat,1,batiment);
                 batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
 
-                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+                etat.gestion.tabMoyennepollution[PUITS_INDEX]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 consoRes(etat,1,batiment);
                 batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
             
-                etat.gestion.tabMoyennepollution[10]+=batiment.ressourceActuelle.pollutionGeneree;
+                etat.gestion.tabMoyennepollution[PUITS_INDEX]+=batiment.ressourceActuelle.pollutionGeneree;
             }
         }else{
             batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
