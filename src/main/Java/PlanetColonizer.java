@@ -563,6 +563,16 @@ class PlanetColonizer extends Program{
             "" + etat.gestion.nombreVivants,
             ""
         };
+        // Section 3Bis : Gestion:POS_BAT
+        donneesCSV[index++] = new String[]{"#SECTION", "POS_BAT", "", "", "", ""};
+        donneesCSV[index++] = new String[]{"Ligne", "Colonne", "","","",""};
+        for (int i = 0; i < length(etat.gestion.posBat,1); i++) {
+            donneesCSV[index++] = new String[]{
+                "" + etat.gestion.posBat[i][0],
+                "" + etat.gestion.posBat[i][1],
+                "","","",""
+            };
+        }
 
         // Section 4 : Inventaire des Ressources
         donneesCSV[index++] = new String[]{"#SECTION", "INVENTAIRE", "", "", "", ""};
@@ -686,7 +696,10 @@ class PlanetColonizer extends Program{
                         break;
 
                     case "GESTION":
-                        chargerGestion(etatCharge, fichierSauvegarde, ligne + 2, nombreRessources);
+                        etatCharge.gestion=chargerGestion(etatCharge, fichierSauvegarde, ligne + 2, nombreRessources);
+                        break;
+                    case "POS_BAT":
+                        chargerPosBat(etatCharge, fichierSauvegarde, ligne + 2);
                         break;
 
                     case "INVENTAIRE":
@@ -763,12 +776,21 @@ class PlanetColonizer extends Program{
         return count;
     }
 
-    void chargerGestion(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
+    Gestion chargerGestion(EtatJeu etat, CSVFile fichier, int ligne, int nombreRessources) {
+        etat.gestion=newGestion(RESSOURCES_INIT, listeBatimentsPossibles);
         etat.gestion.capaciteTotalePop = stringToInt(getCell(fichier, ligne, 0));
         etat.gestion.capaciteEntrepot = stringToInt(getCell(fichier, ligne, 1));
         etat.gestion.vaisseauPlace = stringToInt(getCell(fichier, ligne, 2));
         etat.gestion.centreDeCommunicationPlace = stringToInt(getCell(fichier, ligne, 3));
         etat.gestion.nombreVivants = stringToInt(getCell(fichier, ligne, 4));
+        return etat.gestion;
+    }
+
+    void chargerPosBat(EtatJeu etat, CSVFile fichier, int ligne) {
+        for (int i = 0; i < length(etat.gestion.posBat); i++) {
+            etat.gestion.posBat[i][0] = stringToInt(getCell(fichier, ligne + i, 0));
+            etat.gestion.posBat[i][1] = stringToInt(getCell(fichier, ligne + i, 1));
+        }
     }
 
     void chargerColons(EtatJeu etat, CSVFile fichier, int ligne, int nombreColons) {
@@ -1188,6 +1210,11 @@ class PlanetColonizer extends Program{
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
             verifCapaciteEntrepot(etat);
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
+            println(batiment.ressourceActuelle.nom);
+            println(batiment.ressourceActuelle.symbole);
+            println(batiment.ressourceActuelle.probaApparition);
+            println(batiment.ressourceActuelle.fonctionne);
+            println(batiment.ressourceActuelle.nom);
 
             // Si le bâtiment est un puits de forage, traitement spécial
             if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[10].nom)) {
@@ -1936,7 +1963,7 @@ class PlanetColonizer extends Program{
 
     void afficherEtat(EtatJeu etat, boolean afficherNbVivNecessaire, boolean afficherTipsPedago, boolean optionInvalide) {
         if (etat.tour > 0) {
-            //clearScreen(); 
+            clearScreen(); 
             println("\n=== Année " + etat.tour + " ===\n");
         }
 
@@ -2396,26 +2423,28 @@ class PlanetColonizer extends Program{
         // Boucle principale du jeu
         while (!partieTerminee) {
             
-            // Vérification des conditions de fin de partie
-            if (etatJeu.gestion.nombreVivants <= 0) { // Si aucun colon n'est vivant, la partie se termine
-                partieTerminee = true;
-                continue;
-
-            } else {
-                etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
-                
-                // Calcul du score (non implémenté ici)
-                // etatJeu.score = calculerScore(nombreVivants, etatJeu.planete, etatJeu.ressources);
-                
-                // Gestion du menu de jeu
-                boolean continuerTour = gestionMenuJeu(etatJeu, listeBatimentsPossibles); // Permet au joueur de prendre des décisions pour ce tour
-                if (!continuerTour) { // Si le joueur décide d'arrêter, la partie se termine
+            if(etatJeu.tour>0){
+                // Vérification des conditions de fin de partie
+                if (etatJeu.gestion.nombreVivants <= 0) { // Si aucun colon n'est vivant, la partie se termine
                     partieTerminee = true;
                     continue;
-                }
 
-                // Séparateur visuel entre les tours
-                println("\n-----------------------\n");
+                } else {
+                    etatJeu.gestion.nombreVivants = compterColonsVivants(etatJeu.colons); // Met à jour le nombre de vivants
+                    
+                    // Calcul du score (non implémenté ici)
+                    // etatJeu.score = calculerScore(nombreVivants, etatJeu.planete, etatJeu.ressources);
+                    
+                    // Gestion du menu de jeu
+                    boolean continuerTour = gestionMenuJeu(etatJeu, listeBatimentsPossibles); // Permet au joueur de prendre des décisions pour ce tour
+                    if (!continuerTour) { // Si le joueur décide d'arrêter, la partie se termine
+                        partieTerminee = true;
+                        continue;
+                    }
+
+                    // Séparateur visuel entre les tours
+                    println("\n-----------------------\n");
+                }
             }
 
             // Incrémentation du tour

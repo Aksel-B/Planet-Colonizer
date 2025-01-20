@@ -1,45 +1,780 @@
 #SECTION,COLONS,,,,
 id,age,sante,satisfaction,energie,anneesDerniereNaissance
-1,29,0.8472499999999998,1.0,1.0,1
-2,31,0.8472499999999998,1.0,1.0,1
-3,29,0.8472499999999998,1.0,1.0,3
-4,37,0.8472499999999998,1.0,1.0,3
-5,30,0.8472499999999998,1.0,1.0,3
-6,39,0.8472499999999998,1.0,1.0,3
-7,1,0.9773499999999999,1.0,1.0,1
-Colons vivants,7,,,,
-Colons morts,5,,,,
+1,27,0.7951509999999998,1.0,1.0,0
+2,42,0.7951509999999998,1.0,1.0,0
+3,41,0.7951509999999998,1.0,1.0,1
+4,29,0.7951509999999998,1.0,1.0,1
+5,37,0.7951509999999998,1.0,1.0,0
+6,42,0.7951509999999998,1.0,1.0,0
+7,2,0.955201,1.0,1.0,2
+8,1,0.976951,1.0,1.0,1
+9,0,1.0,1.0,1.0,0
+10,0,1.0,1.0,1.0,0
+Colons vivants,10,,,,
+Colons morts,2,,,,
 #SECTION,ETAT_JEU,,,,
 nomJeu,score,tour,,,
-trett.csv,0.0,3,,,
+a.csv,0.0,4,,,
 #SECTION,GESTION,,,,
 capaciteTotalPop,capaciteEntrepot,vaisseauPlace,centreDeCommunicationPlace,nombreVivants,
-15,450,1,0,7,
+15,450,1,0,10,
+#SECTION,POS_BAT,,,,
+Ligne,Colonne,,,,
+1,1,,,,
+2,1,,,,
+2,2,,,,
+1,2,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
+0,0,,,,
 #SECTION,INVENTAIRE,,,,
 quantite,,,,,
 0,,,,,
 0,,,,,
-105,,,,,
-45,,,,,
+110,,,,,
+35,,,,,
 30,,,,,
-10,,,,,
 5,,,,,
-69,,,,,
-36,,,,,
-41,,,,,
-205,,,,,
+5,,,,,
+81,,,,,
+28,,,,,
+33,,,,,
+185,,,,,
 #SECTION,POLLUTION,,,,
 pollution,,,,,
-0.004183,,,,,
+0.003989,,,,,
 #SECTION,CASES_CARTE,,,,
 symbole,quantiteRestante,ressourceActuelle,ressourceCaseInit,exploitee,fonctionne
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
 Fe ,500,Fer,Fer,false,true
@@ -59,45 +794,18 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
  V ,-1,Vaisseau,Vaisseau,true,true
- ⍒ ,580,Puit de Forage,Fer,true,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
  ✲ ,-1,Ferme hydroponique,Ferme hydroponique,true,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
 Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -110,9 +818,12 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  S ,500,Soufre,Soufre,false,true
-Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ ⍒ ,570,Puit de Forage,Fer,true,true
+ ⌯ ,-1,Capteur d'Humiditée,Capteur d'Humiditée,true,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -125,22 +836,7 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
  C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
-Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
 Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
@@ -150,7 +846,195 @@ Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ U ,500,Uranium,Uranium,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ S ,500,Soufre,Soufre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -159,8 +1043,153 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
  S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ U ,500,Uranium,Uranium,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ U ,500,Uranium,Uranium,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -177,351 +1206,8 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
  C ,500,Carbone,Carbone,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -542,113 +1228,66 @@ Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
 Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
-Fe ,500,Fer,Fer,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- C ,500,Carbone,Carbone,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- U ,500,Uranium,Uranium,false,true
- U ,500,Uranium,Uranium,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  S ,500,Soufre,Soufre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
 Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ S ,500,Soufre,Soufre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -679,7 +1318,6 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  U ,500,Uranium,Uranium,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
 Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -687,22 +1325,17 @@ Cu ,500,Cuivre,Cuivre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
 Fe ,500,Fer,Fer,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  C ,500,Carbone,Carbone,false,true
  + ,500,Terre,Terre,false,true
@@ -712,14 +1345,6 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
- S ,500,Soufre,Soufre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -734,6 +1359,76 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  S ,500,Soufre,Soufre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
@@ -749,19 +1444,58 @@ Fe ,500,Fer,Fer,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
-Cu ,500,Cuivre,Cuivre,false,true
- + ,500,Terre,Terre,false,true
- + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
 Fe ,500,Fer,Fer,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  C ,500,Carbone,Carbone,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
  + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Fe ,500,Fer,Fer,false,true
+ C ,500,Carbone,Carbone,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+Cu ,500,Cuivre,Cuivre,false,true
+ + ,500,Terre,Terre,false,true
+ + ,500,Terre,Terre,false,true
+ C ,500,Carbone,Carbone,false,true
 #SECTION,EVENTS,,,,
 entrepotPlein,dortoirsPlein,ressourceEstEpuiseeSTR,filonEpuise,BatimentsPosed,
 false,false,,,,
@@ -801,746 +1535,12 @@ false,,,,,
 false,,,,,
 false,,,,,
 false,,,,,
-false,,,,,
+true,,,,,
 true,,,,,
 false,,,,,
 false,,,,,
 false,,,,,
 true,,,,,
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
-null,null,null,null,null,null
 null,null,null,null,null,null
 null,null,null,null,null,null
 null,null,null,null,null,null
