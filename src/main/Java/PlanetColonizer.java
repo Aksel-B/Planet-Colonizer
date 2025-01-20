@@ -801,10 +801,7 @@ class PlanetColonizer extends Program{
                 while(idRes<length(etat.ressources) && !equals(etat.ressources[idRes].nom,ressourceCaseActuelleNom)){
                     idRes++;
                 }
-                println();
-                println(idRes);
                 if (idRes==length(etat.ressources)){
-                    println("Login");
                     int idBat=0;
                     while(idBat<length(listeBatimentsPossibles) && !equals(listeBatimentsPossibles[idBat].nom,ressourceCaseActuelleNom)){
                         idBat++;
@@ -815,37 +812,33 @@ class PlanetColonizer extends Program{
                         while(idResInit<length(etat.ressources) && !equals(etat.ressources[idResInit].nom,ressourceCaseInitNom)){
                             idResInit++;
                         }
-                        println("LogCasePDF");
-                        println(idBat);
-                        println(idResInit);
-                        CaseCarte nouvelleCarte =newCaseCarte(batiment, quantiteRestante, RESSOURCES_INIT[idRes], exploitee);
+                        CaseCarte nouvelleCarte =newCaseCarte(batiment, quantiteRestante, RESSOURCES_INIT[idResInit], exploitee);
                             nouvelleCarte.ressourceActuelle = newBatiment(
                                 batiment.ResNecessaire,
                                 batiment.nom,
                                 batiment.symbole,
                                 batiment.pollutionGeneree,
-                                new int[] { idRes, 10 },                                  // ressourcesConso
-                                new int[] { QUANTITE_RESSOURCES_CONSO_PUIT_DF[idRes-2], 25 }, // quantiteResConso
-                                new int[] { idRes },                                      // ressourcesGeneree
-                                new int[] { QUANTITE_RESSOURCES_GENEREE_PUIT_DF[idRes-2] }    // quantiteResGeneree
+                                new int[] { idResInit, 10 },                                  // ressourcesConso
+                                new int[] { QUANTITE_RESSOURCES_CONSO_PUIT_DF[idResInit-2], 25 }, // quantiteResConso
+                                new int[] { idResInit },                                      // ressourcesGeneree
+                                new int[] { QUANTITE_RESSOURCES_GENEREE_PUIT_DF[idResInit-2] }    // quantiteResGeneree
                             );
                         etat.planete.carte[l][c] = nouvelleCarte;
                     }else{
-                        println("LogCaseNONPDF");
                         etat.planete.carte[l][c] = newCaseCarte(batiment, quantiteRestante, batiment, exploitee);
                     }
                     etat.planete.carte[l][c].ressourceActuelle.fonctionne=fonctionne;
                 }else{
-                    println("LogCaseVierge");
                     etat.planete.carte[l][c] = newCaseCarte(RESSOURCES_INIT[idRes], quantiteRestante, RESSOURCES_INIT[idRes], exploitee);
                 }
-
                 ligne++;
             }
         }
     }
 
-    void chargerEvents(EtatJeu etat, CSVFile fichier, int ligne) {
+    Events chargerEvents(EtatJeu etat, CSVFile fichier, int ligne) {
+        etat.events=newEvents(etat,listeBatimentsPossibles);
+
         etat.events.entrepotPlein = new boolean[]{stringToBoolean(getCell(fichier, ligne, 0))};
         etat.events.dortoirsPlein = new boolean[]{stringToBoolean(getCell(fichier, ligne, 1))};
 
@@ -856,8 +849,9 @@ class PlanetColonizer extends Program{
             etat.events.filonEpuise[i] = getCell(fichier, ligne + i, 3);
         }
         for (int i = 0; i < length(etat.events.BatimentsPosed); i++) {
-            etat.events.BatimentsPosed[i] = stringToBoolean(getCell(fichier, ligne + i, 4));
+            etat.events.BatimentsPosed[i] = stringToBoolean(getCell(fichier, ligne + i, 0));
         }
+        return etat.events;
     }
 
     Terrain trouverRessource(Terrain[] ressources, String nom) {
