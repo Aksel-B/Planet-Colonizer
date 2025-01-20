@@ -1218,11 +1218,6 @@ class PlanetColonizer extends Program{
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
             verifCapaciteEntrepot(etat);
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
-            println(batiment.ressourceActuelle.nom);
-            println(batiment.ressourceActuelle.symbole);
-            println(batiment.ressourceActuelle.probaApparition);
-            println(batiment.ressourceActuelle.fonctionne);
-            println(batiment.ressourceActuelle.nom);
 
             // Si le bâtiment est un puits de forage, traitement spécial
             if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
@@ -1334,13 +1329,14 @@ class PlanetColonizer extends Program{
 
     boolean genererRes(EtatJeu etat, int id, CaseCarte batiment, int capaciteEntreposee, Terrain[] listeBatimentsPossibles, int lig, int col){
         int idRes = batiment.ressourceActuelle.ressourcesGeneree[id];
-        if(((batiment.ressourceActuelle.quantiteResGeneree[id]+capaciteEntreposee)<=etat.gestion.capaciteEntrepot) || batiment.ressourceActuelle.ressourcesGeneree[id]==10){// L'electricite n'est pas comprise dans le stockage
+        int capaciteDisponible=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+        if((batiment.ressourceActuelle.quantiteResGeneree[id]< capaciteDisponible) || batiment.ressourceActuelle.ressourcesGeneree[id]==10){// L'electricite n'est pas comprise dans le stockage
             
             etat.ressources[idRes].quantite+=batiment.ressourceActuelle.quantiteResGeneree[id];
             etat.gestion.variationRessources[idRes]+=batiment.ressourceActuelle.quantiteResGeneree[id];
         }else{
-            etat.ressources[idRes].quantite+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
-            etat.gestion.variationRessources[idRes]+=etat.gestion.capaciteEntrepot-capaciteEntreposee;
+            etat.ressources[idRes].quantite+=capaciteDisponible;
+            etat.gestion.variationRessources[idRes]+=capaciteDisponible;
             
             etat.events.entrepotPlein[0]=true;
             batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
