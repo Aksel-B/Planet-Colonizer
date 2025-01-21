@@ -306,6 +306,27 @@ class PlanetColonizer extends Program{
         }
     }
 
+    int readIntSecurise(String prompt,int debut,int fin) {
+        while (true) {
+            try {
+                // Utiliser readStringSecurise pour obtenir une entrée valide
+                String input = readStringSecurise(prompt);
+                
+                // Convertir la chaîne en entier
+                int valeur = stringToInt(input);
+                
+                if (valeur<debut || valeur>fin){
+                    println(ANSI_RED+"Erreur : Veuillez saisir un nombre entier valide entre "+debut+" et "+fin+"."+ANSI_RESET);
+                    continue;
+                }   
+                return valeur;
+                
+            } catch (Exception e) {
+                println(ANSI_RED+"Erreur : Veuillez saisir un nombre entier valide."+ANSI_RESET);
+            }
+        }
+    }
+
     char readCharSecurise(String prompt) {
         while (true) {
             try {
@@ -2053,7 +2074,7 @@ class PlanetColonizer extends Program{
     
         return e;
     }
-
+    //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
     Gestion newGestion(Terrain[] RESSOURCES_INIT,Terrain[] listeBatimentsPossibles){
         Gestion g=new Gestion();
         g.tabMoyennepollution=new double[length(listeBatimentsPossibles)];
@@ -2074,7 +2095,7 @@ class PlanetColonizer extends Program{
         nouvelEtat.tour = 0;
         // Initialisation du score à 0
         nouvelEtat.score = 0.0;
-        //https://www.youtube.com/watch?v=SUmk20kaPNQ&ab_channel=Solicate
+        
         // Initialisation des ressources disponibles
         nouvelEtat.ressources = new Terrain[11];
         for (int i = 0; i < length(RESSOURCES_INIT); i++) {
@@ -2165,7 +2186,7 @@ class PlanetColonizer extends Program{
 
         int choix=0;
         do{
-            choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-"+(id)+") : ");
+            choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-"+(id)+") : ",1,id);
             if (choix < 1 || choix > id){
                 println(ANSI_RED + "Option invalide. Veuillez réessayer." + ANSI_RESET);
             }
@@ -2191,7 +2212,7 @@ class PlanetColonizer extends Program{
         boolean afficherTipsPedago=true;
         while (true) {
             afficherMenuJeu(etatJeu,invalide,afficherTipsPedago);
-            int choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-4) : ");
+            int choix = readIntSecurise(ANSI_BOLD + "Choisissez une action" + ANSI_RESET + " (1-4) : ",1,4);
             
             switch (choix) {
                 case 1:
@@ -2220,7 +2241,7 @@ class PlanetColonizer extends Program{
         println("2. "+ ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET);
         println("3. "+ ANSI_BOLD+ "Annuler" + ANSI_RESET);
         
-        int choix = readIntSecurise(ANSI_BOLD + "Votre choix : " + ANSI_RESET);
+        int choix = readIntSecurise(ANSI_BOLD + "Votre choix (1-3) : " + ANSI_RESET,1,3);
         
         switch (choix) {
             case 1:
@@ -2249,9 +2270,10 @@ class PlanetColonizer extends Program{
         println("1. " + ANSI_BOLD + "Continuer" + ANSI_RESET + " la partie"); // Option pour continuer
         println("2. " + ANSI_BOLD + "Quitter" + ANSI_RESET + " sans sauvegarder"); // Option pour quitter sans sauvegarder
         println("3. " + ANSI_BOLD + "Sauvegarder et quitter" + ANSI_RESET); // Option pour sauvegarder et quitter
+        println("4. " + ANSI_BOLD + "Revenir au menu principal" + ANSI_RESET); // Option pour sauvegarder et quitter
 
         // Demande à l'utilisateur de faire un choix
-        int choix = readIntSecurise(ANSI_BOLD + "Votre choix : " + ANSI_RESET);
+        int choix = readIntSecurise(ANSI_BOLD + "Votre choix (1-4) : " + ANSI_RESET,1,4);
 
         // Gère le choix de l'utilisateur à l'aide d'un switch
         switch (choix) {
@@ -2267,7 +2289,10 @@ class PlanetColonizer extends Program{
                 // Option 3 : Sauvegarder la partie avant de quitter
                 sauvegarderJeu(etatJeu, nomFichier); // Appelle la fonction pour sauvegarder l'état du jeu
                 return false; // Renvoie `false` pour indiquer que la partie est terminée après sauvegarde
-
+            case 4:
+                // Option 4 Revenir au menu
+                gestionMenuPrincipal(true);
+                return false;
             default:
                 // Gestion des entrées invalides
                 println(ANSI_RED + "Option invalide." + ANSI_RESET);
@@ -2289,7 +2314,7 @@ class PlanetColonizer extends Program{
             println("------------------------------------");
             
             // Demande à l'utilisateur de choisir une option
-            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ");
+            int option = readIntSecurise(ANSI_BOLD + "Choisissez une option" + ANSI_RESET + " (1-3) : ",1,3);
 
             // Gestion des choix avec un switch
             switch (option) {
@@ -2348,7 +2373,6 @@ class PlanetColonizer extends Program{
 
                     // Si l'utilisateur choisit d'annuler
                     if (choix == 0) {
-                        clearScreen(); // Effacer l'écran
                         return gestionMenuPrincipal(true); // Retour au menu principal
                     }
 
@@ -2370,8 +2394,6 @@ class PlanetColonizer extends Program{
                     System.exit(0); // Quitte le programme
 
                 default: // Gestion des entrées invalides
-                    clearScreen();
-                    cursor(1,1);
                     printASCII();
                     println(ANSI_BOLD + ANSI_RED + "\nOption invalide." + ANSI_RESET + " Veuillez réessayer.");
             }
@@ -2398,6 +2420,9 @@ class PlanetColonizer extends Program{
     }
 
     void printASCII(){
+
+        clearScreen();
+        cursor(1,1);
         // Fichier contenant l'ASCII art pour l'introduction
         final String FILENAME = "../../../ressources/CSV-TXT/ASCII-art.txt";
         File f = newFile(FILENAME); // Création d'un objet fichier pour lire le fichier ASCII
