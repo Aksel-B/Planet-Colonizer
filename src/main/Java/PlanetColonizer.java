@@ -2157,12 +2157,14 @@ class PlanetColonizer extends Program{
 
         id=1;
         if (TabIsEmpty(listeBatimentsPosable)){
-            menuPlacerBatiment(listeBatimentsPossibles,etat,true);
+            println("Vous n'avez plus assez de ressource pour construire un batiment sur cette case.\n"+ANSI_BOLD +"Retour au menu..."+ANSI_RESET);
+            delay(2500);
+            gestionMenuJeu(etat,listeBatimentsPossibles);
             return;
         }else{
             println("\nQuel batiment voulez-vous construire sur cette case ?: \n");
-            int maxLenRes=0;
             
+            int maxLenRes=0;
             for(int c=0;c<length(listeBatimentsPosable);c++){
                 if (listeBatimentsPosable[c] != null && length(listeBatimentsPosable[c].nom)>maxLenRes){
                     maxLenRes=length(listeBatimentsPosable[c].nom);
@@ -2171,13 +2173,46 @@ class PlanetColonizer extends Program{
 
             for(int e=0;e<length(listeBatimentsPosable);e++){
                 if(listeBatimentsPosable[e]!=null){
+                    String batiment="";
                     String recette=" ( ";
                     for (int j=0;j<length(listeBatimentsPosable[e].ResNecessaire.coutDeConstruction);j++){
                         recette+=""+listeBatimentsPosable[e].ResNecessaire.quantiteNecessaire[j]+" "+etat.ressources[listeBatimentsPosable[e].ResNecessaire.coutDeConstruction[j]].nom+", ";
                     }
                     recette=substring(recette,0,length(recette)-2)+" )";
 
-                    println(id+" - "+ listeBatimentsPosable[e].symbole + " " +formatCharacteristic(listeBatimentsPosable[e].nom,maxLenRes+1)+recette);
+                    batiment+=id+" - "+ listeBatimentsPosable[e].symbole + " " +formatCharacteristic(listeBatimentsPosable[e].nom,maxLenRes+1)+recette;
+                    int ed = 0;
+                    while (ed < length(listeBatimentsPossibles) && !equals(listeBatimentsPosable[e].nom, listeBatimentsPossibles[ed].nom)) {
+                        ed++;
+                    }
+                    if (ed>4){
+                        String production="Production: ";
+                        if(listeBatimentsPosable[e].ressourcesGeneree[0]!= -1){
+                            production+="( ";
+                            if (ed!=PUITS_INDEX){
+                                for (int j=0;j<length(listeBatimentsPosable[e].ressourcesGeneree);j++){
+                                    production+=""+listeBatimentsPosable[e].quantiteResGeneree[j]+" "+etat.ressources[listeBatimentsPosable[e].ressourcesGeneree[j]].nom+", ";
+                                    production=substring(production,0,length(production)-2)+" /Année )";
+                                }
+                            }else{
+                                int elmt = 0;
+                                while (elmt < length(etat.ressources) && !equals(etat.planete.carte[lig][col].ressourceCaseInit.nom, etat.ressources[elmt].nom)) {
+                                    elmt++;
+                                }
+                                production+=""+QUANTITE_RESSOURCES_GENEREE_PUIT_DF[elmt-2]+" "+etat.planete.carte[lig][col].ressourceCaseInit.nom+" /Année )";
+                            }
+                        }else{
+                            production+="Ce batiment ne produit rien.";
+                        }   
+                        batiment=formatCharacteristic(batiment,75)+production;
+                    }else{
+                        if(id==1){
+                            batiment=formatCharacteristic(batiment,75)+"Ajoute 15 lits supplémentaires.";
+                        }else if(id==2){
+                            batiment=formatCharacteristic(batiment,75)+"Ajoute 150 espaces supplémentaires à l'entrpôt.";
+                        }
+                    }
+                    println(batiment);
                     id++;
                 }
             }
