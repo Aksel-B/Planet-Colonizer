@@ -40,7 +40,7 @@ class PlanetColonizer extends Program{
     final String ANSI_DARK_BG = "\033[48;2;52;40;61m";
     final String ANSI_BROWN = "\033[38;2;139;69;19m";
     final String ANSI_GRAY = "\033[38;2;128;128;128m";
-    final String ANSI_GRAY_BG= "\033[48;2;128;128;128m";
+    final String ANSI_GRAY_BG= "\033[48;2;100;100;100m";
     final String ANSI_BLUE_LIGHT = "\033[38;2;173;216;230m";
     final String ANSI_GREEN_LIGHT = "\033[38;2;144;238;144m";
     final String ANSI_CYAN_LIGHT = "\033[38;2;224;255;255m";
@@ -970,7 +970,7 @@ class PlanetColonizer extends Program{
                 case " ☢ ":  // Centrale nucléaire
                     return ANSI_YELLOW + ANSI_GRAY_BG;
                 case " ⍒ ":  // Puit de Forage
-                    return getRessourceColor(caseC.ressourceCaseInit.symbole,caseC);
+                    return getRessourceColor(caseC.ressourceCaseInit.symbole,caseC)+ANSI_GRAY_BG;
                 default:
                     return ANSI_RESET;
             }
