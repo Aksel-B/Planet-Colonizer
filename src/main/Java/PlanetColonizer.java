@@ -1199,56 +1199,66 @@ class PlanetColonizer extends Program{
 
     int calcCapaciteEntrepot(EtatJeu etat) {
         int capaciteEntreposee = 0;
+        println("Début de calcCapaciteEntrepot");
         for (int i = 0; i < length(etat.ressources) - 1; i++) { // L'électricité n'est pas comprise dans le stockage
+            println("Ressource " + i + ": " + etat.ressources[i].nom + ", Quantité: " + etat.ressources[i].quantite);
             capaciteEntreposee += etat.ressources[i].quantite;
         }
+        println("Capacité entreposée calculée: " + capaciteEntreposee);
         return capaciteEntreposee;
     }
 
-    void verifCapaciteEntrepot(EtatJeu etat){
-        if(calcCapaciteEntrepot(etat) < etat.gestion.capaciteEntrepot){
-            etat.events.entrepotPlein[0]=false;
-        }else{
-            etat.events.entrepotPlein[0]=true;
+    void verifCapaciteEntrepot(EtatJeu etat) {
+        int capaciteEntreposee = calcCapaciteEntrepot(etat);
+        println("Vérification capacité entrepôt: Capacité entreposée = " + capaciteEntreposee + ", Capacité totale = " + etat.gestion.capaciteEntrepot);
+        if (capaciteEntreposee < etat.gestion.capaciteEntrepot) {
+            println("Entrepôt n'est pas plein.");
+            etat.events.entrepotPlein[0] = false;
+        } else {
+            println("Entrepôt est plein !");
+            etat.events.entrepotPlein[0] = true;
         }
     }
 
     void mettreAJourBatiment(EtatJeu etat, Terrain[] listeBatimentsPossibles) {
+        println("Début de mise à jour des bâtiments.");
         int capaciteEntreposee = calcCapaciteEntrepot(etat);
+
         for (int i = 0; i < countLastPos(etat.gestion.posBat); i++) {
+            println("Mise à jour du bâtiment à la position [" + etat.gestion.posBat[i][0] + "," + etat.gestion.posBat[i][1] + "]");
             verifCapaciteEntrepot(etat);
             CaseCarte batiment = etat.planete.carte[etat.gestion.posBat[i][0]][etat.gestion.posBat[i][1]];
 
-            // Si le bâtiment est un puits de forage, traitement spécial
+            println("Bâtiment actuel: " + batiment.ressourceActuelle.nom + ", Fonctionne: " + batiment.ressourceActuelle.fonctionne);
+
             if (equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[PUITS_INDEX].nom)) {
-                batiment.ressourceActuelle.fonctionne=mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
+                println("Traitement spécial pour le puits de forage.");
+                batiment.ressourceActuelle.fonctionne = mettreAJourPuitDeForage(etat, listeBatimentsPossibles, etat.gestion.posBat[i][0], etat.gestion.posBat[i][1], capaciteEntreposee);
                 continue;
             }
-            
-            // Pour les autres bâtiments
+
             if (batiment.ressourceActuelle.ressourcesGeneree[0] != -1) {
                 boolean peutConsommer = true;
-                
-                // Vérifier si le bâtiment peut consommer ses ressources
+
                 for (int j = 0; j < length(batiment.ressourceActuelle.ressourcesConso); j++) {
                     int idRes = batiment.ressourceActuelle.ressourcesConso[j];
                     if (etat.ressources[idRes].quantite < batiment.ressourceActuelle.quantiteResConso[j]) {
+                        println("Pas assez de ressource pour consommer : " + etat.ressources[idRes].nom);
                         peutConsommer = false;
                         break;
                     }
                 }
 
-                // Si le bâtiment ne fonctionnait pas et peut maintenant consommer
                 if (!batiment.ressourceActuelle.fonctionne && peutConsommer && !etat.events.entrepotPlein[0]) {
+                    println("Le bâtiment ne fonctionnait pas et peut maintenant consommer.");
+                    batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
+                } else if (batiment.ressourceActuelle.fonctionne && (!peutConsommer || etat.events.entrepotPlein[0])) {
+                    println("Le bâtiment fonctionnait mais doit s'arrêter.");
                     batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
                 }
-                // Si le bâtiment fonctionnait mais ne peut plus consommer
-                else if (batiment.ressourceActuelle.fonctionne && (!peutConsommer || etat.events.entrepotPlein[0])) {
-                    batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
-                }
-                
-                // Si le bâtiment fonctionne, gérer la production
+
                 if (batiment.ressourceActuelle.fonctionne) {
+                    println("Le bâtiment fonctionne, gestion de la production.");
                     int id = 0;
                     while (id < length(listeBatimentsPossibles) && !equals(batiment.ressourceActuelle.nom, listeBatimentsPossibles[id].nom)) {
                         id++;
@@ -1262,15 +1272,17 @@ class PlanetColonizer extends Program{
             verifCapaciteEntrepot(etat);
         }
     }
-
    boolean mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
+        println("Mise à jour du puits de forage à [" + lig + "," + col + "]");
+        println("Quantité restante dans le puits : " + batiment.quantiteRestante);
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
             id++;
         }
         
         if(batiment.quantiteRestante<=0){
+            println("Le filon est épuisé !");
             batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
             String ligSTR="";
             if (lig>9){
@@ -1282,6 +1294,7 @@ class PlanetColonizer extends Program{
         
         }else if(etat.events.entrepotPlein[0]==false){
             if(batiment.ressourceActuelle.quantiteResGeneree[0]+capaciteEntreposee <=etat.gestion.capaciteEntrepot){
+                println("Ajout des ressources du puits à l'entrepôt.");
                 batiment.quantiteRestante-=batiment.ressourceActuelle.quantiteResConso[0];
                 consoRes(etat,1,batiment);
                 batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
@@ -1289,6 +1302,7 @@ class PlanetColonizer extends Program{
                 etat.gestion.tabMoyennepollution[PUITS_INDEX]+=batiment.ressourceActuelle.pollutionGeneree;
             
             }else{
+                println("Ajout des ressources du puits à l'entrepôt.");
                 batiment.quantiteRestante-=etat.gestion.capaciteEntrepot-capaciteEntreposee;
                 consoRes(etat,1,batiment);
                 batiment.ressourceActuelle.fonctionne=genererRes(etat,0,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
@@ -1296,15 +1310,17 @@ class PlanetColonizer extends Program{
                 etat.gestion.tabMoyennepollution[PUITS_INDEX]+=batiment.ressourceActuelle.pollutionGeneree;
             }
         }else{
+            println("Ajout des ressources du puits à l'entrepôt.");
             batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
         }
         return batiment.ressourceActuelle.fonctionne;
     }
 
-    void consommer(EtatJeu etat,int lig, int col){
-        CaseCarte batiment=etat.planete.carte[lig][col];
-        for(int e=0;e<length(batiment.ressourceActuelle.quantiteResConso);e++){
-            consoRes(etat,e,batiment);
+    void consommer(EtatJeu etat, int lig, int col) {
+        CaseCarte batiment = etat.planete.carte[lig][col];
+        println("Consommation des ressources par le bâtiment à [" + lig + "," + col + "]");
+        for (int e = 0; e < length(batiment.ressourceActuelle.quantiteResConso); e++) {
+            consoRes(etat, e, batiment);
         }
     }
 
@@ -1316,12 +1332,15 @@ class PlanetColonizer extends Program{
 
     boolean generer(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
-        if (etat.events.entrepotPlein[0]==false){
+        println("Génération des ressources pour le bâtiment à [" + lig + "," + col + "]");
+        if (!etat.events.entrepotPlein[0]) {
             for (int f = 0; f < length(batiment.ressourceActuelle.quantiteResGeneree); f++) {
-                batiment.ressourceActuelle.fonctionne=genererRes(etat,f,batiment,capaciteEntreposee, listeBatimentsPossibles, lig, col);
+                println("Ressource générée : " + batiment.ressourceActuelle.ressourcesGeneree[f]);
+                batiment.ressourceActuelle.fonctionne = genererRes(etat, f, batiment, capaciteEntreposee, listeBatimentsPossibles, lig, col);
             }
-        }else{
-            batiment.ressourceActuelle.fonctionne=marcheArret(batiment);
+        } else {
+            println("Entrepôt plein, arrêt du bâtiment.");
+            batiment.ressourceActuelle.fonctionne = marcheArret(batiment);
         }
         return batiment.ressourceActuelle.fonctionne;
     }
