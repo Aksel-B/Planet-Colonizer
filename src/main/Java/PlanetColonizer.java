@@ -1281,7 +1281,8 @@ class PlanetColonizer extends Program{
             verifCapaciteEntrepot(etat);
         }
     }
-   boolean mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
+
+ boolean mettreAJourPuitDeForage(EtatJeu etat, Terrain[] listeBatimentsPossibles, int lig, int col, int capaciteEntreposee) {
         CaseCarte batiment = etat.planete.carte[lig][col];
         int id = 0;
         while (id < length(etat.ressources) && batiment.ressourceCaseInit != etat.ressources[id]) {
@@ -2192,8 +2193,8 @@ class PlanetColonizer extends Program{
                             if (ed!=PUITS_INDEX){
                                 for (int j=0;j<length(listeBatimentsPosable[e].ressourcesGeneree);j++){
                                     production+=""+listeBatimentsPosable[e].quantiteResGeneree[j]+" "+etat.ressources[listeBatimentsPosable[e].ressourcesGeneree[j]].nom+", ";
-                                    production=substring(production,0,length(production)-2)+" /Année )";
                                 }
+                                production=substring(production,0,length(production)-2)+" /Année )";
                             }else{
                                 int elmt = 0;
                                 while (elmt < length(etat.ressources) && !equals(etat.planete.carte[lig][col].ressourceCaseInit.nom, etat.ressources[elmt].nom)) {
